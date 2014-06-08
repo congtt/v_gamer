@@ -1,0 +1,161 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+
+function diemdanh()
+{
+	/*
+	if($("#txtCode").val() != "$_SESSION[VerifyCode]")
+	{
+		alert("Thông tin Mã kiểm tra không chính xác, vui lòng nhập lại");
+		return false;
+	}
+	*/
+	if($("#ddlServer").val() == -1)
+	{
+		alert("Vui lòng chọn server");
+		return false;
+	}
+
+	if($("#ddlCharacter").val() == -1)
+	{
+		alert("Vui lòng chọn nhân vật");
+		return false;
+	}
+	
+    var data = $("#form1").serialize() + "&ajax=1&btnDiemDanh=1";
+    var url = "./dailyregis.{configId}.html";
+    $('#proccessingBar').show();
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+              var obj = eval( '(' + msg + ')' );           
+              $("#message").show();
+              $("#message").html(obj.msg);
+              if(obj.result == 2)
+              {
+                  $("#btnDiemDanh").hide();
+                  $("#ctblock").hide();
+              }
+              $('#proccessingBar').hide();              
+         }
+    });
+    return false;
+}
+
+function loadCharacter()
+{       
+          $('#proccessingBar').show();
+          var data = $("#form1").serialize() + "&getcharname=1";
+          var url = "./{actionName}.html";
+
+         $.ajax({
+              data: data,
+              type: "POST",
+              url: url,
+              success: function(msg)
+              { 
+                    try
+                    {
+                         var obj = eval( '(' + msg + ')' );
+                         $("#txtLevel").html("");           
+                         $("#characterSpan").html(obj.ddlCharacter);
+                         $('#proccessingBar').hide();
+                    }
+                    catch(ex)
+        	    {
+		//		location.href = "./login.html";
+                     }     
+              }
+         });
+}
+
+function showCharacterLevel()
+{
+     var index = $("#ddlCharacter").attr("selectedIndex");
+     var options = document.getElementById("ddlCharacter").options;
+     var level = parseInt(options[index].value);  
+     if(options[index].value > 0)
+          $("#txtLevel").html(level);
+     else
+          $("#txtLevel").html("");
+     document.getElementById("hdfCharName").value = options[index].text;
+     document.getElementById("hdfLevel").value = level;
+     var index = $("#ddlServer").attr("selectedIndex");
+     var options = document.getElementById("ddlServer").options;
+     var serverName = options[index].text;  
+     document.getElementById("hdfServerName").value = serverName ;
+//alert(     document.getElementById("hdfServerName").value);
+}
+
+$(document).ready(function() {
+	$("#{submenuLink}").click();
+});
+</script>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+
+<div class="StaticTopPanel">
+<table width="100%">
+<tr>
+   <td>{BlockWelcomeGamer}
+   </td>
+   <td>
+	<div id="breadcrumbs"><a title="Trang chủ" href="/index.html">Trang chủ</a> &gt; <span>
+Điểm danh mỗi ngày</span></div>
+   </td>
+</tr>
+</table>
+
+</div>
+<div id="message">{Message}</div>
+<br />
+
+<div id="ctblock" style="{display}" >
+
+<div>
+     Tài khoản : <span id="zingaccountspan"><b>{AccountGamer}</b></span><br />
+<table style="display:{showServer}">
+	<tr>
+		<td>Chọn server : 
+		</td>
+		<td>
+			<span id="ddlServerSpan">{ddlServer}</span>
+		</td>
+	</tr>
+	<tr id="trCharacter">
+		<td>Chọn nhân vật :
+		</td>
+		<td>
+			<span id="characterSpan">{ddlCharacter}</span>
+		</td>
+	</tr>
+	<tr id="trLevel">
+		<td>Cấp bậc :
+		</td>
+		<td>
+			<span id="txtLevel"/></span>
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<table>
+	
+	<tr>
+		<td>
+		{btnDiemDanh}
+		</td>
+	</tr>
+</table>
+	
+<br /><br />
+</div>
+</form>
+<!-- END:main -->

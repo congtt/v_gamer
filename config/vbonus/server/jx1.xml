@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<vbonus_config>    
+    <server_list>
+        <server>
+            <server_id>116|10.30.27.210</server_id>
+            <server_name>Hỏa Hổ</server_name>
+        </server>
+         <server>
+            <server_id>115|10.30.27.208</server_id>
+            <server_name>Thủy Hổ</server_name>
+        </server>        
+    </server_list>
+</vbonus_config>
+

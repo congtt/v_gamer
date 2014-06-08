@@ -1,0 +1,282 @@
+@(message: String)(configInfo: HashMap[String, String])(userInfo: HashMap[String,String])(inputList: Map[String, Html])
+
+@import helper._
+
+<link rel="stylesheet" href="@routes.Assets.at("javascripts/alertify/themes/alertify.core.css")" />
+      <link rel="stylesheet" href="@routes.Assets.at("javascripts/alertify/themes/alertify.default.css")" id="toggleCSS" />
+<script src="@routes.Assets.at("javascripts/alertify/lib/alertify.min.js")"></script>	
+<script type="text/javascript" src="@controllers.routes.Vbonus.javascriptRoutes()"></script>
+
+
+<script type='text/javascript'>
+    jQuery.noConflict();
+    jQuery(document).ready(function() {
+        if ('{flag_register}' == '1')
+        {
+            jQuery('#register').remove();
+        }
+        //jQuery('.LeftSide').html('{left_menu}');
+        if ($('#is_server').val() == 1) {
+            $('#invite').hide();
+        } else {
+            $('#invite').show();
+        }
+    });
+</script>
+<script type="text/javascript">
+    function CallAjax() {
+        jsVbonusRoutes.controllers.Vbonus.ajaxVbonusTest("congtt").ajax({
+            success: function(data) {
+                alertify.success(data);               
+            },
+            error: function() {
+                alertify.error("error!");
+            }
+        })
+    }
+
+    function CheckRegister() {
+        var server_id = "";
+        var character = "";
+
+        var vbonus_code = $('#txtVbonusCode').val();
+        if (vbonus_code == '') {
+            alertify.error("Vui lÃ²ng nháº­p mÃ£ sá»‘ vbonus.");
+            $('#txtVbonusCode').focus();
+            return;
+        }
+        var captcha_code = $('#txtCaptchaCode').val();
+        if (captcha_code == '') {
+            alertify.error("Vui lÃ²ng nháº­p mÃ£ sá»‘ báº£o máº­t.");
+            $('#txtCaptchaCode').focus();
+            return;
+        }
+        var token = $("#token").val();
+        if ($('#is_server').val() == 1) {
+            server_id = $("#server option:selected").val();
+            character = $("#character option:selected").val();
+            if (server_id == "")
+            {
+                alertify.error("Vui lÃ²ng chá»�n server.");
+                $('#server').focus();
+                return;
+            }
+            if (character == "")
+            {
+                alertify.error("Vui lÃ²ng chá»�n nhÃ¢n váº­t.");
+                $('#character').focus();
+                return;
+            }
+            /* $.ajax({
+             type: "POST",
+             url: "invite.ajaxinvite.html",
+             data: "sugar_body_only=true&tp=ajaxinvite&vbonus_code=" + vbonus_code + "&captcha_code=" + captcha_code + "&server_id=" + server_id + "&character=" + character + "&token=" + token,
+             success: function(msg) {
+             Message(msg);
+             }
+             });*/
+        } /*else {
+         $.ajax({
+         type: "POST",
+         url: "invite.ajaxinvite.html",
+         data: "sugar_body_only=true&tp=ajaxinvite&vbonus_code=" + vbonus_code + "&captcha_code=" + captcha_code,
+         success: function(msg) {
+         Message(msg);
+         }
+         });
+         }*/
+       jsVbonusRoutes.controllers.Vbonus.ajaxVbonusRegister(vbonus_code, captcha_code, server_id, character, token).ajax({
+            success: function(data) {
+                alert(data);
+                alertify.success(data);                
+            },
+            error: function() {
+                alert("Error!")
+            }
+        })
+
+    }
+
+    function getCharacter(){
+    	var serverId = $('#server option:selected').val();
+    	var token = $('#token').val();
+    	  jsVbonusRoutes.controllers.Vbonus.ajaxVbonusGetCharacter(serverId,token).ajax({
+              success: function(data) {                
+                  alertify.success(data);                
+              },
+              error: function() {
+                  alert("Error!")
+              }
+          })
+          
+    	
+    }
+</script>
+<style type="text/css">
+    .bolder
+    {
+        font-weight:bolder;
+    }
+    .red
+    {
+        font-weight:bolder;
+        color:red;
+    }
+    .tip
+    {
+        font-style:italic;
+    }
+
+    #message_success{
+        color: #FF0000;
+        align:center;
+        font-size: 15pt;
+        font-weight: bold;
+    }
+
+</style>
+
+ 
+ <form name="form1" id="form1" action="@routes.Vbonus.add" method="post">
+    <input type="hidden" name="hdfInsert" id="hdfInsert" > 
+    <input type="hidden" name="mode" id="mode" value="{mode}"/>
+    <input type="hidden" name="page"  id="page"    value="1" />
+
+    <input type="hidden" name="id" id="id" value="" />
+    <input type="hidden" name="token" id="token" value=""/>
+    <input type="hidden" name="type" id="type" value=""/>
+    <input type="hidden" name="group_id" id="group_id" value=""/>
+    <input type="hidden" name="is_server" id="is_server" value="{is_server}"/>
+
+    <div style="clear:both;"></div>
+    <div id="info">
+        <a href="javascript:CallAjax();">CALL</a>
+        <h2>Thông tin chương trình</h2>
+        
+	        <!--@if(inputList != null && !inputList.isEmpty()){
+				
+				@for((key, value) <- inputList) {
+					 <h1> @key</h1> to </h2> @value</h2>
+					}	
+			}-->
+		
+		
+        <table style="margin-left:50px;">
+            <tr style="{platform_style}">
+                <td class="Strong01" colspan=4>
+                   Chương trình : {_platform} @configInfo.get("name")
+                </td>
+            </tr>		
+            <tr>
+                <td class="Strong01">
+                    Thời gian diễn ra:
+                </td>
+                <td width="100px">
+                    @configInfo.get("fromDate")
+                </td>
+                <td  class="Strong01">
+                   đến
+                </td>
+                <td>
+                    @configInfo.get("toDate")
+                </td>
+            </tr>
+            <tr>
+                <td  class="Strong01">
+                    Thời gian mời tài khoản:  
+                </td>
+                <td>
+                    @configInfo.get("inviteFromDate")
+                </td>
+                <td  class="Strong01">
+                  đến
+                </td>
+                <td>
+                    @configInfo.get("inviteToDate")
+                </td>
+            </tr>		
+            <tr style="display:auto">
+                <td>Tài khoản
+                </td>
+                <td colspan=3>@userInfo.get("username")
+                </td>
+            </tr>
+            <tr style="display:auto">
+                <td>Ngày tạo tài khoản
+                </td>
+                <td colspan="3">@userInfo.get("registerDate")
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="clear:both;"></div>
+    <div id="message">@message</div>
+    <div style="clear:both;"></div>
+    <div id="register">
+        <h2>Đăng ký</h2>
+        <div id="register_success">
+            {register_note}
+        </div>
+        
+                 
+        <div id="register_info">
+            <table  style="margin-left:50px;">
+                <tr style="display:auto" id="trVbonusCode">
+                    <td>Mã số VBonus <b style="color:red">(*)</b>
+                    </td>
+                    <td colspan=3><input type="text" placeholder="-- Nhập mã số Vbonus --" id="txtVbonusCode" name="txtVbonusCode">
+                        &nbsp;<a href="http://win.phongmay.zing.vn/fe/info/cpanel/list_pm.html">Tìm mã số Vbonus tại đây.</a>
+                    </td>
+                </tr>
+                <!-- BEGIN: server -->
+                <tr>
+                    <td>Server <b style="color:red">(*)</b>
+                    </td>
+                    <td colspan=3>
+                       @inputList.get("server")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nhân vật <b style="color:red">(*)</b>
+                    </td>
+                    <td colspan=3>
+                          @inputList.get("character")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Level <b style="color:red"></b>
+                    </td>
+                    <td colspan=3>
+                        <span id="txtLevel">&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">&nbsp;</td>
+                </tr>
+                <!-- END: server -->
+
+                <tr>
+                    <td colspan="4">
+                        <div style="margin-left:123px;">
+                            <img width="205px" height="40px" src="{CaptchaImg}" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mã bảo mật : 
+                    </td>
+                    <td>
+                        <input type="text" name="txtCaptchaCode" id="txtCaptchaCode" placeholder=" -- Nhập mã bảo mật --" />
+                    </td>
+                </tr>		
+            </table>
+            <div style="display:none;margin-left:250px;" id="invite">
+                <a href="javascript:CheckRegister()" style="cursor:pointer"><img src="@routes.Assets.at("images/btn_invite.png")"/></a>
+
+            </div>
+        </div>
+        <!-- END: register_info -->
+    </div>
+    <div style="clear:both;"></div>
+</form>
+

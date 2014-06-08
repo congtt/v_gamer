@@ -1,0 +1,103 @@
+/* MENU LEVEL 0 */
+ul#menu-top {  width: 100%;}
+    ul#menu-top li {
+        float: left;
+        font-size: 100%;
+		line-height:16px;
+        position: relative;
+        background:url(../images/donghanh_menu_line.gif) right top no-repeat;
+		padding-right:1px;
+		
+    }
+        ul#menu-top li a:link,
+        ul#menu-top li a:visited {
+            display: block;
+            padding:10px 13px 14px 14px;
+            float: left;
+            text-decoration:none;
+            font-weight: bolder;
+            color: #fff;			
+        }		
+		ul#menu-top li.off{
+            display: block;
+            padding:10px 20px 14px 20px;
+            float: left;
+            text-decoration:none;
+            font-weight: bolder;
+            color: #ababab;
+			cursor:default;
+        }
+		ul#menu-top li.HasChild a:link,
+        ul#menu-top li.HasChild a:visited {
+        }
+        ul#menu-top li.Active a:link,
+        ul#menu-top li.Active a:visited,
+        ul#menu-top li.Hilite a:link,
+        ul#menu-top li.Hilite a:visited,
+        ul#menu-top li a:hover {
+            background:url(../images/pm_menu_o.gif) left top repeat-x;
+            text-decoration: none;
+            color: #fff;
+        }
+        
+		ul#menu-top li.noline {
+        background:none;	
+    }
+	
+        /* SUB-MENU LEVEL 1 */
+        ul#menu-top li ul {
+            background:none;
+            width: 189px;
+            position: absolute;
+            top: 36px;
+            left: 0;
+            display: none;
+            z-index: 3;
+			border-left:1px solid #898989;
+			border-right:1px solid #898989;
+			
+        }
+        ul#menu-top li ul.ToRight {
+            left: auto;
+            right: 0;
+        }
+        ul#menu-top li.Active ul {
+        }
+            ul#menu-top li ul li {
+                font-size: 96%;
+                width: 100%;
+				background:#dedede;
+				
+            }
+                ul#menu-top li.Active ul li a:link,
+                ul#menu-top li.Active ul li a:visited {
+                    color: #696969;
+                    background:#fff;
+                    width: 181px;
+					border-bottom:1px solid #898989;
+					padding:4px 0px 3px 8px;
+					font-weight:normal;
+                }
+                ul#menu-top li.Active ul li.HasChild a:link,
+                ul#menu-top li.Active ul li.HasChild a:visited { }
+                
+                ul#menu-top li.Active ul li.Active a:link,
+                ul#menu-top li.Active ul li.Active a:visited,
+                ul#menu-top li.Active ul li.Hilite a:link,
+                ul#menu-top li.Active ul li.Hilite a:visited,
+                ul#menu-top li.Active ul li a:hover {
+                    background:#5d5d5d;
+					color:#FFFFFF;
+                }
+				ul#menu-top li.Active ul li.HasChild a:hover {
+						            
+                }
+				
+				ul#menu-top li.Active ul li.off{
+                    color: #4b4b4b;
+                    background: url(../homepage/layout/submenu.gif) left top repeat-x;
+                    width: 181px;
+					border-bottom:1px solid #3d3d3d;
+					padding:4px 0px 3px 8px;
+					font-weight:normal;
+                }       

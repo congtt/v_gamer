@@ -1,0 +1,18 @@
+@(typeInp: Integer,typeInput: String, name: String,value: String,title:String,className: String,style: String,options:List[HashMap[String,String]])
+
+@if(typeInp==1){	
+	<input type="@typeInput" id="@name" name="@name" value="@value" title="@title" style="@style" class="@className" />
+}else{
+	<select name="@name" id="@name" title="@title" class="@className" style="@style">
+	<option value="">@title</option>
+	@if(options!=null){
+		@for(option <- options){
+			@if(value.equals(option.get("id"))){
+				<option selected="true" value="@option.get("id")">@option.get("name")</option>
+			}else{
+				<option value="@option.get("id")">@option.get("name")</option>
+			}		
+		}
+	}
+	</select>
+}

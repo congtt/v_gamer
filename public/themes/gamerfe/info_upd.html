@@ -1,0 +1,164 @@
+<!-- BEGIN:main -->
+<link rel="stylesheet" href="{site_path}/themes/GRLV/css/alertify/themes/alertify.core.css" />
+<link rel="stylesheet" href="{site_path}/themes/GRLV/css/alertify/themes/alertify.default.css" id="toggleCSS" />
+<script src="{site_path}/themes/GRLV/css/alertify/lib/alertify.min.js"></script>	
+
+
+<script type="text/javascript">
+	$(function() {
+		<!-- BEGIN: detail -->
+		$("input").attr('disabled','disabled');
+		$("select").attr('disabled','disabled');
+		$("textarea").attr('disabled','disabled');
+		<!-- END: detail -->
+	});
+</script>
+
+
+<script type="text/javascript">
+	function InfoUdp(){		
+		var msg = '';		
+		if($('#fullname').val()==''){
+			$('#fullname').focus();
+			msg='Vui lòng nhập vào họ tên.';
+		}else if($("#day option:selected" ).val()==''){
+			$('#day').focus();
+			msg='Vui lòng nhập ngày sinh .';
+		}else if($("#month option:selected" ).val()==''){
+			$('#month').focus();
+			msg='Vui lòng nhập tháng sinh .';
+		}else if($("#year option:selected" ).val()==''){
+			$('#year').focus();
+			msg='Vui lòng nhập năm sinh .';
+		}else if($('#identity').val()==''){
+			$('#identity').focus();
+			msg='Vui lòng nhập số CMND.';
+		}else if($('#address').val()==''){
+			$('#address').focus();
+			msg='Vui lòng nhập địa chỉ.';
+		}else if($('#phone').val()==''){
+			$('#phone').focus();
+			msg='Vui lòng nhập số điện thoại.';
+		}else if($('#captcha_code').val()==''){
+			$('#captcha_code').focus();
+			msg='Vui lòng nhập mã bảo mật.';
+		}
+		if(msg!=''){
+			alertify.error(msg);
+			return false;
+		}else{
+			document.form1.submit();	
+			return true;
+		}
+	}
+	
+</script>
+<style>
+	.required{
+		color:red;
+	}
+	.message{
+		font-size:14px;		
+	}
+	.success{
+		color:#0000FF;		
+	}
+	.false{
+		color:#FF0000;		
+	}
+</style>
+
+<!-- BEGIN: not_access -->
+<h2 style="background:none;">BẠN KHÔNG CÓ QUYỀN THỰC HIỆN CHỨC NĂNG NÀY</h2>
+<!-- END: not_access -->
+
+<!-- BEGIN: access -->
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form id="form1" name="form1" method="post" onsubmit="return InfoUdp();" >
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+<h2>CẬP NHẬT THÔNG TIN GAMER</h2>
+<div class="mesage">
+	<span class="success">{msg_success}</span>
+	<span class="false">{msg_false}</span>
+</div>
+
+<table>
+	<tr>
+		<td>
+			Họ tên:<span class="required">(*)</span>
+		</td>
+		<td>
+			{_fullname}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Ngày tháng năm sinh:<span class="required">(*)</span>
+		</td>
+		<td>
+			{_day}/{_month}/{_year}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Giới tính:<span class="required">(*)</span>
+		</td>
+		<td>
+			<input style="float: none;width: 20px;" type="radio" {chk_sex_1} name="sex" id="sex_1" value="1" /> Nam
+			<input style="float: none;width: 20px;" type="radio" {chk_sex_0} name="sex" id="sex_0" value="0" /> Nữ
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Số CMND:<span class="required">(*)</span>
+		</td>
+		<td>
+			{_identity}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Địa chỉ:<span class="required">(*)</span>
+		</td>
+		<td>
+			{_address}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Điện thoại liên lạc:<span class="required">(*)</span>
+		</td>
+		<td>
+			{_phone}
+		</td>
+	</tr>
+	<!-- BEGIN: upd -->
+	<tr>
+		<td></td>
+		<td>
+			<img src="{captcha_img}" alt="mat ma" width="205" height="50"/>
+		</td>
+	</tr>
+	<tr>
+		<td>Nhập mã bảo mật: <span class="required">(*)</span>
+		</td>
+		<td>
+			<input type="text" name="captcha_code" id="captcha_code" />
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<input type="submit" name="btnupdinfo" id="btnupdinfo" value="Cập nhật thông tin" />
+		</td>
+	</tr>
+	<!-- END: upd -->
+</table>
+</div>
+
+</form>
+<!-- END: access -->
+
+<!-- END:main -->

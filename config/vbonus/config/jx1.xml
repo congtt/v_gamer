@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<vbonus_config id="37">    
+    <info>
+        <config_id>37</config_id>
+        <api_gamecode>XJ1</api_gamecode>
+        <api_level>3</api_level>
+        <api_type></api_type>
+        <api_esb_new>1</api_esb_new>        
+    </info>
+</vbonus_config>
+

@@ -1,0 +1,34 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()
+GET     /gamer                           controllers.Application.index()
+
+#Login page
+GET     /gamer/login                           controllers.Login.login()
+GET     /gamer/logout                           controllers.Login.logout()
+GET     /gamer/login/redirec                           controllers.Login.redirec()
+
+
+GET     /gamer/welcome                           controllers.Application.welcome()
+
+#Vbonus page
+
+GET     /gamer/vbonus/invite.:configId.:fromDate.:toDate.:inviteFromDate.:inviteToDate.:token.:gameCode    controllers.Vbonus.register(configId,fromDate,toDate,inviteFromDate,inviteToDate,token,gameCode)
+
+POST     /gamer/vbonus/registerpost/da                   controllers.Vbonus.add()
+GET    /gamer/vbonus/register                      controllers.Vbonus.ajaxVbonusTest(str: String)
+POST    /gamer/vbonus/getCharacter                      controllers.Vbonus.ajaxVbonusGetCharacter(serverId: String,token: String)
+GET    /gamer/vbonus/registerinfo                    controllers.Vbonus.ajaxVbonusRegister(vbonusCode: String,captcha_code: String , serverId: String ,character: String ,token: String)
+
+# Javascript routing
+GET    /assets/javascripts/jsVbonusRoutes      controllers.Vbonus.javascriptRoutes()
+
+
+#Passport test
+GET     /gamer/passport/:host/:port/:privateKey/:vngauth/:sign/:ip/:ts    controllers.Passport.test(host,port,privateKey,vngauth,sign, ip, ts)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

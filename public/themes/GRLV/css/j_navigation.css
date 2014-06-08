@@ -1,0 +1,233 @@
+ul#mainNav {
+	width:705px;
+	margin:0;
+	position:absolute;
+	z-index:80;
+	top:67px;
+	left:240px;
+}
+
+ul#mainNav li {
+	float:left;
+	list-style-type:none;
+	position:relative;
+}
+
+ul#mainNav li a:link,ul#mainNav li a:visited {
+	display:block;
+	color:#efefef;
+}
+
+ul#mainNav li a {
+	background:url(../images/nav.gif) no-repeat;
+	height:44px;
+	text-indent:-9999px;
+	margin-right:3px;
+}
+
+ul#mainNav li a.TrangChu {
+	background-position:0 0;
+	width:102px;
+}
+
+ul#mainNav li a.TrangChu:hover {
+	background-position:0 -44px;
+}
+
+ul#mainNav li.Active a.TrangChu,ul#mainNav li.Hilite a.TrangChu {
+	background-position:0 -44px;
+}
+
+ul#mainNav li.Off a.TrangChu {
+	cursor:default;
+	background-position:0 -88px;
+}
+
+ul#mainNav li a.GioiThieu {
+	background-position:-105px 0;
+	width:88px;
+}
+
+ul#mainNav li a.GioiThieu:hover {
+	background-position:-105px -44px;
+}
+
+ul#mainNav li.Active a.GioiThieu,ul#mainNav li.Hilite a.GioiThieu {
+background-position:-105px -44px;
+}
+
+ul#mainNav li.Off a.GioiThieu {
+cursor:default;
+background-position:-105px -88px;
+}
+
+ul#mainNav li a.TinTuc {
+background-position:-196px 0;
+width:75px;
+}
+
+ul#mainNav li a.TinTuc:hover {
+background-position:-196px -44px;
+}
+
+ul#mainNav li.Active a.TinTuc,ul#mainNav li.Hilite a.TinTuc {
+background-position:-196px -44px;
+}
+
+ul#mainNav li.Off a.TinTuc {
+cursor:default;
+background-position:-196px -88px;
+}
+
+ul#mainNav li a.TheLe {
+background-position:-274px 0;
+width:65px;
+}
+
+ul#mainNav li a.TheLe:hover {
+background-position:-274px -44px;
+}
+
+ul#mainNav li.Active a.TheLe,ul#mainNav li.Hilite a.TheLe {
+background-position:-274px -44px;
+}
+
+ul#mainNav li.Off a.TheLe {
+cursor:default;
+background-position:-274px -88px;
+}
+
+ul#mainNav li a.QuyenLoi {
+background-position:-342px 0;
+width:92px;
+}
+
+ul#mainNav li a.QuyenLoi:hover {
+background-position:-342px -44px;
+}
+
+ul#mainNav li.Active a.QuyenLoi,ul#mainNav li.Hilite a.QuyenLoi {
+background-position:-342px -44px;
+}
+
+ul#mainNav li.Off a.QuyenLoi {
+cursor:default;
+background-position:-342px -88px;
+}
+
+ul#mainNav li a.HuongDan {
+background-position:-437px 0;
+width:101px;
+}
+
+ul#mainNav li a.HuongDan:hover {
+background-position:-437px -44px;
+}
+
+ul#mainNav li.Active a.HuongDan,ul#mainNav li.Hilite a.HuongDan {
+background-position:-437px -44px;
+}
+
+ul#mainNav li.Off a.HuongDan {
+cursor:default;
+background-position:-437px -88px;
+}
+
+ul#mainNav li a.LienHe {
+background-position:-541px 0;
+width:72px;
+}
+
+ul#mainNav li a.LienHe:hover {
+background-position:-541px -44px;
+}
+
+ul#mainNav li.Active a.LienHe,ul#mainNav li.Hilite a.LienHe {
+background-position:-541px -44px;
+}
+
+ul#mainNav li.Off a.LienHe {
+cursor:default;
+background-position:-541px -88px;
+}
+
+ul#mainNav li a.DienDan {
+background-position:-616px 0;
+width:86px;
+}
+
+ul#mainNav li a.DienDan:hover {
+background-position:-616px -44px;
+}
+
+ul#mainNav li.Active a.DienDan,ul#mainNav li.Hilite a.DienDan {
+background-position:-616px -44px;
+}
+
+ul#mainNav li.Off a.DienDan {
+cursor:default;
+background-position:-616px -88px;
+}
+
+ul#mainNav li.Active a:link,ul#mainNav li.Active a:visited,ul#mainNav li.Hilite a:link,ul#mainNav li.Hilite a:visited,ul#mainNav li a:hover {
+text-decoration:none;
+color:#fff;
+}
+
+ul#mainNav li ul {
+width:190px;
+position:absolute;
+top:44px;
+left:0;
+display:none;
+font-size:12px;
+z-index:1000;
+padding:0;
+border:1px solid #5d5d5d;
+border-top:none;
+border-bottom:none;
+}
+
+ul#mainNav li ul.ToRight {
+width:190px;
+left:auto;
+right:3px;
+}
+
+ul#mainNav li ul li {
+width:190px;
+color:#fff;
+text-indent:0;
+cursor:pointer;
+}
+
+ul#mainNav li.Active ul li a:link,ul#mainNav li.Active ul li a:visited {
+color:#5d5d5d;
+background:#f4f4f4;
+text-indent:0;
+line-height:18px;
+width:180px;
+height:18px;
+padding:5px;
+border-bottom:solid 1px #5d5d5d;
+cursor:pointer;
+display:block;
+margin:0;
+}
+
+ul#mainNav li.Active ul li.Hilite a:link,ul#mainNav li.Active ul li.Hilite a:visited,ul#mainNav li.Active ul li.Hilite a:hover {
+color:#2d2d2d;
+background:#dbdbdb;
+}
+
+ul#mainNav li.Active ul li a:hover {
+color:#2d2d2d;
+background:#dbdbdb;
+}
+
+ul#mainNav li.Active ul li.Off a:link,ul#mainNav li.Active ul li.Off a:visited,ul#mainNav li.Active ul li.Off a:hover {
+color:#b8b4b4;
+background:#f4f4f4;
+cursor:default;
+}
+

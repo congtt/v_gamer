@@ -1,0 +1,142 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+function getCode()
+{
+	$('#proccessingBar').show();
+    var data = $("#form1").serialize() + "&btnGetCode=1";
+    var url = "./getfreecode.{configId}.html";
+	$("#btnGetCode").hide();
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	               	$("#btnGetCode").show();
+	                var obj = eval( '(' + msg + ')' );
+	                $("#message").show();
+                    $("#message").html(obj.msg);
+                    if(obj.result == 1)
+                    {
+                    	$("#getGameInfoDiv").hide();
+                    	$("#codeReceiveDiv").show();
+                    	$("#codeReceiveDiv2").html(obj.codereceive);
+                    }
+                    
+               }
+               catch(ex)
+   	    {
+    //		location.href = "./login.html";
+                }     
+         }
+    });
+    return false;
+}
+
+function loadCharacter()
+{       
+	if(document.getElementById("ddlServer").selectedIndex == 0)
+	{
+		return;
+	}
+	
+    $('#proccessingBar').show();
+    var data = $("#form1").serialize() + "&getcharname=1";
+    var url = "./getfreecode.{configId}.html";
+
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );
+                    $("#characterSpan").html(obj.ddlCharacter);
+                    
+               }
+               catch(ex)
+   	    {
+    //		location.href = "./login.html";
+                }     
+         }
+    });
+}
+
+function showCharacterLevel()
+{
+     var index = $("#ddlCharacter").attr("selectedIndex");
+     var options = document.getElementById("ddlCharacter").options;
+     var level = parseInt(options[index].value);  
+     if(options[index].value > 0)
+          $("#txtLevel").html(level);
+     else
+          $("#txtLevel").html("");
+     document.getElementById("hdfCharName").value = options[index].text;
+     document.getElementById("hdfLevel").value = level;
+     var index = $("#ddlServer").attr("selectedIndex");
+     var options = document.getElementById("ddlServer").options;
+     var serverName = options[index].text;  
+     document.getElementById("hdfServerName").value = serverName ;
+}
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{BlockWelcomeGamer}
+<br /><br />
+<center><h4>{title}</h4></center><br />
+<div id="message">{Message}
+</div>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form id="form1" name="form1" method="post">
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+
+
+<div id="getGameInfoDiv" style="{getGameInfoDivStyle}">
+Vui lòng chọn server và nhân vật trước khi nhận code
+<table>
+	<tr>
+		<td>Chọn server 
+		</td>
+		<td>
+			{ddlServer}
+		</td>
+	</tr>
+		<tr>
+		<td>Chọn nhân vật 
+		</td>
+		<td>
+			<span id="characterSpan">{ddlCharacter}</span>
+		</td>
+	</tr>
+		<tr id="trLevel">
+		<td>Cấp bậc :
+		</td>
+		<td>
+			<span id="txtLevel"/></span>
+		</td>
+	</tr>
+</table>
+<input type="submit" name="btnGetCode" id="btnGetCode" value="Nhận code" onclick=" return getCode()" />
+</div>
+<div id="codeReceiveDiv" style="{codeReceiveDivStyle}">
+<h4>	DANH SÁCH CODE ĐÃ NHẬN</h4>
+	<div id="codeReceiveDiv2">
+		{codeReceiveDiv}
+	</div>
+</div>
+</form>
+<!-- END:main -->

@@ -1,0 +1,38 @@
+<!-- BEGIN: main -->
+<br><br>
+<script type='text/javascript'>
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+	  jQuery('#site_page_title').html('HỘP QUÀ MAY MẮN');
+	});
+	
+</script>
+<script type="text/javascript" src="{config.site_url}/themes/GRLV/js/swfobject.js"></script>
+<script type="text/javascript">
+var flashvars = {};
+var attributes = {};
+var params = {};
+params.wmode = "transparent";
+params.allowfullscreen ="false";
+params.menu ="true";
+params.scale = "scale";
+params.quality = "high";
+params.allowScriptAccess = "always";
+flashvars.domain = "{domain}";
+swfobject.embedSWF("{config.site_url}/images/{flash_name}?{start_time}", 
+	"getflashplayer", "650","500", "9.0.0", "{config.site_url}/images/expressInstall.swf", 
+flashvars, params, attributes);	
+	</script>
+
+
+
+<object style="visibility:visible1;" id="getflashplayer" data="{config.site_url}/images/{flash_name}?{start_time}" type="application/x-shockwave-flash" height="500" width="650">
+<param value="transparent" name="wmode">
+<param value="false" name="allowfullscreen">
+<param value="true" name="menu">
+<param value="scale" name="scale">
+<param value="high" name="quality">
+<param value="always" name="allowScriptAccess">
+<param value="domain={domain}" name="flashvars">
+</object>
+<!-- END: main -->

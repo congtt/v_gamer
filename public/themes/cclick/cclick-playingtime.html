@@ -1,0 +1,113 @@
+<!-- BEGIN:main -->
+<style>
+a.ccplink:link,a.ccplink:active {color:#5D5D5D;text-decoration:none}
+a.ccplink:hover {color:#5D5D5D;;text-decoration:underline}
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function(){ 
+  $('.topMain').html('<h2>{ccp_config.title}</h2>');  
+  {leftLink}
+ 
+ });
+
+function getCode(url)
+{
+	$('#proccessingBar').show();
+	$("#btnGetCode").hide();
+    var data = $("#form1").serialize() + "&btnGetCode=1";
+   // var url = "./{action}.{configId}.{modeId}.html";
+	//alert(url)
+	if (url=='')
+		return false;
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+					$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );
+					$('#message').attr('style','display:');
+					$('#msgContent').html(obj.msg);
+                    if(obj.result == 1)
+                    {						
+                    	$("#btnGetCode").hide();
+                    }
+                    else
+                    {
+                    	$("#btnGetCode").show();
+                    }
+               }
+               catch(ex)
+   	    		{
+    		//		location.href = "./login.html";
+                }     
+         }
+    });
+    return false;
+}
+
+function register(url){
+	 var data = $("#form1").serialize() + "&btnRegister=1";
+	if (url=='')
+		return false;
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {	  
+					
+	                var obj = eval( '(' + msg + ')' );	             
+                    if(obj.result == 1)
+                    {
+                    	$('#btnRegister').hide();
+						$('#msgContent').html('Đăng ký thành công.');
+						$('#message').attr('style','display:');
+						
+                    }
+                    else
+                    {
+                    	
+                    }
+               }
+               catch(ex)
+   	    		{
+    		
+                }     
+         }
+    });
+    return false;	 
+}
+
+
+</script>
+<div>
+	<div style="float:left">
+		{ccp_config.regLink} {ccp_config.getLink} {ccp_config.hisLink}
+		
+	</div>
+	<div style="float:right">
+		<font color="DeepSkyBlue" style="font: 14px Tahoma bold;"><strong>Chào bạn <font color="black">{ccp_config.userName}</font></strong> 
+		&nbsp;&nbsp;<a id="lnkLogout" href="/promotion/logout/logout.html" style="text-decorate:none"><b>[Thoát]</b></a>
+		</font>
+	</div>
+	
+</div>
+<br /><br />
+{MessageContent}
+<form id="form1" name="form1" method="post">
+<input type="hidden" name="valid_mode" id="valid_mode" value="{valid_mode}">
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<div style = "display:none">Số code bạn có thể nhận: <span id="codeCanGet">{codeCanGet}</span><br /></div><br />
+<div id="getGameInfoDiv" style="{getGameInfoDivStyle}">
+<center>
+{btnRegister}{btnGetCode}
+</center>
+</div>
+</form>
+<!-- END:main -->

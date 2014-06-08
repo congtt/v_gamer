@@ -1,0 +1,364 @@
+<!-- BEGIN:main -->
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<script type="text/javascript" >
+function register()
+{
+	if({bValidCreateDate} == 0)
+	{
+		alert("Ngày tạo tài khoản không hợp lệ");
+		return false;
+	}
+
+	if($("#txtVbonusCode").val() == "")
+	{
+		alert("Vui lòng nhập mã số VBonus");
+		$("#txtVbonusCode").focus();
+		return false;
+	}
+	
+	
+	if($("#txtCaptchaCode").val() == "")
+	{
+		alert("Vui lòng nhập mã bảo mật");
+		$("#txtCaptchaCode").focus();
+		return false;
+	}
+
+	$('#proccessingBar').show();
+    var data = $("#form1").serialize() + "&register=1";
+    var url = "./{actionName}.html";
+	$("#btnRegister").hide();
+   	$.ajax({
+        data: data,
+        type: "POST",
+        url: url,
+        success: function(msg)
+        { 
+              try
+              {
+                   var obj = eval( '(' + msg + ')' );
+                   $("#message").show();
+                   $("#message").html(obj.msg);
+                   if(obj.result != 1)
+                	   $("#btnRegister").show();
+                   else
+                   {
+                	   $("#captchaTable").hide();
+                	   $("#trVbonusCode").hide();
+                   }
+                           	
+                   $('#proccessingBar').hide();
+              }
+              catch(ex)
+	  	    {
+	//		location.href = "./login.html";
+            }     
+        }
+   });
+	
+	return false;
+}
+
+$(document).ready(function() {
+	$("#submenu01_link").click();
+});
+</script>
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">
+<div class="StaticTopPanel">
+<table width="100%">
+<tr>
+   <td>{BlockWelcomeGamer}
+   </td>
+   <td>
+	<div id="breadcrumbs"><a title="Trang chủ" href="/index.html">Trang chủ</a> &gt; <span>
+{breakcrum}</span></div>
+   </td>
+</tr>
+</table>
+
+</div>
+<div id="message">{Message}</div>
+<br />
+<div>
+
+<div id="programDetailDiv">
+<h4>Thông tin chương trình :</h4>
+<div style="margin-left:20px;">
+<table>
+	<tr>
+		<td>Thời gian đăng kí : 
+		</td>
+		<td><span id="timeopenprogramspan">{timeopenprogramspan}</span><br />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Thời gian tạo account :
+		</td>
+		<td>
+			<span id="timecreateaccountspan">{datecreateaccount}</span><br />
+		</td>
+	</tr>
+	<tr style="display:{captchaTableDisplay}">
+		<td>Tài khoản
+		</td>
+		<td>{Account}
+		</td>
+	</tr>
+	<tr style="display:{captchaTableDisplay}">
+		<td>Ngày tạo tài khoản
+		</td>
+		<td>{datecreateaccountgamer}
+		</td>
+	</tr>
+	<tr id="trVbonusCode" style="display:{captchaTableDisplay}">
+		<td>Mã số VBonus <b style="color:red">(*)</b>
+		</td>
+		<td><input type="text" name="txtVbonusCode" id="txtVbonusCode" />
+		</td>
+	</tr>
+</table>     
+     
+</div>
+<br />
+<br />
+<table id="captchaTable" style="display:{captchaTableDisplay}">
+	<tr>
+		<td colspan="2"><img src="{CaptchaImg}" />
+		</td>
+	</tr>
+	<tr>
+		<td>Nhập mã bảo mật : 
+		</td>
+		<td>
+			<input type="text" name="txtCaptchaCode" id="txtCaptchaCode" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="submit" name="btnRegister" id="btnRegister" value="Đăng kí tham gia" onclick="return register()" /> 
+		</td>
+	</tr>
+</table>
+
+</div>
+</div>
+</form>
+<!-- END:main -->
+<!-- BEGIN:main_level -->
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<script type="text/javascript" >
+function loadCharacter()
+{       
+          $('#proccessingBar').show();
+          var data = $("#form1").serialize() + "&getcharname=1";
+          var url = "./{actionName}.html";
+
+         $.ajax({
+              data: data,
+              type: "POST",
+              url: url,
+              success: function(msg)
+              { 
+                    try
+                    {
+                         var obj = eval( '(' + msg + ')' );
+                         $("#txtLevel").html("");           
+                         $("#characterSpan").html(obj.ddlCharacter);
+                         $('#proccessingBar').hide();
+                    }
+                    catch(ex)
+        	    {
+		//		location.href = "./login.html";
+                     }     
+              }
+         });
+}
+
+function showCharacterLevel()
+{
+     var index = $("#ddlCharacter").attr("selectedIndex");
+     var options = document.getElementById("ddlCharacter").options;
+     var level = parseInt(options[index].value);  
+     if(options[index].value > 0)
+          $("#txtLevel").html(level);
+     else
+          $("#txtLevel").html("");
+     document.getElementById("hdfCharName").value = options[index].text;
+     document.getElementById("hdfLevel").value = level;
+     var index = $("#ddlServer").attr("selectedIndex");
+     var options = document.getElementById("ddlServer").options;
+     var serverName = options[index].text;  
+     document.getElementById("hdfServerName").value = serverName ;
+//alert(     document.getElementById("hdfServerName").value);
+}
+
+function register()
+{
+	if({bValidCreateDate} == 0)
+	{
+		alert("Ngày tạo tài khoản không hợp lệ");
+		return false;
+	}
+
+	if($("#txtVbonusCode").val() == "")
+	{
+		alert("Vui lòng nhập mã số VBonus");
+		$("#txtVbonusCode").focus();
+		return false;
+	}
+	
+	
+	if($("#txtCaptchaCode").val() == "")
+	{
+		alert("Vui lòng nhập mã bảo mật");
+		$("#txtCaptchaCode").focus();
+		return false;
+	}
+
+	$('#proccessingBar').show();
+    var data = $("#form1").serialize() + "&register=1";
+    var url = "./{actionName}.html";
+	$("#btnRegister").hide();
+   	$.ajax({
+        data: data,
+        type: "POST",
+        url: url,
+        success: function(msg)
+        { 
+              try
+              {
+                   var obj = eval( '(' + msg + ')' );
+                   $("#message").show();
+                   $("#message").html(obj.msg);
+                   if(obj.result != 1)
+                	   $("#btnRegister").show();
+                   else
+                   {
+                	   $("#captchaTable").hide();
+                	   $("#trVbonusCode").hide();
+                   }
+                           	
+                   $('#proccessingBar').hide();
+              }
+              catch(ex)
+	  	    {
+	//		location.href = "./login.html";
+            }     
+        }
+   });
+	
+	return false;
+}
+
+$(document).ready(function() {
+	$("#submenu01_link").click();
+});
+</script>
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+
+<div class="StaticTopPanel">
+<table width="100%">
+<tr>
+   <td>{BlockWelcomeGamer}
+   </td>
+   <td>
+	<div id="breadcrumbs"><a title="Trang chủ" href="/index.html">Trang chủ</a> &gt; <span>
+{breakcrum}</span></div>
+   </td>
+</tr>
+</table>
+
+</div>
+<div id="message">{Message}</div>
+<br />
+<div>
+
+<div id="programDetailDiv">
+<h4>Thông tin chương trình :</h4>
+<div style="margin-left:20px;">
+<table>
+	<tr>
+		<td>Thời gian đăng kí : 
+		</td>
+		<td><span id="timeopenprogramspan">{timeopenprogramspan}</span><br />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Thời gian tạo account :
+		</td>
+		<td>
+			<span id="timecreateaccountspan">{datecreateaccount}</span><br />
+		</td>
+	</tr>
+	<tr style="display:{captchaTableDisplay}">
+		<td>Tài khoản
+		</td>
+		<td>{Account}
+		</td>
+	</tr>
+	<tr style="display:{captchaTableDisplay}">
+		<td>Ngày tạo tài khoản
+		</td>
+		<td>{datecreateaccountgamer}
+		</td>
+	</tr>
+	<tr id="trVbonusCode" style="display:{captchaTableDisplay}">
+		<td>Mã số VBonus <b style="color:red">(*)</b>
+		</td>
+		<td><input type="text" name="txtVbonusCode" id="txtVbonusCode" placeholder="-- Nhập Mã số VBonus --" />
+		</td>
+	</tr>
+	<tr>
+		<td>Server <b style="color:red">(*)</b>
+		</td>
+		<td>
+			<span id="ddlServerSpan">{ddlServer}</span>
+		</td>
+	</tr>
+	<tr>
+		<td>Nhân vật <b style="color:red">(*)</b>
+		</td>
+		<td>
+			<span id="characterSpan">{ddlCharacter}</span>
+		</td>
+	</tr>
+	<tr>
+		<td>Level <b style="color:red">(*)</b>
+		</td>
+		<td>
+			<span id="txtLevel"/></span>
+		</td>
+	</tr>
+</table>     
+     
+</div>
+<br />
+<br />
+<table id="captchaTable" style="display:{captchaTableDisplay}">
+	<tr>
+		<td colspan="2"><img src="{CaptchaImg}" />
+		</td>
+	</tr>
+	<tr>
+		<td>Nhập mã bảo mật : 
+		</td>
+		<td>
+			<input type="text" name="txtCaptchaCode" id="txtCaptchaCode" placeholder=" -- Nhập mã bảo mật --" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="submit" name="btnRegister" id="btnRegister" value="Đăng kí tham gia" onclick="return register()" /> 
+		</td>
+	</tr>
+</table>
+
+</div>
+</div>
+</form>
+<!-- END:main_level -->

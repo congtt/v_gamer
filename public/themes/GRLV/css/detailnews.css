@@ -1,0 +1,327 @@
+.BlockListNews {
+	overflow:hidden;
+}
+.CommentBox {
+	width:600px;
+	overflow:hidden;
+	padding:0 50px;
+}
+.CommentBox .CommentFormItem {
+	width:100%;
+	overflow:hidden;
+	padding:0 0 5px;
+	position:relative;
+}
+.CommentBox .CommentFormItem label {
+	width:160px;
+	float:left;
+	text-align:right;
+	font-size:12px;
+	font-weight:bolder;
+	color:#000;
+	padding:4px 10px 0 0;
+}
+.CommentBox .CommentFormItem label span.RequiredAsterik {
+	color:#f00;
+}
+.CommentBox .CommentFormItem input.CommentTextInput,.CommentBox .CommentFormItem textarea.CommentTextArea {
+	width:424px;
+	float:right;
+	font-size:12px;
+	color:#000;
+	padding:3px 0 3px 4px;
+	border:1px solid #999;
+	margin:0;
+}
+.StaticInner {
+	/*margin-top: 20px;*/
+}
+.CommentBox .CommentFormItem textarea.CommentTextArea {
+	height:136px;
+	overflow:auto;
+}
+.CommentBox .CommentFormItem input.CommentCaptcha {
+	width:100px;
+	float:left;
+	margin:0 15px 0 0;
+}
+.CommentFormBtnWrapper {
+	overflow:hidden;
+	padding:0 0 0 170px;
+}
+.CommentFormBtnWrapper a.FormBtn {
+	margin:0 5px 0 0;
+}
+a.FormBtn:link,a.FormBtn:visited {
+	display:block;
+	float:left;
+	background:url(../images/news/bg_button_right.gif) right no-repeat;
+	text-decoration:none;
+}
+a.FormBtn:hover {
+	text-decoration:none;
+}
+a.FormBtn span {
+	background:url(../images/news/bg_button_left.gif) left no-repeat;
+	display:block;
+	float:left;
+	text-align:center;
+	padding:4px 10px;
+	font-size:11px;
+	font-weight:bolder;
+	color:#fff;
+}
+.CommentBox .CommentEmotionBox {
+	width:490px;
+	float:left;
+	border:1px solid #d5d5d5;
+	margin:10px 0 0;
+	overflow:hidden;
+	position:absolute;
+	bottom:5px;
+	left:0;
+	height:115px;
+	background:#fff;
+}
+.CommentBox .EmotionBoxExpanded {
+	width:490px;
+}
+.CommentBox .EmotionBoxCollapsed {
+	width:160px;
+}
+.CommentBox .CommentEmotionBox ul.CommentEmotionList {
+	height:115px;
+	float:left;
+	overflow:hidden;
+}
+.CommentBox .CommentEmotionBox ul.CommentEmotionList li {
+	float:left;
+	margin:7px 3px;
+	padding:0;
+	cursor:pointer;
+	width:24px;
+	height:24px;
+}
+.CommentBox .CommentEmotionBox a.CommentEmotionBtn {
+	display:block;
+	width:5px;
+	height:0;
+	padding:113px 0 0;
+	overflow:hidden;
+	text-indent:-1000em;
+	background:url("../images/news/emoticon_bar.gif") no-repeat left -113px;
+	position:absolute;
+	top:0;
+	right:0;
+}
+.CommentBox .CommentEmotionBox a.CommentEmotionBtnCollapsed {
+	background-position:0 0;
+}
+.CommentListSection {
+	margin:20px 0 0;
+	padding:10px;
+	width:570px;
+	height:380px;
+	overflow:auto;
+	border:1px solid #999;
+}
+.CommentListSection dl.CommentList {
+	width:95%;
+	overflow:hidden;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+}
+.CommentListSection dl.CommentList dt {
+	font-size:12px;
+	font-weight:bolder;
+	color:#2F2F2F;
+	border-top:1px solid #d5d5d5;
+	padding:15px 0 0;
+}
+.CommentListSection dl.CommentList dt#gpCommentFirstItem {
+	border-top:none;
+	padding:0;
+}
+.CommentListSection dl.CommentList dd.CommentText {
+	font-size:12px;
+	color:#2F2F2F;
+	padding:4px 0 0;
+}
+.CommentListSection dl.CommentList dd.CommentBtn {
+	width:100%;
+	overflow:hidden;
+	padding:0 0 20px;
+}
+.CommentListSection dl.CommentList dd.CommentBtn a.FormBtn {
+	float:right;
+	width:55px;
+}
+.CommentListSection dl.CommentList dd.CommentBtn a.FormBtn span {
+	float:right;
+	padding:3px 10px 5px;
+}
+.BlockSign {
+	overflow:hidden;
+	border-top:1px dotted #C1C1C1;
+	padding: 10px 0 0;
+	margin: 0 0px;
+	margin-bottom:20px;
+	margin-top: 10px;
+}
+.BlockSign .ShowComment {
+	width:150px;
+	float:left;
+	background:url(../images/news/icon_binhluan.gif) 0 3px no-repeat;
+	padding:0 0 0 20px;
+}
+.BlockSign .ShowComment a:link,.BlockSign .ShowComment a:visited {
+	color:#3c3c3c;
+	text-decoration:none;
+}
+.BlockSign .ShowComment a:hover {
+	color:#b00000;
+}
+.BlockSign .Author {
+	float:right;
+	text-align:right;
+	text-transform:inherit;
+}
+.BlockListNews {
+	
+	position:relative;
+	padding:0 30px 10px;
+}
+.BlockListNews a:visited,
+.BlockListNews a:link {
+	font-size: 12px;
+	color: #0053EB;
+	text-decoration: none;
+}
+.BlockListNews a:hover {
+	color: #0053EB;
+	text-decoration: underline;
+}
+.BlockListNews h4 {
+	color:#2d2d2d;
+	font-size:13px;
+	height:19px;
+	padding:2px 0 3px 0;
+	margin:0;
+	overflow:hidden;
+	font-weight:bolder;
+}
+.BlockListNews a.ViewMore,.BlockListNews a.ViewMore:hover {
+	width:66px;
+	height:17px;
+	background:url(../images/bt-viewmore.gif) no-repeat;
+	text-indent:-9999px;
+	position:absolute;
+	z-index:5;
+	top:3px;
+	right:0;
+}
+.BlockListNews ul.ListNews {
+	width:618px;
+	margin-bottom:20px;
+	overflow:hidden;
+}
+.BlockListNews ul.ListNews li {
+	padding:0px 0 0px 12px;
+	margin:0;
+	background:url(../images/content/icon01.gif) left 12px no-repeat;
+	overflow:hidden;
+	float:left;
+	width:690px;
+}
+.BlockListNews ul.ListNews li.New {
+	background:url(../images/content/icon01.gif) left 12px no-repeat;
+}
+.BlockListNews ul.ListNews li a:link,.BlockListNews ul.ListNews li a:visited {
+	float:left;
+	text-decoration:none;
+	width: 604px;
+}
+.BlockListNews ul.ListNews li a:hover {
+	text-decoration:underline;
+}
+.BlockListNews ul.ListNews li .Date {
+	float: right;
+	text-align: right;
+	color: #565656;
+	font-size: 0.95em;
+	font-weight: normal;
+}
+.BlockNameEvent {
+	clear:both;
+	
+	background:url(../images/bg_line.gif) bottom repeat-x;
+	padding:0 0 7px;
+	overflow:hidden;
+	margin:0px 30px 0;
+}
+.BlockNameEvent h3.DetailNews {
+	color:#1c67ac;
+	font-size:18px;
+	font-weight:bolder;
+	margin-bottom:0;
+	overflow:hidden;
+	text-align:left;
+	float:left;
+	background:none;
+	padding:0;
+}
+.DateDetails {
+	float:right;
+	text-align:right;
+	width:80px;
+}
+.DateDetailsEvent {
+	float:right;
+	text-align:right;
+	width:180px;
+}
+.TitleEventNews {
+	color:#4C448A;
+	font-size:16px;
+	font-weight:bolder;
+	margin-bottom:20px;
+	overflow:hidden;
+	text-align:left;
+	float:left;
+	padding-left:35px;
+	background:url(../images/content/icon_title_event.png) left 0 no-repeat;
+}
+.BlockSign .ZingMe {
+	float:left;
+	width:222px;
+}
+.BlockSign .ZingMe a:visited,.BlockSign .ZingMe a:link {
+	background:url("../images/zingme.gif") no-repeat transparent!important;
+	display:block;
+	height:32px;
+	text-indent:-9999px;
+	width:222px;
+}
+.BlockSign .FaceBook {
+	float:left;
+	width:222px;
+	margin-left: 5px;
+}
+.BlockSign .FaceBook a:visited,.BlockSign .FaceBook a:link {
+	background:url("../images/facebook.gif") no-repeat transparent!important;
+	display:block;
+	height:32px;
+	text-indent:-9999px;
+	width:222px;
+}
+
+.Tags a:link, a:visited {
+	color: #0053EB;
+	text-decoration: underline;
+}
+
+.Tags a:hover {
+	color: #0040B5;
+	text-decoration: none;
+}

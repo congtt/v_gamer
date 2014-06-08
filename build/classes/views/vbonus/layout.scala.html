@@ -1,0 +1,86 @@
+@(siteConfig: HashMap[String,String])(userInfo: HashMap[String,String])(title: String)(menuLeft: Html)(content: Html)
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta
+name="description" content="Phong May Than Thien: Chuong trinh uu dai danh cho chu phong may su dung CSM - phan mem quan ly phong may chuyen nghiep, mien phi"></meta><meta
+name="keywords" content="phong may than thien, phong may vng, phong may csm"></meta><meta
+name="robots" content="index,follow" /><meta
+name="revisit-after" content="1days" /><meta
+name="google-site-verification" content="P-BH276saSRuhaoDo8ziJFqQKGtOiDGR_SE77ci10I8" />
+<title>Chương trình phòng máy thân thiện của VNG</title>
+<link href="@routes.Assets.at("css/vbonusgamer/global.css")" rel="stylesheet" />
+<link href="@routes.Assets.at("css/vbonusgamer/style.css")" rel="stylesheet" />
+<link href="@routes.Assets.at("css/vbonusgamer/content.css")" rel="stylesheet" />
+
+<script type="text/javascript" src="@routes.Assets.at("js/ga-g-pmtt.js")"></script>
+<script src="@routes.Assets.at("js/jquery-core.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("js/jquery-1.4.1.js")" type="text/javascript"></script>
+
+</head>
+<body>
+<script language="javascript">
+function showMenu(id)
+{
+     var div = document.getElementById(id);
+     div.style.display = div.style.display == "none" ? "block" : "none";
+}
+</script>
+
+
+<div id="topbar"></div>
+<div class="Wrapper">
+     <div id="wrapperOut">
+          <div id="container">
+               <div id="header">
+                    <div class="TopLink">
+                         <ul>
+                              <li><a target="_blank" title="Trở về Trang chủ PMTT" href="http://win.phongmay.zing.vn/">Trang chủ</a>|</li>
+                              <li><a title="Diễn đàn Game" href="http://diendan.zing.vn/vng/forumdisplay.php?f=1438" target="_blank">Diễn đàn</a>|</li>
+                              <li><a title="Sự kiện" href="http://phongmay.zing.vn/tin-tuc/danh-sach.html" target="_blank">Sự kiện</a></li>
+                         </ul>
+                    </div>
+                    <h1><a href="http://phongmay.zing.vn" title="Trở về Trang chủ Phòng máy thân thiện"><img src="@routes.Assets.at("images/vbonusgamer/images/logo.jpg")" alt="Trở về Trang chủ Phòng máy thân thiện" /></a></h1>
+                    <ul id="nav">
+                      <li  class="Active"><a title="NHẬN THƯỞNG" href="/{APP_PATH}vbonusgamer/login/login.html"><span>NHẬN THƯỞNG</span></a></li>
+                    </ul>
+
+               </div>
+             
+               <div class="MainContent">
+                    <div class="banner"> <img src="@routes.Assets.at("images/vbonusgamer/images/788x186_NhanthuongVBonus.jpg")" alt="" /> </div>
+                    <div class="topMain">
+                         <h2>V-BONUS</h2>
+                         <p class="time"></p>
+                         @if(userInfo != null && !userInfo.get("username").isEmpty()){ 
+                         <div style="float:right;margin-top: 10px;">
+                                <font color="DeepSkyBlue" style="font: 14px Tahoma bold;"><strong>Chào bạn <font color="black">@userInfo.get("username")</font></strong> 
+                                &nbsp;&nbsp;<a id="lnkLogout" href="@siteConfig.get("siteUrl")logout" style="text-decorate:none"><b>[Thoát]</b></a>
+                                </font>
+                           </div>
+                         }
+                    </div>
+
+                    <div class="LeftSide" id="leftMenu">
+                         @menuLeft
+                    </div>
+
+                    <div id="static">
+                         <div class="StaticInner">
+                              @content
+                         </div>
+                    </div>
+                    <div class="TopPage"><a title="TRỞ LÊN ĐẦU TRANG" href="#topbar">TRỞ LÊN ĐẦU TRANG</a></div>
+               </div>
+               
+               <div id="Footer"> <a href="http://vng.com.vn" class="Vng" title="Website VNG" target="_blank">VNG</a>
+                    <p>&copy; Bản quyền công ty cổ phần dịch vụ phần mềm trò chơi VNG</p>
+               </div>
+          </div>
+     </div>
+    
+</div>
+</body>
+</html>

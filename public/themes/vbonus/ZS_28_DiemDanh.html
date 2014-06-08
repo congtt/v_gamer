@@ -1,0 +1,83 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+
+function diemdanh()
+{
+	/*
+	if($("#txtCode").val() != "$_SESSION[VerifyCode]")
+	{
+		alert("Thông tin Mã kiểm tra không chính xác, vui lòng nhập lại");
+		return false;
+	}
+	*/
+    var data = $("#form1").serialize() + "&ajax=1&btnDiemDanh=1";
+    var url = "./diemdanhvbonuszingspeed.html";
+    $('#proccessingBar').show();
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+              var obj = eval( '(' + msg + ')' );           
+              $("#message").show();
+              $("#message").html(obj.msg);
+              if(obj.result == 2)
+              {
+                  $("#btnDiemDanh").hide();
+                  $("#ctblock").hide();
+              }
+              $('#proccessingBar').hide();              
+         }
+    });
+    return false;
+}
+</script>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">
+<div class="StaticTopPanel">
+<table width="100%">
+<tr>
+   <td>{BlockWelcomeGamer}
+   </td>
+   <td>
+	<div id="breadcrumbs"><a title="Trang chủ" href="/index.html">Trang chủ</a> &gt; <span>
+Điểm danh Vbonus ZingSpeed</span></div>
+   </td>
+</tr>
+</table>
+
+</div>
+<div id="message">{Message}</div>
+<br />
+
+<center id="ctblock" style="{display}" >
+
+<table>
+	<tr>
+		<td align="left">
+		<div style="margin-right: 20px; font-weight: bolder">Mã kiểm tra</div>
+
+		</td>
+		<td align="left"><img
+			src="./diemdanhvbonuszingspeed.image.html" /></td>
+	</tr>
+	<tr>
+		<td align="left">
+		<div style="margin-right: 20px; font-weight: bolder">Nhập mã
+		kiểm tra <span style="color: red">(*)</span></div>
+
+		</td>
+		<td><input type="text" name="txtCode" id="txtCode" /></td>
+	</tr>
+	<tr>
+		<td>
+		{btnDiemDanh}
+		</td>
+	</tr>
+</table>
+	
+<br /><br />
+</center>
+</form>
+<!-- END:main -->

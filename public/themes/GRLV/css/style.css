@@ -1,0 +1,682 @@
+body{
+	background: url("../images/bg-body.png") repeat scroll 0 0 transparent;
+}
+table{	
+	font-size:12px;
+	color:#5D5D5D;
+}
+a:link,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+a.Off,
+li.Off a{
+	cursor: auto;
+}
+
+#outer {
+	width: 100%;
+	font-size: 16px;
+	background: url(../images/bg-body.png) repeat 0 0 transparent;
+	min-width: 1000px;
+	line-height:19px;	
+}
+
+div.Clear {
+	clear: both;
+	width: 100%;
+}
+
+#header {}
+
+#header .Banner {
+	width: 100%;
+	text-align: center;
+	background: url(../images/bg-header.png) repeat-x 0 0 transparent;
+}
+
+#header .HeaderMenuWrapper {
+	width: 100%;
+	background: url(../images/bg-supportlogin-block.png) repeat-x 0 0 transparent;
+	height: 58px;
+	text-align: center;
+}
+
+#header .HeaderMenuWrapper {
+	width: 100%;
+	background: url(../images/bg-supportlogin-block.png) repeat-x 0 0 transparent;
+	height: 58px;
+	text-align: center;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu {
+	margin: 0 auto;
+	width: 940px;
+	height: 100%;
+	text-align: center;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu {
+	display: inline-block;
+	list-style: none;
+	margin: 0 auto;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li {
+	float: left;
+	display: block;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.Cell {
+	float: left;
+	display: block;
+	list-style: none;
+	line-height: 58px;
+	height: 58px;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.SupportPhone {
+	padding-left: 40px;
+	background: url(../images/icons/bg-icon-1.png) no-repeat 0 50% transparent;
+	font-size: 20px;
+	color: #990000;
+	font-weight: bold;
+	position: relative;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ChangePassword {
+	font-size: 14px;
+	color: #990000;
+	font-weight: bold;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ChangePassword a:visited,
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ChangePassword a:link {
+	font-size: inherit;
+	color: inherit;
+	padding-left: 28px;
+	background: url(../images/icons/bg-icon-2.png) no-repeat 0 50% transparent;
+	line-height: 58px;
+	text-decoration: none;
+	display: inline-block;
+}
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ChangePassword a:hover {
+	text-decoration: underline;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul {
+	margin: 0 22px;
+	display: block;
+	height: 58px;
+	float: left;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li {
+	display: block;
+	height: 58px;
+	height: 100%;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li > a:visited,
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li > a:link {
+	background: url(../images/buttons/bg-bt-support.png) no-repeat 0 0 transparent;
+	display: inline-block;
+	line-height: 44px;
+	height: 44px;
+	overflow: hidden;
+	width: 164px;
+	text-align: center;
+	margin: 0 8px;
+	text-decoration: none;
+	margin-top: 7px;
+}
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li > a:hover {
+	background-position: 0 -44px;
+	line-height: 45px;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li.Off > a:hover,
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li.Off > a:visited,
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li.Off > a:link {
+	background-position: 0 -88px;;
+	line-height: 44px;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li.Off > a:hover span,
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li.Off > a:visited span,
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li.Off > a:link span {
+	color: #f57a91;
+}
+
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li > a:hover span {
+	background-position: 0 100%;
+	text-shadow: 1px 1px 1px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
+}
+#header .HeaderMenuWrapper .HeaderMenu ul.Menu li.ButtonBlock > ul > li > a > span {
+	font-size: 20px;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 2px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
+	font-weight: bold;
+}
+
+#content {
+	width: 940px;
+	margin: 0 auto;
+}
+
+#content .ContentWrapper {
+	float: left;
+	width: 940px;
+	margin-top: -10px;
+	/*margin-top: 21px;*/
+	/* overflow: hidden; */
+}
+
+.ContentWrapper .ContentHeader {
+	float: left;
+	width: 945px;
+}
+
+.ContentWrapper .ContentHeader .Other {
+	float: left;
+	width: 300px;
+	margin-left: 20px;
+}
+
+.ContentWrapper .ContentHeader .Other a:link,
+.ContentWrapper .ContentHeader .Other a:visited {
+	float: left;
+	background-image: url(../images/buttons/bg-bt-events.gif);
+	background-repeat: no-repeat;
+	display: block;
+	width: 150px;
+	text-decoration: none;
+	text-align: center;
+}
+.ContentWrapper .ContentHeader .Other a > span {
+	font-size: 14px;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 3px #1368c9;
+	filter: dropshadow(color=#1368c9, offx=1, offy=1);
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.ContentWrapper .ContentHeader .Off .HuongDan {
+	height: 130px;
+	background-position: 0 -260px;
+}
+
+.ContentWrapper .ContentHeader .Off .YeuCauHoTro {
+	height: 130px;
+	background-position: -150px -260px;
+}
+
+.ContentWrapper .ContentHeader .Off .SuKienHotDangDienRa {
+	height: 80px;
+	background-position: -300px -160px;
+}
+
+.ContentWrapper .ContentHeader .Off .SuKienDuKien {
+	height: 80px;
+	background-position: -450px -160px;
+}
+
+.ContentWrapper .ContentHeader .Off .HuongDan > span {
+	color: #4d94c1;
+}
+
+.ContentWrapper .ContentHeader .Off .YeuCauHoTro > span {
+	color: #4d94c1;
+}
+
+.ContentWrapper .ContentHeader .Off .SuKienHotDangDienRa > span {
+	color: #4d94c1;
+}
+
+.ContentWrapper .ContentHeader .Off .SuKienDuKien > span {
+	color: #4d94c1;
+}
+
+.ContentWrapper .ContentHeader .Other .HuongDan {
+	height: 130px;
+	background-position: 0 0;
+}
+
+.ContentWrapper .ContentHeader .Other .YeuCauHoTro {
+	height: 130px;
+	background-position: -150px 0;
+}
+
+.ContentWrapper .ContentHeader .Other .SuKienHotDangDienRa {
+	height: 80px;
+	background-position: -300px 0;
+}
+
+.ContentWrapper .ContentHeader .Other .SuKienDuKien {
+	height: 80px;
+	background-position: -450px 0;
+}
+
+.ContentWrapper .ContentHeader .Other a.SuKienHotDangDienRa > span,
+.ContentWrapper .ContentHeader .Other a.SuKienDuKien > span {
+	display: inline-block;
+	float: left;
+	margin-left: 67px;
+	margin-top: 9px;
+	text-align: left;
+}
+
+.ContentWrapper .ContentHeader .Other .HuongDan > span,
+.ContentWrapper .ContentHeader .Other .YeuCauHoTro > span {
+	margin-top: 80px;
+	display: inline-block;
+}
+
+.ContentWrapper .ContentHeader .Other a.SuKienHotDangDienRa:hover > span,
+.ContentWrapper .ContentHeader .Other a.SuKienDuKien:hover > span {
+	margin-top: 11px;
+}
+
+.ContentWrapper .ContentHeader .Other .HuongDan:hover > span,
+.ContentWrapper .ContentHeader .Other .YeuCauHoTro:hover > span {
+	margin-top: 82px;
+}
+
+.ContentWrapper .ContentHeader .Other .HuongDan:hover {
+	background-position: 0 -130px;
+}
+
+.ContentWrapper .ContentHeader .Other .YeuCauHoTro:hover {
+	background-position: -150px -130px;
+}
+
+.ContentWrapper .ContentHeader .Other .SuKienHotDangDienRa:hover {
+	background-position: -300px -80px;
+}
+
+.ContentWrapper .ContentHeader .Other .SuKienDuKien:hover {
+	background-position: -450px -80px;
+}
+
+.ContentWrapper .ContentHeader .Other .Off .HuongDan:hover,
+.ContentWrapper .ContentHeader .Other .Off .HuongDan {
+	background-position: 0 -260px;
+	cursor: default;
+}
+
+.ContentWrapper .ContentHeader .Other .Off .YeuCauHoTro:hover,
+.ContentWrapper .ContentHeader .Other .Off .YeuCauHoTro {
+	background-position: -150px -260px;
+	cursor: default;
+}
+
+.ContentWrapper .ContentHeader .Other .Off .SuKienHotDangDienRa:hover,
+.ContentWrapper .ContentHeader .Other .Off .SuKienHotDangDienRa {
+	background-position: -300px -160px;
+	cursor: default;
+}
+
+.ContentWrapper .ContentHeader .Other .Off .SuKienDuKien:hover,
+.ContentWrapper .ContentHeader .Other .Off .SuKienDuKien {
+	background-position: -450px -160px;
+	cursor: default;
+}
+
+.ContentWrapper .ContentHeader .Links {
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+}
+
+.ContentWrapper .ContentHeader .Links ul {
+	list-style: none;
+	float: left;
+}
+
+.ContentWrapper .ContentHeader .Links ul > li {
+	list-style: none;
+	display: block;
+	float: left;
+	margin-right: 20px;
+}
+
+.ContentWrapper .ContentHeader .Links ul > li.Last {
+	margin-right: 0px;
+}
+
+.ContentWrapper .ContentHeader .Links ul > li > a:link,
+.ContentWrapper .ContentHeader .Links ul > li > a:visited {
+	display: block;
+	float: left;
+	width: 190px;
+	padding-left: 110px;
+	height: 90px;
+	background-image: url(../images/buttons/bg-bt-links.jpg);
+	background-repeat: no-repeat;
+	text-decoration: none;
+}
+
+.ContentWrapper .ContentHeader .Links ul > li > a.DieuKienTheLeQuyenLoi {
+	background-position: 0px 0px;
+}
+.ContentWrapper .ContentHeader .Links ul > li > a.DieuKienTheLeQuyenLoi:hover {
+	background-position: 0 -90px;
+}
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DieuKienTheLeQuyenLoi:hover,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DieuKienTheLeQuyenLoi:link,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DieuKienTheLeQuyenLoi:visited {
+	background-position: 0 -180px;
+}
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DieuKienTheLeQuyenLoi:hover span,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DieuKienTheLeQuyenLoi:link span,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DieuKienTheLeQuyenLoi:visited span {
+	color: #f8b677;
+	padding-top: 12px;
+}
+
+.ContentWrapper .ContentHeader .Links ul > li > a.ThamGiaNhanThuongVBonus {
+	background-position: -300px 0px;
+}
+.ContentWrapper .ContentHeader .Links ul > li > a.ThamGiaNhanThuongVBonus:hover {
+	background-position: -300px -90px;
+}
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.ThamGiaNhanThuongVBonus:hover,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.ThamGiaNhanThuongVBonus:link,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.ThamGiaNhanThuongVBonus:visited {
+	background-position: -300px -180px;
+}
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.ThamGiaNhanThuongVBonus:hover span,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.ThamGiaNhanThuongVBonus:link span,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.ThamGiaNhanThuongVBonus:visited span {
+	color: #f8b677;
+	padding-top: 12px;
+}
+
+.ContentWrapper .ContentHeader .Links ul > li > a.DienDan {
+	background-position: -600px 0px;
+}
+.ContentWrapper .ContentHeader .Links ul > li > a.DienDan:hover {
+	background-position: -600px -90px;
+}
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DienDan:hover,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DienDan:link,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DienDan:visited {
+	background-position: -600px -180px;
+}
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DienDan:hover span,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DienDan:link span,
+.ContentWrapper .ContentHeader .Links ul > li.Off > a.DienDan:visited span {
+	color: #f8b677;
+	padding-top: 12px;
+}
+
+.ContentWrapper .ContentHeader .Links ul > li > a span {
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 3px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
+	display: block;
+	float: left;
+	padding-top: 12px;
+}
+.ContentWrapper .ContentHeader .Links ul > li > a:hover span {
+	padding-top: 14px;
+}
+
+.ContentWrapper .MainContentBlock {
+	margin-top: 20px;
+	float: left;
+	width: 100%;
+}
+
+.MainContentBlock .MainContentWrapper {
+	width: 100%;
+	float: left;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu {
+	height: 51px;
+	width: 100%;
+	overflow: hidden;
+	background: url(../images/buttons/bg-bt-tabheader.png) no-repeat 100% -204px transparent;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > ul {
+	list-style: none;
+	float: left;
+	display: block;
+	height: 100%;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li {
+	list-style: none;
+	float: left;
+	display: block;
+	height: 100%;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li > a:visited,
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li > a:link {
+	background-image: url(../images/buttons/bg-bt-tabheader.png);
+	background-repeat: no-repeat;
+	background-position: 0 -102px;
+	float: left;
+	display: block;
+	height: 100%;
+	text-decoration: none;
+	padding-left: 25px;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li > a > span {
+	background-image: url(../images/buttons/bg-bt-tabheader.png);
+	background-repeat: no-repeat;
+	background-position: 100% -153px;
+	float: left;
+	display: block;
+	height: 100%;
+	color: #1c67ac;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 56px;
+	padding-right: 25px;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li.Hilite > a:visited,
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li.Hilite > a:link,
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li.Active > a:visited,
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li.Active > a:link,
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li > a:hover {
+	background-position: 0 0;
+	padding-left: 25px;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li.Hilite > a > span,
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li.Active > a > span,
+.MainContentBlock .MainContentWrapper .MainMenu > ul > li > a:hover > span {
+	background-position: 100% -51px;
+	padding-right: 25px;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > .XemThem {
+	float: right;
+	line-height: 56px;
+	margin-right: 20px;
+}
+
+.MainContentBlock .MainContentWrapper .MainMenu > .XemThem > a {
+	color: #1c67ac;
+	padding-right: 15px;
+	background-image: url(../images/buttons/bg-bt-tabheader.png);
+	background-repeat: no-repeat;
+	background-position: -439px -293px;
+	font-size: 11px;
+}
+
+.MainContentBlock .MainContentWrapper .Content {
+	background-color: #FFFFFF;
+	border: 1px solid #b5b5b5;
+	border-top: none;
+	float: left;
+	width: 938px;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews {
+	/* padding: 20px 9px 0px; */
+	padding: 10px 9px 0px;
+	list-style: none;
+	float: left;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li {
+	margin: 0px 19px;
+	padding: 10px 0;
+	list-style: none;
+	float: left;
+	border-bottom: 1px solid #cdcecf;
+	display: block;
+	float: left;
+	width: 419px;
+	height: 105px;
+	overflow: hidden;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li.LastLine {
+	border-bottom: none;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > a {
+	display: block;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > a img.BorderImg01 {
+	border: 1px solid #cdcecf;
+	padding: 1px;
+	float: left;
+	margin-right: 10px;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > .NewsContent {
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > .NewsContent h3 {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > .NewsContent h3 a:visited,
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > .NewsContent h3 a:link {
+	color: #1c67ac
+}
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > .NewsContent h3 a:hover {
+	color: #cc0000;
+	text-decoration: none;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > .NewsContent p.DateNews {
+	font-size: 12px;
+}
+
+.MainContentBlock .MainContentWrapper .Content ul.ListNews > li > .NewsContent p {
+	font-size: 13px;
+}
+
+#footer {
+	width: 940px;
+	margin: 0 auto;
+	text-align: center;
+	height: 140px;
+	line-height: 140px;
+	position: relative;
+}
+
+#footer #copyright {
+	width: 940px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 140px;
+	color: #333333;
+	font-size: 12px;
+}
+
+#footer a.VNGLogo:link,
+#footer a.VNGLogo:visited {
+	display: block;
+	position: absolute;
+	left: 238px;
+	float: left;
+	top: 32px;
+	width: 44px;
+	height: 65px;
+}
+
+#footer img {
+	display: block;
+	float: left;
+	width: 44px;
+	height: 65px;
+}
+
+/* bottom event */
+#bottom-banner-event {
+	padding: 20px 0;
+	margin: 0 auto;
+	width: 940px;
+	overflow: hidden;
+	border-bottom: 1px solid #b5b5b5;
+}
+#bottom-banner-event ul {
+	list-style: none;
+	float: left;
+	display: block;
+	width: 960px;
+	overflow: visible;
+}
+#bottom-banner-event ul li {
+	list-style: none;
+	float: left;
+	display: block;
+}
+#bottom-banner-event ul li a {
+	float: left;
+	display: block;
+	border: 1px solid #b5b5b5;
+	padding: 1px;
+	background: #FFF;
+	margin-right: 20px;
+}
+#bottom-banner-event ul li a:hover {
+	border: 1px solid #0099ff;
+}
+#bottom-banner-event ul li a img {
+	float: left;
+	display: block;
+}
+/* END:bottom event */
+
+span.WNote {
+	bottom: 4px;
+	color: #3B3B3B;
+	float: left;
+	font-size: 11px;
+	font-style: italic;
+	font-weight: normal;
+	left: 17px;
+	line-height: 1.3;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+p.GPTextNotice {
+	font-family: arial,helvetica,sans-serif;
+	font-size: 12px;
+}

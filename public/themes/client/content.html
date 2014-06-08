@@ -1,0 +1,262 @@
+<!-- BEGIN:main -->
+<style>
+a.ccplink:link,a.ccplink:active {color:#5D5D5D;text-decoration:none}
+a.ccplink:hover {color:#5D5D5D;;text-decoration:underline}
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function(){ 
+  $('.topMain').html('<h2>{ccp_config.title}</h2>');  
+  {leftLink}
+ 
+
+  fnc_show_table({flag_show});
+
+ });
+
+
+
+function fnc_get_role(Obj){
+
+	var _obj = $(Obj)	
+	var _id = _obj.attr('id');
+	var _cObj = $('#'+_id+' option:selected');
+	var _value = _obj.attr('value');
+	var _sid = _cObj.attr('item0');
+	var _sname = _cObj.attr('item1');
+	var _token = _cObj.attr('item2');
+	var _sIp = _cObj.attr('item3');
+	_sname = encodeURIComponent(_sname);
+	var _role_list  = $('#pst_role_list');		
+	_role_list.attr('options').length=1;
+	$('.inpRole').val('');
+	$('#txtLevel').html('0');
+	$('#btnGetCode').attr('disabled',true);
+	if (_value!='')
+	{
+		$.ajax({
+		   type: "POST",
+		   url: "{ccp_config.url_ajax}",
+		   data: "stoken="+_token+"&sid="+_sid+"&sname="+_sname+"&sip="+_sIp,
+		   success: function(msg){	
+				
+				var js_obj = eval('(' + msg + ')');		
+				
+				if(js_obj.result==1 && js_obj.data.length>0)			
+				{			
+					for (i=0;i<js_obj.data.length;i++){
+						var character_name = js_obj.data[i].character_name;
+						var role_name = js_obj.data[i].role_name;
+						var level = js_obj.data[i].level;
+						var ctoken = js_obj.data[i].ctoken;
+						var sid = js_obj.sid;
+						var sname = js_obj.sname;
+						var stoken = js_obj.stoken;
+						var tmp=' sid="'+sid+'" sname="'+sname+'" stoken="'+stoken+'" role_name="'+role_name+'" character_name="'+character_name+'" level="'+level+'" ctoken="'+ctoken+'" ';
+						_role_list.append($('<option  '+tmp+'></option>').val(level).html(character_name))
+					}
+				}					
+						
+		   }
+		});				
+	}
+}
+
+
+function fnc_get_character(Obj){
+	var _obj = $(Obj)	
+	var _id = _obj.attr('id');
+	var _cObj = $('#'+_id+' option:selected');
+	var _value = _obj.attr('value');
+	var character_name = _cObj.attr('character_name');
+	var role_name = _cObj.attr('role_name');
+	var level = _cObj.attr('level');
+	var ctoken = _cObj.attr('ctoken');
+	var sid = _cObj.attr('sid');
+	var sname = _cObj.attr('sname');
+	var stoken = _cObj.attr('stoken');
+	if (_value=='')
+	{
+		$('#btnGetCode').attr('disabled',true);
+		$('.inpRole').val('');
+		$('#txtLevel').html('0');
+	}
+	else{
+		$('#pst_character_name').val(character_name);	
+		$('#pst_role_name').val(role_name);	
+		$('#pst_level').val(level);	
+		$('#pst_ctoken').val(ctoken);	
+		$('#pst_sid').val(sid);	
+		$('#pst_sname').val(sname);	
+		$('#pst_stoken').val(stoken);	
+		$('#txtLevel').html(level);
+	}
+
+	if (parseInt(level)>=parseInt($('#pst_level_req').val()))
+	{
+		$('#btnGetCode').attr('disabled',false);
+	}
+
+}
+
+
+
+function getCode(url)
+{
+	$('#proccessingBar').show();
+	$("#btnGetCode").hide();
+    var data = $("#form1").serialize() + "&btnGetCode=1";
+   // var url = "./{action}.{configId}.{modeId}.html";
+	//alert(url)
+	if (url=='')
+		return false;
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+					$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );
+					$('#message').attr('style','display:');
+					$('#msgContent').html(obj.msg);
+                    if(obj.result == 1)
+                    {						
+                    	$("#btnGetCode").hide();
+                    }
+                    else
+                    {
+                    	$("#btnGetCode").show();
+                    }
+               }
+               catch(ex)
+   	    		{
+    		//		location.href = "./login.html";
+                }     
+         }
+    });
+    return false;
+}
+
+function register(url){
+	var data = $("#form1").serialize() + "&btnRegister=1";
+	if (url=='')
+		return false;
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {	  
+					
+	                var obj = eval( '(' + msg + ')' );	             
+                    if(obj.result == 1)
+                    {
+                    	$('#btnRegister').hide();
+						$('#msgContent').html('Đăng ký thành công.');
+						$('#message').attr('style','display:');
+						
+                    }
+                    else
+                    {
+                    	
+                    }
+               }
+               catch(ex)
+   	    		{
+    		
+                }     
+         }
+    });
+    return false;	 
+}
+
+function fnc_show_table(flag){
+	if (flag==1)
+	{
+			$('.MyTable').attr('style','display:');
+			$('.MyServer').remove();
+	}
+	else if (flag==-1){
+			$('.MyServer').remove();
+			$('.MyTable').remove();	
+	}
+	else{
+			$('.MyServer').attr('style','display:');
+			$('.MyTable').remove();	
+	}
+	if ('{action}'=='zingplay')
+	{
+		$('#btnGetCode').attr('disabled',false);
+	}
+}
+
+</script>
+<div>
+	<div style="float:left">
+		<a href="{ccp_config.url_history}" class="ccplink">Lịch sử</a>
+		
+	</div>
+	<div style="float:right">
+		<font color="DeepSkyBlue" style="font: 14px Tahoma bold;"><strong>Chào bạn <font color="black">{ccp_config.userName}</font></strong> 
+		&nbsp;&nbsp;<a id="lnkLogout" href="/promotion/logout/logout.html" style="text-decorate:none"><b>[Thoát]</b></a>
+		</font>
+	</div>
+	
+</div>
+<br /><br />
+{MessageContent}
+<form id="form1" name="form1" method="post">
+<input type="hidden" name="valid_mode" id="valid_mode" value="{valid_mode}">
+{_zp_playingtime}
+{_zp_playingtime_token}
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<div style = "display:none">Số code bạn có thể nhận: <span id="codeCanGet">{codeCanGet}</span><br /></div><br />
+<div id="getGameInfoDiv" style="{getGameInfoDivStyle}">
+
+<!-- BEGIN:server -->
+<table class="MyServer" style="display:none">
+	<tr><td>Server</td><td>:</td><td>{_pst_server_list}</td></tr>
+	<tr><td>Nhân vật</td><td>:</td><td>{_pst_role_list}</td></tr>
+	<tr><td>Level</td><td>:</td><td><span id=txtLevel>0</span>{_pst_level}</td></tr>
+	<tr><td colspan=3></td></tr>
+	<tr><td colspan=3>
+		{_pst_level_req}
+		{_pst_role_name}
+		{_pst_character_name}
+		{_pst_sid}
+		{_pst_sname}
+		{_pst_stoken}
+		{_pst_ctoken}	
+	
+	</td></tr>
+</table>
+{btnRegister}{btnGetCode}
+<!-- END:server -->
+
+<!-- BEGIN:history -->
+<table class="MyTable"  style="display:none" width="100%" cellspacing="0" cellpadding="0">
+	<thead>
+	<tr>
+		<th>Code</th>
+		<th>Ngày nhận</th>
+	</tr>
+	</thead>
+	<tbody>		
+		<tr>
+			<td>{dataCode.code}</td>
+			<td>{dataCode.receive_date_vn}</td>
+		</tr>		
+    </tbody>
+</table>
+<!-- END:history -->
+
+
+</div>
+</form>
+<!-- END:main -->
+
+

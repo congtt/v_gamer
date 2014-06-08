@@ -1,0 +1,104 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+function getCode()
+{
+    var data = $("#form1").serialize() + "&ajax=1&getCode=1";
+    var url = "./jx2getcode.html";
+    $('#proccessingBar').show();
+    $("#btnGetCode").hide();
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+              var obj = eval( '(' + msg + ')' );           
+              $("#message").show();
+              $("#message").html(obj.msg);
+              $("#codespan").html(obj.code);
+              if(obj.showbklDiv == "1")
+                   $("#bklDiv").show();
+              else
+            	  $("#btnGetCode").show();
+              $('#proccessingBar').hide();              
+         }
+    });
+    return false;
+}
+function buyCode()
+{
+     if(confirm("Bạn có đồng ý mua code Bạch Kim Lệnh này ?"))
+     {
+           var data = $("#form1").serialize() + "&ajax=1&buyCode=1";
+           var url = "./jx2getcode.html";
+           $("#btnBuyCode").hide();
+		    $('#proccessingBar').show();
+		    $.ajax({
+		         data: data,
+		         type: "POST",
+		         url: url,
+		         success: function(msg)
+		         { 
+		              var obj = eval( '(' + msg + ')' );           
+		              $("#message").show();
+		              $("#message").html(obj.msg);
+           $("#btnBuyCode").show();
+                              if(obj.result == 1)
+                              {
+                                   $("#showCodeDiv").show();
+                                   $("#bCode").html(obj.code);
+                                   $("#bklDiv").hide();
+                              }
+                              else
+                              {
+                                   $("#showCodeDiv").hide();
+                              }
+
+		              $('#proccessingBar').hide();              
+		         }
+		    }); ;
+     }
+}
+</script>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">
+<input type="hidden" name="configId" id="configId" value="$data[configId]" />
+<div class="StaticTopPanel">
+{BlockWelcomeGamer}
+	<div id="breadcrumbs"><a title="Trang chủ" href="/index.html">Trang chủ</a> &gt; <span>
+VBonus Võ Lâm II - Càng Chơi Càng Máu</span></div></div>
+<div id="message">{Message}</div>
+<br />
+
+<div>
+<div id="programDetailDiv">
+<h4>Thông tin chương trình :</h4>
+<div style="margin-left:20px;">
+     Tên chương trình : <span id="programNameSpan">{configName}</span><br />
+     Thời gian tạo account : <span id="timecreateaccountspan">{datecreateaccount}</span><br />
+</div>
+<br />
+<h4>Thông tin tài khoản :</h4>
+<div style="margin-left:20px;">
+     Tài khoản : <span id="zingaccountspan"><b>{AccountGamer}</b></span><br />
+</div>
+
+
+</div><br />
+
+{btnGetCode}
+&nbsp; <b style="color:red;margin-left:100px" id="codespan"></b>
+</div>
+
+<div id="setBitDiv" style="display:{showsetBitDiv}">
+<h4>Bạn đã đăng kí nhận thưởng trong game rồi.</h4>
+</div>
+
+<div id="showCodeDiv" style="display:{showCodeReceive}">
+<h4>Code Bạch Kim Lệnh bạn đã mua : <b id="bCode" style="color:red">{codeBKL}</b></h4>
+Bạn vui lòng <a href="https://khuyenmai.zing.vn/volam2/bach-kim-lenh-2/login/">vào đây</a> để kích hoạt Bạch Kim Lệnh.
+</div>
+<div id="bklDiv" style="display:{showbklDiv}">
+</div>
+</form>
+<!-- END:main -->

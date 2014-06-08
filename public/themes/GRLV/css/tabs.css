@@ -1,0 +1,20 @@
+* jQuery UI Tabs @VERSION * * Copyright 2010,AUTHORS.txt(http://jqueryui.com/about) * Dual licensed under the MIT or GPL Version 2 licenses. * http://jquery.org/license * * http://docs.jquery.com/UI/Tabs#theming */ .ui-tabs {
+	position:relative;
+	padding:.2em;
+	zoom:1;
+}
+
+.ui-tabs .ui-tabs-nav li a,.ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {
+	cursor:pointer;
+}
+
+.ui-tabs .ui-tabs-panel {
+	display:block;
+	border-width:0;
+	padding:0 0 20px;
+	background:none;
+}
+
+.ui-tabs .ui-tabs-hide {
+	display:none!important;
+}

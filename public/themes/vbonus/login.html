@@ -1,0 +1,40 @@
+<!-- BEGIN:main -->
+                              <div class="Description"></div>
+                              <div class="StaticMain">
+
+<form name="form1" id="form1" method="post"  action="{URL_VNG_SSO2}">
+<input type=hidden id="u1" name="u1" value="{return_login_success_url}">
+
+<input type=hidden name="h" id='h' value="2">
+<input type=hidden name="starttime" id="starttime">
+<input type=hidden name="aid" id="aid" value="143">
+<input type="hidden" name="pid" value="143" />
+<input type=hidden id="img_verify" value="https://sso.zing.vn/getimage?aid=143">
+<input type="hidden" name="fp" id="fp" value="{return_login_fail_url}" />
+                                        <legend>
+                                        <ul>
+                                             <li>                                            <div id="msg1" style="font-weight:bolder;color:red;text-align:center">{Message}</div>      
+                                                  <p>
+                                                       <label class="Reg"  for="uname">Tên đăng nhập <span class="Require">(*)</span>: </label>
+                                                       <input type="text" name="u" id="u1" />
+                                                  </p>
+                                             </li>                                            
+                                             <li>                                                  
+                                                  <p> 
+                                                       <label class="Reg"  for="pass">Mật khẩu <span class="Require">(*)</span>:</label>
+                                                       <input type="password" name="p" id="p" />
+                                                  </p>
+                                             </li>                                          
+                                         
+                                             <li>
+                                                  <p class="lstBtn" > <span class="Btn">
+                                                       <input type="submit" id="btnLogin" name="btnLogin" title="Đăng nhập" value="Đăng nhập" />
+                                                       </span>
+                                                  </p>
+                                             </li>
+                                        </ul>
+                                        </legend>
+                                   </form>
+                              </div>
+                              
+<!-- END:main -->

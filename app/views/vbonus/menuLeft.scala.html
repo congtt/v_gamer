@@ -1,0 +1,14 @@
+@(siteConfig: HashMap[String,String])(message: String)(isLogin: Integer)(menus: List[HashMap[String, String]])
+<ul>
+    @if(isLogin==1){
+        <li><a title="Đăng xuất" href="@siteConfig.get("siteUrl")logout">Thoát</a></li>        
+    }else{
+        <li><a title="Đăng nhập" href="@siteConfig.get("siteUrl")login">Đăng nhập</a></li>
+    }
+    @if(menus!= null){
+         @for(menu<-menus){
+            <li><a title="@menu.get("name")" href="@siteConfig.get("siteUrl")vbonus/@menu.get("page")">@menu.get("name")</a></li>
+        }
+    }
+   
+</ul>

@@ -1,0 +1,1237 @@
+.MainContentBlockSub {
+	float: left;
+}
+
+.MainContentBlockSub .MainContentWrapper {
+	float: left;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav {
+	width: 238px;
+	border: 1px solid #b5b5b5;
+	margin-top: 29px;
+	background: url(../images/bg-leftmenu.png) no-repeat 0 100% #FFFFFF;
+	/*padding-bottom: 20px;*/
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftContent {
+	float: left;
+	width: 235px;/*240px;*/
+	float: left;
+	margin-right: 20px;
+}
+.RedText {
+	color:#e0053e;
+	
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul {
+	display: block;
+	width: 100%;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li {
+	display: block;
+	width: 100%;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li ul {
+	display: none;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > a:link,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > a:visited {
+	display: block;
+	width: 100%;
+	background: url(../images/bg-leftmenu-item.png) repeat-x 0 0 transparent;
+	overflow: hidden;
+	height: 40px;
+	text-decoration: none;
+	line-height: 40px;
+}
+
+/**/
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > span > a:link,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > span > a:visited {
+	display: block;
+	width: 100%;
+	background: url(../images/bg_inactive.png) repeat-x 0 0 transparent;
+	/*background: #f46987;*/
+	overflow: hidden;
+	height: 40px;
+	text-decoration: none;
+	line-height: 40px;
+	font-size: 12px;
+    font-weight: bold;   
+	text-transform: uppercase; 
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Hilite > span > a,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Active >span > a,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > span >a:hover {
+	background: url(../images/bg-leftmenu-item.png) repeat-x 0 0 transparent;
+	background-position: 0 -40px;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Hilite > span >a span,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Active > span >a span,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > span >a:hover span {
+	background-position: 0 -40px;
+	color: #FFFFFF;
+}
+/**/
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Hilite > a,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Active > a,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > a:hover {
+	background-position: 0 -40px;
+}
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Hilite > a span,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li.Active > a span,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > a:hover span {
+	background-position: 0 -40px;
+	color: #FFFFFF;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > a span {
+	padding-left: 18px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	text-transform: uppercase;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul {
+	display: block;
+	margin-left: 19px;
+	width: 200px;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul li {
+	background: url(../images/bg-line.png) repeat-x 0 100% transparent;
+}
+
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul li a:link,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul li a:visited {
+	background: url(../images/icons/bg-icon-3.png) no-repeat 0 50% transparent;
+	padding-left: 20px;
+	line-height: 30px;
+	height: 30px;
+	color: #424243;
+	font-size: 12px;
+}
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul li.Hilite a,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul li.Active a,
+.MainContentBlockSub .MainContentWrapper .LeftNav > ul > li > ul li a:hover {
+	color: #1c67ac;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks {
+	/*margin-top: 20px;*/
+	margin-bottom: 5px;
+	float: left;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul {
+	width: 100%;
+	float: left;
+	list-style: none;
+	display: block;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li {
+	float: left;
+	list-style: none;
+	display: block;
+	overflow: hidden;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc {
+	width: 119px;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.DienDan {
+	width: 119px;/*121px;*/
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc a {
+	background: url(../images/buttons/bg-bt-extcontent-sub.png) no-repeat 0 0 transparent;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.DienDan a {
+	background: url(../images/buttons/bg-bt-extcontent-sub.png) no-repeat -119px 0 transparent;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc a:hover,
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc a.Active,
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc a.Hilite {
+	background: url(../images/buttons/bg-bt-extcontent-sub.png) no-repeat 0 -40px transparent;
+	text-decoration: underline;
+}
+
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.DienDan a:hover {
+	background: url(../images/buttons/bg-bt-extcontent-sub.png) no-repeat -119px -40px transparent;
+}
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc a:link,
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc a:visited {
+	float: left;
+	display: block;
+	width: 77px;
+	height: 40px;
+	padding-left: 42px;
+	line-height: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 2px #0099ff;
+	filter: dropshadow(color=#0099ff, offx=1, offy=1);
+}
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.DienDan a:link,
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.DienDan a:visited {
+	float: left;
+	display: block;
+	width: 83px;
+	height: 40px;
+	padding-left: 38px;
+	line-height: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 2px #0099ff;
+	filter: dropshadow(color=#0099ff, offx=1, offy=1);
+}
+.MainContentBlockSub .MainContentWrapper .ExtLinks ul > li.TinTuc a > span {
+}
+
+.MainContentBlockSub .MainContentWrapper .RightContent {
+	float: left;
+	position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* General */
+#static {
+	width: 680px;
+	overflow: hidden;
+	margin: 0;
+	position: relative;
+}
+.StaticOuter {
+	width: 678px;
+	overflow: hidden;
+	border: 1px solid #b5b5b5;
+	border-bottom: none;
+	border-top: none;
+	background-color: #FFFFFF;
+}
+.StaticInner {
+	color: #5D5D5D;
+	font-size: 12px;
+	overflow: hidden;
+	margin-bottom:25px;
+}
+.StaticMain {
+	margin: 0 30px;
+	/* padding: 20px 0 0; */
+	overflow: hidden;
+}
+.StaticMain > .StaticMain {
+	margin: 0 0px;
+}
+.StaticMain a:link, .StaticMain a:visited {
+	color: #0053EB;
+	text-decoration: underline;
+}
+.StaticMain a:hover {
+	color: #0040B5;
+	text-decoration: none;
+}
+/* END. General */
+
+/* Top Panel */
+.StaticTopPanel {
+	overflow: hidden;
+	margin-bottom: 0px;
+	position: relative;
+	width: 680px;
+}
+/* Main title */
+.StaticTopPanel h2.TitleMain {
+	clear: both;
+	color: #1c67ac;
+	font-size: 18px;
+	line-height: 49px;
+	height: 49px;
+	padding: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	background: url(../images/bg-subheader.png) left top repeat-x;
+	margin: 0px;
+	border: 1px solid #b5b5b5;
+	border-bottom: none;
+	text-transform: uppercase;
+	padding-left: 28px;
+	width: 650px;
+	margin-top: 29px;
+	border-bottom: 1px solid #b5b5b5;
+}
+/* END. Main title */
+
+/* Breadcrumbs */
+/*#breadcrumbs {
+	text-align: left;
+	font-size: 12px;
+	margin-bottom: 31px;
+	padding: 2px 0 0 10px;
+	float: left;
+	}
+	#breadcrumbs a:link,
+	#breadcrumbs a:visited {
+	color: #1f80ce;
+	text-decoration: none;
+	}
+	#breadcrumbs span {
+	color: #333;
+	}
+	#breadcrumbs span.Active {
+	font-weight: bold;
+	}
+	#breadcrumbs a:hover {
+	color: #0092d1;
+	text-decoration: underline;
+}*/
+/* END. Breadcrumbs */
+/* END. Top Panel */
+
+
+
+/* Anchor Links */
+
+ul.AnchorLink {
+	margin: 0 30px 20px;
+	overflow: hidden;
+}
+ul.AnchorLink li {
+	background: url(../images/content/icon.gif) no-repeat 0 9px;
+	float: left;
+	width: 140px;
+	padding: 0 0 5px 10px;
+	font-weight: bolder;
+}
+ul.AnchorLink li a:link,ul.AnchorLink li a:visited {
+	text-decoration: none;
+	color: #000;
+}
+ul.AnchorLink li a:hover {
+	color: #06C;
+	text-decoration: none;
+}
+ul.AnchorLink li a.Active:link,ul.AnchorLink li a.Active:visited,ul.AnchorLink li a.Active:hover {
+	color: #06C;
+}
+/* END. Anchor Links */
+
+/* Content blocks*/
+.ContentBlock {
+	margin-bottom: 20px;
+	clear: both;
+}
+.ContentBlock p {
+	margin-bottom: 10px;
+	text-align: justify;
+}
+.ContentBlock p.TextCenter {
+	text-align: center;
+}
+.StaticMain h4 {
+	padding: 2px 0 2px 30px;
+	line-height: 22px;
+	font-size: 16px;
+	font-family: Arial;
+	background: url(../images/content/icon_h4.gif) left 0 no-repeat;
+	color: #1c67ac;
+	margin: 0 0 5px;
+}
+.ContentH4 {
+	margin: 0 0 20px 30px;
+}
+.ContentH4 p {
+	margin-bottom: 10px;
+	text-align: justify;
+}
+.StaticMain h5 {
+	padding: 2px 0 0 20px;
+	margin: 0 0 5px 30px;
+	line-height: 22px;
+	font-size: 15px;
+	font-family: Arial;
+	background: url(../images/content/icon_h5.gif) left 4px no-repeat;
+	color: #00a618;
+}
+.ContentH5 {
+	margin: 0 0 20px 50px;
+}
+.ContentH5 p {
+	margin-bottom: 10px;
+	text-align: justify;
+}
+.StaticMain h6 {
+	padding: 2px 0 2px 20px;
+	margin: 0 0 5px 50px;
+	line-height: 20px;
+	font-size: 14px;
+	font-family: Arial;
+	background: url(../images/content/icon_h6.gif) no-repeat left 6px;
+	color: #c94e03;
+}
+.ContentH6 {
+	margin: 0 0 20px 70px;
+}
+.ContentH6 p {
+	margin-bottom: 10px;
+	text-align: justify;
+}
+.ImagesBlock {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.ImagesH4 {
+	text-align: center;
+	margin: 0 0 20px 30px;
+}
+.ImagesH5 {
+	text-align: center;
+	margin: 0 0 20px 50px;
+}
+.ImagesH6 {
+	text-align: center;
+	margin: 0 0 20px 70px;
+}
+.FirstChar {
+	padding: 4px 4px 0 0;
+	line-height: 30px;
+	font-size: 40px;
+	float: left;
+}
+/* END. Content blocks */
+
+/* Tables */
+.MyTable {
+	margin: 0 auto 10px;
+	border-collapse: collapse;
+	font-size:12px;
+	color:#5D5D5D;
+}
+.MyTable thead tr th {
+	color: #FFF;
+	background: url(../images/bg_table_head.gif) repeat;
+	font-weight: bolder;
+	padding: 4px 10px;
+	border: 1px solid #a7a8aa;
+	text-align: center;
+	
+}
+.MyTable .OddRow {
+	background: #CFFFFF;/*#f4f4f4;*/
+}
+.MyTable .EvenRow {
+	background: #F5F5F5;
+}
+.MyTable tbody tr td {
+	padding: 3px 5px;
+	border: 1px solid #a7a8aa;
+}
+.MyTable .HorzRight {
+	text-align: right!important;
+}
+.MyTable .HorzCenter {
+	text-align: center!important;
+}
+.MyTable .VeztTop {
+	vertical-align: top!important;
+}
+/* END. Tables */
+
+/* Notice box */
+.NoticeBox {
+	border: #cdcecf solid 1px;
+	padding: 10px;
+}
+.Legend {
+	font-size: 13px;
+	font-weight: bolder;
+	padding: 0 15px;
+	color: #d10a47;
+	background: #FFF;
+	height: 20px;
+	margin: -22px 0 0;
+	float: left;
+	border: #cdcecf solid 1px;
+}
+.NoteContent {
+	width: 100%;
+	overflow: hidden;
+	text-align: justify;
+}
+.NoteContent ul.Icon {
+	margin: 10px 0 0;
+}
+.NoteContent ul.UpperAlpha {
+	margin: 10px 0 0;
+}
+.NoteContent ul.LowerAlpha {
+	margin: 10px 0 0;
+}
+.NoteContent ul.Decimal {
+	margin: 10px 0 0;
+}
+a.NoteLink:link,a.NoteLink:visited {
+	color: #0053eb;
+}
+a.NoteLink:hover {
+	text-decoration: underline;
+}
+/* END. Notice box */
+
+/* Pagination */
+.PagingWrapper {
+	width:100%;
+	overflow:hidden;
+	margin-bottom:20px;
+	
+}
+.PagingControl {
+	position:relative;
+	left:-50%;
+	float:right;
+	padding:0;
+	margin:0;
+	
+}
+.CenterWrapper {
+	position:relative;
+	left:50%;
+	padding:0;
+	margin:0;
+	overflow:hidden;
+	
+}
+.PagingControl span.PagingFirstPageLnk,.PagingControl span.PagingPrevPageLnk,.PagingControl span.PagingNextPageLnk,.PagingControl span.PagingLastPageLnk,.PagingControl a.PagingFirstPageLnk,.PagingControl a.PagingPrevPageLnk,.PagingControl a.PagingNextPageLnk,.PagingControl a.PagingLastPageLnk {
+	display:block;
+	width:18px;
+	height:0;
+	padding:19px 0 0;
+	overflow:hidden;
+	text-indent:-1000em;
+	float:left;
+	position:relative;
+	
+}
+.PagingControl span.PagingFirstPageLnk,.PagingControl span.PagingPrevPageLnk,.PagingControl span.PagingNextPageLnk,.PagingControl span.PagingLastPageLnk {
+	opacity:.3;
+	-moz-opacity:.3;
+	filter:alpha(opacity=30);
+	
+}
+.PagingControl span.PagingFirstPageLnk,.PagingControl a.PagingFirstPageLnk {
+	margin:0 5px 0 0;
+	background:url(../images/button_paging.gif) 0 0 no-repeat;
+	
+}
+.PagingControl span.PagingPrevPageLnk,.PagingControl a.PagingPrevPageLnk {
+	margin:0 5px 0 0;
+	border-left:none;
+	background:url(../images/button_paging.gif) -18px 0 no-repeat;
+	
+}
+.PagingControl span.PagingNextPageLnk,.PagingControl a.PagingNextPageLnk {
+	margin:0 5px 0 5px;
+	border-right:none;
+	background:url(../images/button_paging.gif) -36px 0 no-repeat;
+	
+}
+.PagingControl span.PagingLastPageLnk,.PagingControl a.PagingLastPageLnk {
+	background:url(../images/button_paging.gif) -54px 0 no-repeat;
+	
+}
+.PagingControl ul.PageList {
+	float:left;
+	position:relative;
+	padding:0;
+	margin:0;
+	
+}
+.PagingControl ul.PageList li {
+	float:left;
+	height:19px;
+	line-height:15px;
+	padding:0;
+	margin:0 2px;
+	overflow:hidden;
+	
+}
+.PagingControl ul.PageList li span {
+	display:block;
+	float:left;
+	height:16px;
+	padding:0 5px;
+	font-size:11px;
+	font-weight:bolder;
+	text-align:center;
+	color:#FFF;
+	background:#35a3dc;
+	border:1px solid #0d80bd;
+	
+}
+.PagingControl ul.PageList li a {
+	display:block;
+	float:left;
+	white-space:nowrap;
+	height:16px;
+	padding:0 5px;
+	font-size:11px;
+	text-align:center;
+	color:#5d5d5d;
+	background:#FFF;
+	border:1px solid #868686;
+	text-decoration:none;
+	
+}
+.PagingControl ul.PageList li a:hover {
+	text-decoration:none;
+	background:#35a3dc;
+	color:#FFF;
+	border:1px solid #0d80bd;
+	
+}
+/* END. Pagination */
+
+
+
+/* Text styles */
+p.TextCenter {
+	text-align: center;
+}
+.Strong01 {
+	color: #5D5D5D;
+	font-weight: bolder;
+}
+.Strong02 {
+	/*color: #ef6908;*/
+	font-weight: bolder;
+}
+.TextFont15 {
+	font-size: 15px;
+	font-weight: bolder;
+	font-family: Arial;
+}
+.TextFont16 {
+	font-size: 16px;
+	font-weight: bolder;
+	font-family: Arial;
+}
+.TextFont17 {
+	font-size: 17px;
+	font-weight: bolder;
+	font-family: Arial;
+}
+/* END. Text styles */
+
+/* Image styles */
+.NoBorderImg {
+	border: none;
+	background: none;
+	padding: 0;
+}
+.BorderImg {
+	border: 1px solid #959595;
+	padding: 4px;
+}
+.ImgLeft {
+	float: left;
+	margin: 0 10px 5px 0;
+}
+.ImgRight {
+	float: right;
+	margin: 0 0 5px 10px;
+}
+/* END. Image styles */
+
+/* List styles */
+ul.Decimal {
+	margin: 0px 0px 10px 25px;
+}
+ul.Decimal li {
+	list-style-type: decimal;
+	margin-bottom: 10px;
+	text-align: justify;
+}
+ul.UpperAlpha {
+	margin: 0px 0px 10px 25px;
+}
+ul.UpperAlpha li {
+	list-style-type: upper-alpha;
+	margin-bottom: 10px;
+	text-align: justify;
+}
+ul.LowerAlpha {
+	margin: 0px 0px 10px 25px;
+}
+ul.LowerAlpha li {
+	list-style-type: lower-alpha;
+	margin-bottom: 10px;
+	text-align: justify;
+}
+ul.Icon {
+	margin: 0px 0px 10px 5px;
+}
+ul.Icon li {
+	margin-bottom: 10px;
+	background: url(../images/content/icon_person.gif) 0 2px no-repeat;
+	padding-left: 20px;
+	list-style-type: none;
+	text-align: justify;
+}
+ul.Icon li ul.LowerAlpha li {
+	list-style-type: lower-alpha;
+	margin-bottom: 10px;
+	background: none;
+	padding-left: 0px;
+}
+ul.Dash {
+	margin: 0px 0px 10px 5px;
+}
+ul.Dash li {
+	background: url("../images/content/icon_dash.gif") no-repeat scroll 0 2px transparent;
+	list-style-type: none;
+	margin-bottom: 10px;
+	padding-left: 20px;
+}
+ul.Disc {
+	margin: 0 0 10px 15px;
+}
+ul.Disc li {
+	background: none repeat scroll 0 0 transparent;
+	list-style-type: disc;
+	margin-bottom: 10px;
+	padding: 0;
+}
+ul.Decimal li ul {
+	padding-top: 5px;
+}
+ul.UpperAlpha li ul {
+	padding-top: 5px;
+}
+ul.LowerAlpha li ul {
+	padding-top: 5px;
+}
+ul.Icon li ul {
+	padding-top: 5px;
+}
+ul.Dash li ul {
+	padding-top: 5px;
+}
+ul.Disc li ul {
+	padding-top: 5px;
+}
+/* END. List styles */
+#quickLink {
+	position: absolute;
+	top: 500px;
+	left: 780px;
+	width: 38px;
+	overflow: visible !important;
+}
+#quickLink a {
+	background: url(../images/toppage.png) no-repeat 0 0;
+	width: 38px;
+	height: 38px;
+	bottom: 0;
+	display: block;
+	text-indent: -9999px;
+	position: absolute
+}
+#quickLink a:hover {
+	background: url(../images/toppage-o.png) no-repeat 0 0;
+}
+/* Breadcrumbs */
+ul#breadcrumbs {
+	margin: 0;
+	padding: 0 0 10px;
+	overflow: hidden;
+	float: right;
+}
+ul#breadcrumbs li {
+	text-align: left;
+	font-size: 12px;
+	float: left;
+}
+ul#breadcrumbs li a:link,
+ul#breadcrumbs li a:visited {
+	
+	color: #1f80ce;
+	text-decoration: none;
+}
+ul#breadcrumbs li span {
+	color: #333;
+	padding: 0 5px 0 5px;
+}
+ul#breadcrumbs li span.Active {
+	font-weight: bold;
+}
+ul#breadcrumbs li a:hover {
+	color: #0092d1;
+	text-decoration: underline;
+}
+/* END. Breadcrumbs */
+
+.BlockListNews {
+	background: #FFFFFF;
+	border: 1px solid #b5b5b5;
+	border-bottom: none;
+	border-top: none;
+	padding: 30px;
+	padding-bottom: 100px;
+}
+.BlockListNews:last-child {
+	/* border-bottom: 1px solid #b5b5b5; */
+}
+#static > div:last-child {
+	border-bottom: 1px solid #b5b5b5;
+}
+
+.BlockListNews .ListNews {
+	line-height: 1.5em;
+}
+
+.BlockNameEvent h3.DetailNews {
+	background: none repeat scroll 0 0 transparent;
+	color: #1C67AC;
+	float: left;
+	font-size: 18px;
+	font-weight: bolder;
+	margin-bottom: 0;
+	overflow: hidden;
+	padding: 0;
+	text-align: left;
+}
+
+.StaticInner h3 {
+	color: #36334D;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 18px;
+	font-weight: bolder;
+	line-height: 26px;
+	/*margin-bottom: 20px;*/
+	margin-bottom: 5px; 
+	overflow: hidden;
+	padding: 0;
+	/*text-align: center;*/
+}
+
+.DateDetails {
+	float: right;
+	text-align: right;
+}
+
+ul#tabHeader{
+	height:35px;
+	overflow:hidden;
+	background:url(../images/bg_tabnews.gif) bottom repeat-x;
+	margin-bottom:20px;
+}
+.BlockNameEvent {
+	background: url("../images/bg_line.gif") repeat-x scroll center bottom transparent;
+	clear: both;
+	margin: 0 0 20px;
+	overflow: hidden;
+	padding: 0 0 7px;
+}
+
+/* Tab */
+
+ul#tabHeader {
+	height: 31px;
+	overflow: hidden;
+	background: url(../images/bg_tabnews.gif) bottom repeat-x;
+	margin-bottom: 20px;
+}
+ul#tabHeader li {
+	float: left;
+	font-size: 15px;
+	line-height: 18px;
+	font-family: Arial;
+	font-weight: bold;
+}
+ul#tabHeader li a {
+	display: block;
+	padding: 0 0 0 10px;
+	background: url(../images/tab_left_3.gif) no-repeat top left;
+	text-decoration: none;
+}
+ul#tabHeader li a span {
+	display: block;
+	padding: 7px 10px 6px 0;
+	background: url(../images/tab_right_3.gif) no-repeat top right;
+	color: #1c67ac;
+	text-decoration: none;
+}
+/*ul#tabHeader li a:hover {
+	background-position: bottom left;
+	color: #146a9e;
+	text-decoration: none;
+}
+ul#tabHeader li a:hover span {
+	background-position: 100% 100%;
+	color: #146a9e;
+	text-decoration: none;
+}*/
+ul#tabHeader li.Active a,
+ul#tabHeader li a:hover {
+	background-position: bottom left;
+	color: #146a9e;
+	cursor: pointer;
+	text-decoration: none;
+}
+ul#tabHeader li.Active a span,
+ul#tabHeader li a:hover span {
+	background-position: bottom right;
+	cursor: default;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+/* END. Tab */
+
+#content .ContentWrapper {
+	margin-top: 11px;
+}
+
+.TopBtn {
+	background: url(../images/buttons/bg-bt-scrolltop.png) no-repeat scroll 0 0 transparent;
+	height: 40px;
+	text-indent: -9999px;
+	width: 30px;
+	display: block;
+	text-indent: -999em;
+	overflow: hidden;
+}
+
+#breadcrumbs {
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: right;
+	font-size: 12px;
+	margin-right: 5px;
+}
+
+#breadcrumbs a:visited,
+#breadcrumbs a:link {
+	color: #333333;
+}
+
+#breadcrumbs span {
+	font-weight: bold;
+}
+
+fieldset {
+	background: none repeat scroll 0 0 transparent;
+	border: medium none;
+	margin: 0;
+	padding: 0;
+}
+
+fieldset legend {
+	display: none;
+}
+
+.BoxSearch {
+	background: none repeat scroll 0 0 #E7E7E7;
+	border: 1px solid #999999;
+	margin: 0px auto;
+	overflow: hidden;
+	padding: 10px 10px 5px;
+	width: 85%;
+}
+
+.BoxSearch .BlockFormItem {
+	float: left;
+	overflow: hidden;
+	width: 86%;
+}
+
+.BoxSearch input.SubmitBtn {
+	background: url("../images/buttons/button_tim.gif") no-repeat scroll 0 0 transparent;
+	border: medium none;
+	float: right;
+	font-size: 0;
+	height: 23px;
+	margin: 0;
+	text-indent: -9999px;
+	width: 70px;
+}
+
+.BoxSearch .FormItem {
+	float: left;
+	margin: 0 10px 5px 0;
+}
+
+.BoxSearch .FormItem label {
+	float: left;
+	font-size: 12px;
+	margin-right: 5px;
+	padding: 0;
+}
+
+.BoxSearch .FormItem select, .BoxSearch .FormItem input.TextInput {
+	color: #4D4D4D;
+	float: left;
+	font-size: 12px;
+	margin: 0;
+	outline: medium none;
+	padding: 2px 0 2px 3px;
+	width: 149px;
+}
+
+.BoxSearch .FormItem select {
+	width: 151px;
+}
+
+.BoxSearch .FormItem input.TextInput {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #666666;
+}
+
+ul.BoxEvent {
+	margin: 0 10px 20px;
+	overflow: hidden;
+}
+
+ul.BoxEvent li {
+	background: url("../images/bg_line02.gif") repeat-x scroll center bottom transparent;
+	float: left;
+	margin-bottom: 7px;
+	overflow: hidden;
+	padding: 0 0 15px;
+	width: 100%;
+}
+
+ul.BoxEvent li a img {
+	display: block;
+	float: left;
+	margin-top: 5px;
+}
+
+a .BorderImg01 {
+	border: 1px solid #868686;
+	padding: 1px;
+}
+
+ul.BoxEvent li .NewsContent {
+	float: right;
+	line-height: 18px;
+	overflow: hidden;
+	padding-top: 5px;
+	width: 444px;
+}
+
+ul.BoxEvent li .NewsContent h3 {
+	background: none repeat scroll 0 0 transparent;
+	color: #2D2D2D;
+	font-size: 13px;
+	line-height: 19px;
+	margin: 0 0 5px;
+	padding: 0;
+	text-align: left;
+}
+
+.DateNews {
+	color: #565656;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+ul.BoxEvent li .NewsContent h3 a:link, ul.BoxEvent li .NewsContent h3 a:visited {
+	color: #2D2D2D;
+	text-decoration: none;
+}
+
+ul.BoxEvent li .NewsContent h3 a:hover {
+	color: #0053eb;
+	text-decoration: underline;
+}
+
+#boxTab {
+	padding-bottom: 30px;
+}
+
+.va_right{
+	text-align:right;
+}
+
+.va_left{
+	text-align:left:
+}
+
+.sum_total{
+	font-weight:bold;
+	color:#FF0000;
+	text-align:right;
+}
+
+.sum_title{
+	font-weight:bold;
+	color:#FF0000;
+	text-align:center;
+}
+.TotalRow{
+	background:#DAE0E5;
+}
+
+/*CongTT*/
+.LeftNavTmp{
+	background: url("../images/bg-leftmenu.png") no-repeat scroll 0 100% #FFFFFF;
+    margin-top: 29px;
+    width: 238px;
+	
+}
+.group_info{	
+	font-size:17px;
+	font-weight:bold;
+}
+
+.bolder{
+	
+}
+
+.title_page{
+	background: url("../images/bg-subheader.png") repeat-x scroll left top transparent;
+    border: 1px solid #B5B5B5;
+    clear: both;
+    color: #1C67AC;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    height: 49px;
+    line-height: 49px;
+    margin: 29px 0 0;
+    padding: 0 0 0 28px;
+    text-transform: uppercase;
+    width: 650px;
+	font-weight:bold;
+	
+}
+
+.welcome{
+	font-size:13px;
+	color:#5D5D5D;
+	 text-transform: none;
+}
+
+.titleLevel1{
+	
+}
+
+.customer_code{
+	color:#0000FF; 
+	font-weight:bold;
+	font-size:15px;
+}
+.customer_status{
+	color:#FF0000; 
+	font-weight:bold;
+	font-size:15px;
+}
+.table1{
+	font-size:12px;
+}
+
+.table_default{
+	font-size:12px;
+	color:#5D5D5D;
+}
+
+.Active{
+	color:#0000FF;	
+    font-size: 15px;
+    font-weight: bold;
+}
+.InActive{
+	color: #FF0000;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#cur_class_month{
+	color:FF9640;
+	font-size:15px;
+}
+.cur_class_month{
+	color:FF9640;
+	font-size:15px;
+}
+
+.success{
+	color:#0000FF;
+	font-weight:bold;
+}
+.error{
+	color:#FF0000;
+	font-weight:bold;
+}
+
+.tabledetail{
+	width:100%;
+}
+.tabledetail tbody tr td{ 	
+	border:none;
+   /* padding: 3px 5px; 
+	border-top: none;
+    border-right:none;
+	border-bottom: 1px solid #A7A8AA;
+    border-left: none;*/
+
+}
+
+.bg_header_pm_info{
+	background: url("../images/bg_table_head.gif") repeat scroll 0 0 transparent;
+    border: 1px solid #A7A8AA;
+    color: #FFFFFF;
+    font-weight: bolder;
+    padding: 4px 10px;
+    text-align: left;
+	width:140px;
+}
+#testpp{
+	background:#FF0000;
+}
+
+.ExtLinkspace{
+	background: url("../images/bg-body.png") repeat scroll 0 0 transparent;
+}

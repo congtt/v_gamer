@@ -1,0 +1,213 @@
+<!-- BEGIN:register -->
+<script type="text/javascript">
+function register()
+{	
+	$('#proccessingBar').show();
+    var data = $("#form1").serialize() + "&btnregister=1";
+    var url = "./{action}.{configId}.{type}.html";
+	$("#btnRegister").hide();
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	               	$("#btnRegister").show();
+	                var obj = eval( '(' + msg + ')' );
+	                $("#message").show();
+                    $("#message").html(obj.msg);
+               }
+               catch(ex)
+			   {
+				//		location.href = "./login.html";
+			   }     
+         }
+    });
+    return false;
+}
+</script>
+<div>
+	<div style="float:left">
+		{BlockWelcomeGamer}
+	</div>
+	<div style="float:right">
+		Trang chủ > {title}
+	</div>
+</div>
+<br /><br />
+<center><h4>{title}</h4></center><br />
+<div id="message">{Message}
+</div>
+<br>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form id="form1" name="form1" method="post">
+
+<center>
+<input type="submit" name="btnRegister" id="btnRegister" value="Đăng kí nhận code" onclick=" return register()" style="float:none" />
+</center>
+
+</form>
+<!-- END:register -->
+<!-- BEGIN:getcode -->
+<script type="text/javascript">
+function getCode()
+{
+	$('#proccessingBar').show();
+	$("#btnGetCode").hide();
+    var data = $("#form1").serialize() + "&btnGetCode=1";
+    var url = "./{action}.{configId}.{type}.{modeid}.html";
+	
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );
+	                $("#message").show();
+                    $("#message").html(obj.msg);
+                    if(obj.result == 1)
+                    {
+                    	$("#getGameInfoDiv").hide();
+                    	$("#codeReceiveDiv").show();
+                    	$("#codeReceiveDiv2").html(obj.codereceive);                    	
+                    	$("#btnGetCode").hide();
+                    }
+                    else
+                    {
+                    	$("#btnGetCode").show();
+                    }
+               }
+               catch(ex)
+   	    		{
+    		//		location.href = "./login.html";
+                }     
+         }
+    });
+    return false;
+}
+
+
+function loadCharacter()
+{       
+	if(document.getElementById("ddlServer").selectedIndex == 0)
+	{
+		var i = document.getElementById("ddlCharacter").length;
+		for(i;i>1;i--)
+		{
+			document.getElementById("ddlCharacter").remove(i-1);			
+		}
+		$("#txtLevel").html();
+		return;
+	}
+	
+    $('#proccessingBar').show();
+    var data = $("#form1").serialize() + "&getcharname=1";
+    var url = "./{action}.{configId}.{type}.html";
+
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );
+                    $("#characterSpan").html(obj.ddlCharacter);
+                    
+               }
+               catch(ex)
+   	    		{
+    //		location.href = "./login.html";
+                }     
+         }
+    });
+}
+
+function showCharacterLevel()
+{
+     var index = $("#ddlCharacter").attr("selectedIndex");
+     var options = document.getElementById("ddlCharacter").options;
+     var level = parseInt(options[index].value);  
+     if(options[index].value > 0)
+          $("#txtLevel").html(level);
+     else
+          $("#txtLevel").html("");
+     document.getElementById("hdfCharName").value = options[index].text;
+     document.getElementById("hdfLevel").value = level;
+     var index = $("#ddlServer").attr("selectedIndex");
+     var options = document.getElementById("ddlServer").options;
+     var serverName = options[index].text;  
+     document.getElementById("hdfServerName").value = serverName ;
+}
+
+</script>
+<div>
+	<div style="float:left">
+		{BlockWelcomeGamer}
+	</div>
+	<div style="float:right">
+		Trang chủ > {title}
+	</div>
+</div>
+<br /><br />
+<center><h4>{title}</h4></center><br />
+<div id="message">{Message}
+</div>
+<form id="form1" name="form1" method="post">
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+
+<div id="getGameInfoDiv" style="{getGameInfoDivStyle}">
+
+Vui lòng chọn server và nhân vật trước khi nhận code
+<table>
+	<tr>
+		<td>Chọn server 
+		</td>
+		<td>
+			{ddlServer}
+		</td>
+	</tr>
+		<tr>
+		<td>Chọn nhân vật 
+		</td>
+		<td>
+			<span id="characterSpan">{ddlCharacter}</span>
+		</td>
+	</tr>
+		<tr id="trLevel">
+		<td>Cấp bậc :
+		</td>
+		<td>
+			<span id="txtLevel"/></span>
+		</td>
+	</tr>	
+
+</table>
+
+<center>
+<input type="submit" name="btnGetCode" id="btnGetCode" value="Nhận code" onclick=" return getCode()" style="{getCodeButtonStyle}" />
+</center>
+</div>
+<br >
+<br >
+<div id="codeReceiveDiv" style="{codeReceiveDivStyle}">
+<h4>	DANH SÁCH CODE ĐÃ NHẬN</h4>
+	<div id="codeReceiveDiv2">
+		{codeReceiveDiv}
+	</div>
+</div>
+</form>
+<!-- END:getcode -->

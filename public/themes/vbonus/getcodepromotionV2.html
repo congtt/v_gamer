@@ -1,0 +1,154 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+function loadCharacter()
+{       
+          $('#proccessingBar').show();
+          var data = $("#form1").serialize() + "&getcharname=1";
+          var url = "./{actionName}.html";
+
+         $.ajax({
+              data: data,
+              type: "POST",
+              url: url,
+              success: function(msg)
+              { 
+                    try
+                    {
+                         var obj = eval( '(' + msg + ')' );
+                         $("#txtLevel").html("");           
+                         $("#characterSpan").html(obj.ddlCharacter);
+                         $('#proccessingBar').hide();
+                    }
+                    catch(ex)
+        	    {
+		//		location.href = "./login.html";
+                     }     
+              }
+         });
+}
+
+
+function showCharacterLevel()
+{
+     var index = $("#ddlCharacter").attr("selectedIndex");
+     var options = document.getElementById("ddlCharacter").options;
+     var level = parseInt(options[index].value);  
+     if(options[index].value > 0)
+          $("#txtLevel").html(level);
+     else
+          $("#txtLevel").html("");
+     document.getElementById("hdfCharName").value = options[index].text;
+     document.getElementById("hdfLevel").value = level;
+     var index = $("#ddlServer").attr("selectedIndex");
+     var options = document.getElementById("ddlServer").options;
+     var serverName = options[index].text;  
+     document.getElementById("hdfServerName").value = serverName ;
+//alert(     document.getElementById("hdfServerName").value);
+}
+function getCode()
+{
+    var data = $("#form1").serialize() + "&ajax=1&getCode=1";
+    var url = "./{actionName}.html";
+    $('#proccessingBar').show();
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+              var obj = eval( '(' + msg + ')' );           
+              $("#message").show();
+              $("#message").html(obj.msg);
+           //   $("#codespan").html(obj.code);
+              if(obj.hideBtn)
+                   $("#btnGetCode").hide();      
+              $('#proccessingBar').hide();              
+         }
+    });
+    return false;
+}
+</script>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+<div class="StaticTopPanel">
+<table width="100%">
+<tr>
+   <td>{BlockWelcomeGamer}
+   </td>
+   <td>
+	<div id="breadcrumbs"><a title="Trang chủ" href="/index.html">Trang chủ</a> &gt; <span>
+{breakcrum}</span></div>
+   </td>
+</tr>
+</table>
+
+</div>
+<div id="message">{Message}</div>
+<br />
+<div>
+
+<div id="programDetailDiv">
+<h4>Thông tin chương trình :</h4>
+<div style="margin-left:20px;">
+     Tên chương trình : <span id="programNameSpan">{configName}</span><br />
+     Thời gian tạo account : <span id="timecreateaccountspan">{datecreateaccount}</span><br />
+</div>
+<br />
+<h4>Thông tin tài khoản :</h4>
+<div style="margin-left:20px;">
+     Tài khoản : <span id="zingaccountspan"><b>{userName}</b></span><br />
+<table style="display:{showServer}">
+	<tr>
+		<td>Chọn server : 
+		</td>
+		<td>
+			<span id="ddlServerSpan">{ddlServer}</span>
+		</td>
+	</tr>
+	<tr id="trCharacter">
+		<td>Chọn nhân vật :
+		</td>
+		<td>
+			<span id="characterSpan">{ddlCharacter}</span>
+		</td>
+	</tr>
+	<tr id="trLevel">
+		<td>Cấp bậc :
+		</td>
+		<td>
+			<span id="txtLevel"/></span>
+		</td>
+	</tr>
+</table>
+<table style="display:{showRegisterChar}">
+	<tr id="trCharacter">
+		<td>Nhân vật :
+		</td>
+		<td>
+			<span id="characterSpan2">{charName}</span>
+		</td>
+	</tr>
+	<tr id="trLevel">
+		<td>Cấp bậc :
+		</td>
+		<td>
+			<span id="txtLevel2"/>{lv}</span>
+		</td>
+	</tr>
+</table>
+
+</div>
+
+
+</div><br />
+<if condition="$data[hideBtn] != 1">
+<input type="submit" name="btnGetCode" id="btnGetCode" value="NHẬN THƯỞNG" onclick=" return getCode()" {receiveCode} /></if>&nbsp; 
+<br />
+<div style="margin-top:20px;text-align:left"><b style="color:red;margin-left:100px" id="codespan"></b>
+</div>
+</div>
+</form>
+<!-- END:main -->

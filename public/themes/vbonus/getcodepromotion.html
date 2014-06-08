@@ -1,0 +1,203 @@
+<!-- BEGIN:main -->
+<script type='text/javascript'>
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+		if ('{userInfo.result}'=='0')
+		{
+			jQuery('#programDetailDiv').html('');
+		}
+		jQuery('.LeftSide').html('{left_menu}');
+	 
+	});	
+</script>
+<script type="text/javascript">
+function loadCharacter()
+{       
+          $('#proccessingBar').show();
+          var data = $("#form1").serialize() + "&getcharname=1";
+          var url = "./{actionName}.html";
+
+         $.ajax({
+              data: data,
+              type: "POST",
+              url: url,
+              success: function(msg)
+              { 
+                    try
+                    {
+                         var obj = eval( '(' + msg + ')' );
+                         $("#txtLevel").html("");           
+                         $("#characterSpan").html(obj.ddlCharacter);
+                         $('#proccessingBar').hide();
+                    }
+                    catch(ex)
+        	    {
+		//		location.href = "./login.html";
+                     }     
+              }
+         });
+}
+
+
+function showCharacterLevel()
+{
+     var index = $("#ddlCharacter").attr("selectedIndex");
+     var options = document.getElementById("ddlCharacter").options;
+     var level = parseInt(options[index].value);  
+     if(options[index].value > 0)
+          $("#txtLevel").html(level);
+     else
+          $("#txtLevel").html("");
+     document.getElementById("hdfCharName").value = options[index].text;
+     document.getElementById("hdfLevel").value = level;
+     var index = $("#ddlServer").attr("selectedIndex");
+     var options = document.getElementById("ddlServer").options;
+     var serverName = options[index].text;  
+     document.getElementById("hdfServerName").value = serverName ;
+//alert(     document.getElementById("hdfServerName").value);
+}
+function getCode()
+{
+	if(document.getElementById("txtCaptchaCode").value == "")
+	{
+		alert("Vui lòng nhập mã bảo mật");
+		document.getElementById("txtCaptchaCode").focus();
+		return false;
+	}
+	
+    var data = $("#form1").serialize() + "&ajax=1&getCode=1";
+    var url = "./{actionName}.html";
+    $('#proccessingBar').show();
+    $("#btnGetCode").hide();
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+              var obj = eval( '(' + msg + ')' );           
+              $("#message").show();
+              $("#message").html(obj.msg);
+              $("#codespan").html(obj.code);
+              if(obj.code != null && obj.code != "")
+              {
+              //    $("#arrowImg").show();        
+                  $("#captchaTable").hide();    	  
+                  $("#btnGetCode").hide();
+              }      
+              else
+              {
+            	  $("#arrowImg").hide();
+            	  $("#btnGetCode").show();
+              }
+              document.getElementById("txtCaptchaCode").value = "";
+              $('#proccessingBar').hide();              
+         }
+    });
+    return false;
+}
+
+
+</script>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+
+<div style="clear:both;"></div>
+<div>
+	<div style="float:left">
+		{vbonus_config.regLink} {vbonus_config.getLink} {vbonus_config.hisLink}
+		
+	</div>
+	<div style="float:right">
+		<font color="DeepSkyBlue" style="font: 14px Tahoma bold;"><strong>Chào bạn <font color="black">{vbonus_config.userName}</font></strong> 
+		&nbsp;&nbsp;<a id="lnkLogout" href="/vbonus/login/logout.html" style="text-decorate:none"><b>[Thoát]</b></a>
+		</font>
+	</div>
+	
+</div>
+<div style="clear:both;"></div>
+
+<div id="message">{Message}</div>
+<br />
+<div>
+
+<div id="programDetailDiv"">
+<h4>Thông tin chương trình :</h4>
+<div style="margin-left:20px;">
+     Tên chương trình : <span id="programNameSpan">{menuInfo.name}</span><br />
+     Code : <span id="timecreateaccountspan">{submenuInfo.name}</span><br />
+	 Level : >=<span id="timecreateaccountspan">{submenuInfo.level}</span><br />
+</div>
+<br />
+<h4>Thông tin tài khoản :</h4>
+<div style="margin-left:20px;">
+     Tài khoản : <span id="zingaccountspan"><b>{vbonus_config.userName}</b></span><br />
+<table style="display:{showServer}">
+	<tr>
+		<td>Chọn server : 
+		</td>
+		<td>
+			<span id="ddlServerSpan">{ddlServer}</span>
+		</td>
+	</tr>
+	<tr id="trCharacter">
+		<td>Chọn nhân vật :
+		</td>
+		<td>
+			<span id="characterSpan">{ddlCharacter}</span>
+		</td>
+	</tr>
+	<tr id="trLevel">
+		<td>Cấp bậc :
+		</td>
+		<td>
+			<span id="txtLevel"/></span>
+		</td>
+	</tr>
+</table>
+<table style="display:{showRegisterChar}">
+	<tr id="trCharacter">
+		<td>Nhân vật :
+		</td>
+		<td>
+			<span id="characterSpan2">{charName}</span>
+		</td>
+	</tr>
+	<tr id="trLevel">
+		<td>Cấp bậc :
+		</td>
+		<td>
+			<span id="txtLevel2"/>{lv}</span>
+		</td>
+	</tr>
+</table>
+
+</div>
+<br />
+<br />
+<table id="captchaTable" style="display:{captchaTableDisplay}">
+		<tr>
+		<td colspan="2"><img src="{CaptchaImg}" />
+		</td>
+	</tr>
+	<tr>
+		<td>Nhập mã bảo mật : 
+		</td>
+		<td>
+			<input type="text" name="txtCaptchaCode" id="txtCaptchaCode" />
+		</td>
+	</tr>
+</table>
+
+</div>
+{btnGetCode} 
+<div style="margin-top:20px;text-align:left">
+<img id="arrowImg" src="/images/vbonusgamer/images/arrow.png" height="15" width="20" style="display:none" />
+<b style="color:red;" id="codespan"></b>
+</div>
+</div>
+</form>
+<!-- END:main -->

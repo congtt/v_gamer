@@ -1,0 +1,80 @@
+﻿
+.Login{
+	width:auto;
+}
+
+.Wrapper{
+	margin-left:150px;
+}
+.Wrapper .txtLogin{
+	width:200px;
+}
+.Wrapper .titleLogin{
+	clear: left;
+    color: #494848;
+    display: block;
+    float: left;
+    font-weight: bold;
+    height: 23px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-right: 10px;
+    text-align: right;
+    width: 80px;
+}
+.Wrapper .btnLogin{
+	margin-left:100px;
+	margin-top:10px;
+}
+
+.Wrapper .checkPMTT{
+	margin-top:10px;
+}
+
+.btnLoginbt{
+	background: url(../images/buttons/bg-bt-support.png) no-repeat 0 0 transparent;
+	display: inline-block;
+	line-height: 44px;
+	height: 44px;
+	overflow: hidden;
+	width: 164px;
+	text-align: center;
+	margin: 0 8px;
+	text-decoration: none;
+	margin-top: 7px;
+	
+}
+
+#txtLoginbt{
+	font-size: 20px;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 2px #000000;
+	filter: dropshadow(color=#000000, offx=1, offy=1);
+	font-weight: bold;
+}
+
+
+.pgCurrent {   
+	background:url(../images/bg_table_head.gif) repeat	;
+	border:none;
+	font-size: 12px;
+	font-weight: bold;
+    height: 15px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-top: 10px;
+    text-align: center;
+	width: 23px;
+	color:#FFFFFF;  
+}
+
+#paging a{
+	 text-decoration:none;
+	 border:#CCCCCC solid 1px;  
+	 margin-right:5px;
+}
+
+.StaticMain #pagging a:link, .StaticMain a:visited {
+    color: #0053EB;
+}
+

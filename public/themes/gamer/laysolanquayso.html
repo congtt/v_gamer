@@ -1,0 +1,72 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+function getspin()
+{
+	$('#proccessingBar').show();	
+    var data = $("#form1").serialize() + "&getspin=1";
+    var url = "./quayso.html";
+	
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );	                
+	                if(obj.result == 1)
+	                {
+						location.href="http://g.phongmay.zing.vn/quayso/cpanel/quayso.55.149cca8fe023245cba78e88bc2b6810f.html";
+		            }
+	                else
+	                {
+						$("#message").html(obj.message);
+						$("#message").show();
+		            }
+               }
+               catch(ex)
+   	    		{
+    		//		location.href = "./login.html";
+                }     
+         }
+    });
+}
+</script>
+<div>
+	<div style="float:left">
+		{BlockWelcomeGamer}
+	</div>
+	<div style="float:right">
+		Trang chủ > {title}
+	</div>
+</div>
+<br /><br />
+<center><h4>{title}</h4></center><br />
+<div id="message">{Message}
+</div>
+<form id="form1" name="form1" method="post">
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+
+THÔNG TIN CHƯƠNG TRÌNH<BR />
+<table>
+	<tr>
+		<td><b>Chương trình :</b>
+		</td>
+		<td>{programName}
+		</td>
+	</tr>
+	<tr>
+		<td><b>Ngày tạo tài khoản từ :</b>
+		</td>
+		<td>{dateCreateAccountProgram}
+			<br>
+		</td>
+	</tr>	
+</table>
+ 
+<br >
+<input type="button" name="btnGetSpin" id = "btnGetSpin" onclick="getspin()" value="NHẬN LẦN QUAY SỐ" />
+</form>
+<!-- END:main -->

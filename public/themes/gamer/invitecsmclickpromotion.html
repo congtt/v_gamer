@@ -1,0 +1,239 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+function register()
+{
+	$('#proccessingBar').show();	
+    var data = $("#form1").serialize() + "&register=1";
+    var url = "./invite.{configId}.html";
+	
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );	                
+	                $("#message").html(obj.message);
+	                $("#message").show();
+               }
+               catch(ex)
+   	    		{
+    		//		location.href = "./login.html";
+                }     
+         }
+    });
+}
+</script>
+<div>
+	<div style="float:left">
+		{BlockWelcomeGamer}
+	</div>
+	<div style="float:right">
+		Trang chủ > {title}
+	</div>
+</div>
+<br /><br />
+<center><h4>{title}</h4></center><br />
+<div id="message">{Message}
+</div>
+<form id="form1" name="form1" method="post">
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+
+THÔNG TIN CHƯƠNG TRÌNH<BR />
+<table>
+	<tr>
+		<td><b>Chương trình :</b>
+		</td>
+		<td>{programName}
+		</td>
+	</tr>
+	<tr>
+		<td><b>Ngày tạo tài khoản từ :</b>
+		</td>
+		<td>{dateCreateAccountProgram}
+			<br>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Tài khoản :</b>
+		</td>
+		<td>{account}
+		</td>
+	</tr>
+	<tr>
+		<td><b>Ngày tạo tài khoản :</b>
+		</td>
+		<td>{dateCreateAccount}
+		</td>
+	</tr>
+</table>
+ 
+<br >
+<input type="button" name="btnInvite" id = "btnInvite" onclick="register()" value="ĐĂNG KÍ THAM GIA" />
+</form>
+<!-- END:main -->
+<!-- BEGIN:main_require_server_char -->
+<script type="text/javascript">
+function register()
+{
+	$('#proccessingBar').show();	
+    var data = $("#form1").serialize() + "&register=1";
+    var url = "./{action}.{configId}.html";
+	
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );	                
+	                $("#message").html(obj.message);
+	                $("#message").show();
+               }
+               catch(ex)
+   	    		{
+    		//		location.href = "./login.html";
+                }     
+         }
+    });
+}
+
+function loadCharacter()
+{       
+	if(document.getElementById("ddlServer").selectedIndex == 0)
+	{
+		var i = document.getElementById("ddlCharacter").length;
+		for(i;i>1;i--)
+		{
+			document.getElementById("ddlCharacter").remove(i-1);			
+		}
+		$("#txtLevel").html();
+		return;
+	}
+	
+    $('#proccessingBar').show();
+    var data = $("#form1").serialize() + "&getcharname=1";
+    var url = "./{action}.{configId}.html";
+
+    $.ajax({
+         data: data,
+         type: "POST",
+         url: url,
+         success: function(msg)
+         { 
+               try
+               {
+	               	$('#proccessingBar').hide();
+	                var obj = eval( '(' + msg + ')' );
+                    $("#characterSpan").html(obj.ddlCharacter);
+                    
+               }
+               catch(ex)
+   	    		{
+    //		location.href = "./login.html";
+                }     
+         }
+    });
+}
+
+function showCharacterLevel()
+{
+     var index = $("#ddlCharacter").attr("selectedIndex");
+     var options = document.getElementById("ddlCharacter").options;
+     var level = parseInt(options[index].value);  
+     if(options[index].value > 0)
+          $("#txtLevel").html(level);
+     else
+          $("#txtLevel").html("");
+     document.getElementById("hdfCharName").value = options[index].text;
+     document.getElementById("hdfLevel").value = level;
+     var index = $("#ddlServer").attr("selectedIndex");
+     var options = document.getElementById("ddlServer").options;
+     var serverName = options[index].text;  
+     document.getElementById("hdfServerName").value = serverName ;
+}
+</script>
+
+<div>
+	<div style="float:left">
+		{BlockWelcomeGamer}
+	</div>
+	<div style="float:right">
+		Trang chủ > {title}
+	</div>
+</div>
+<br /><br />
+<center><h4>{title}</h4></center><br />
+<div id="message">{Message}
+</div>
+<script type="text/javascript" src="/js/proccessingBar.js" ></script>
+<form id="form1" name="form1" method="post">
+<input type="hidden" name="hdfServerName" id="hdfServerName" value = "" />
+<input type="hidden" name="hdfCharName" id="hdfCharName" value = "" />
+<input type="hidden" name="hdfLevel" id="hdfLevel" value = "" />
+
+
+THÔNG TIN CHƯƠNG TRÌNH<BR />
+<table>
+	<tr>
+		<td><b>Chương trình :</b>
+		</td>
+		<td>{programName}
+		</td>
+	</tr>
+	<tr>
+		<td><b>Ngày tạo tài khoản từ :</b>
+		</td>
+		<td>{dateCreateAccountProgram}
+			<br>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Tài khoản :</b>
+		</td>
+		<td>{account}
+		</td>
+	</tr>
+	<tr>
+		<td><b>Ngày tạo tài khoản :</b><br>
+		<br>
+		</td>
+		<td>{dateCreateAccount}
+		<br>
+		<br>
+		</td>
+	</tr>
+
+	<tr>
+		<td><b>Chọn server</b>
+		</td>
+		<td>
+			{ddlServer}
+		</td>
+	</tr>
+		<tr>
+		<td><b>Chọn nhân vật</b> 
+		</td>
+		<td>
+			<span id="characterSpan">{ddlCharacter}</span>
+		</td>
+	</tr>
+		<tr id="trLevel">
+		<td><b>Cấp bậc :</b>
+		</td>
+		<td>
+			<span id="txtLevel"/></span>
+		</td>
+	</tr>	
+</table>
+<br>
+<br>
+<input type="button" name="btnRegister" id="btnRegister" value="ĐĂNG KÍ THAM GIA" onclick="register()" />
+</form>
+<!-- END:main_require_server_char -->

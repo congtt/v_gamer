@@ -1,0 +1,85 @@
+body {
+	font:13px Tahoma,Arial,Verdana,sans-serif;
+	margin:0;
+	padding:0;
+	line-height:0px;
+}
+
+h1,h2,h3,h4,h5,h6,p,form,ul,ul li,ol,ol li,dl,dl dt,dl dd,blockquote {
+	margin:0;
+	padding:0;
+}
+
+ul,ul li,ol,ol li {
+	list-style:none;
+}
+
+img {
+	border:none;
+}
+
+a {
+	outline:none;
+}
+
+a:link,a:visited {
+	color:#0053eb;
+	text-decoration:underline;
+}
+
+a:hover {
+	color:#0040b5;
+	text-decoration:none;
+}
+
+fieldset {
+	border:none;
+	background:none;
+	margin:0;
+	padding:0;
+}
+
+fieldset legend {
+	display:none;
+}
+
+input,select,textarea {
+	font:13px Tahoma,Arial,Verdana,sans-serif;
+}
+
+input[type="image"],input[type="submit"] {
+	outline:none;
+}
+
+input {
+	vertical-align:baseline;
+margin:-1px -2px;
+}
+
+html>body input {
+vertical-align:text-bottom;
+margin:0;
+}
+
+object,embed {
+outline:none;
+}
+
+.Hidden {
+display:none;
+}
+
+.Wrapper {
+overflow:visible;
+height:1%;
+}
+
+html>body .Wrapper {
+overflow:hidden;
+height:auto;
+}
+
+.Clear {
+clear:both;
+}
+

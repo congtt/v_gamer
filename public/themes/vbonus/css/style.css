@@ -1,0 +1,211 @@
+.Wrapper {
+	width: 100%;
+	position:relative;
+	background:url(../../images/vbonusgamer/images/bgd_wrapper_repeat_x.jpg) repeat-x 0 0 scroll #e3e5e6;
+}
+#wrapperOut {
+	width: 100%;
+	position:relative;
+	background:url(../../images/vbonusgamer/images/bgd_wrapper.jpg) no-repeat center 0;
+}
+#container {
+	width:800px;
+	margin:0 auto;
+}
+/*End TopLink*/
+#header {
+	height:90px;
+	position:relative;
+	border-bottom:1px solid #5a5a5a;
+	width:100%;
+}
+#header h1 {
+	float:left;
+	margin:10px 0 0 5px
+}
+.TopLink {
+	color: #FFFFFF;
+	float:right;
+}
+.TopLink ul {
+	padding:10px 20px 0 0;
+	overflow:hidden;
+}
+.TopLink ul li {
+	float: left;
+	font-size: 12px;
+	list-style-type: none;
+	font-weight:bold;
+}
+.TopLink ul li a:link, .TopLink ul li a:visited {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 0 5px;
+	text-decoration: none;
+}
+.TopLink ul li a:hover, .TopLink ul li.Active a:link, .TopLink ul li.Active a:visited {
+	text-decoration:underline;
+}
+/*Begin Nav*/
+#nav {
+	overflow:hidden;
+	position:absolute;
+	bottom:-2px;_bottom:-1px;
+	right:20px;
+}
+*+html #nav{ bottom:-1px}
+#nav li {
+	float:left;
+	margin:0 2px;
+}
+#nav li a {
+	border:1px solid #1c74a8;
+	border-bottom-color:#5a5a5a;
+	text-decoration:none;
+	margin:2px 0 1px;
+	float:left
+}
+#nav li a span {
+	float:left;
+	background:url(../../images/vbonusgamer/images/bgd_menu.png) repeat-x 0 0;
+	height:35px;
+	color:#FFF;
+	text-transform:uppercase;
+	border:1px solid #92cbea;
+	border-bottom:none;
+	padding:0 20px;
+	line-height:35px;
+	font-weight:bold;
+	font-size:13px;
+}
+#nav li.Active a, #nav li a:hover {
+	border-color:#5a5a5a;
+	border-bottom:none;
+	margin:0
+}
+#nav li.Active a span, #nav li a:hover span {
+	background:url(../../images/vbonusgamer/images/bgd_menu_hover.png) repeat-x 0 0 scroll #fff;
+	height:38px;
+	color:#000
+}
+#nav li.Off a {
+	cursor:default;
+}
+/*End Nav*/
+.banner {
+	padding:5px
+}
+.banner img{ width:788px; height:168px}
+.topMain {
+	overflow:hidden;
+	background:url(../../images/vbonusgamer/images/topMain_repeat_x.jpg) repeat-x 0 0;
+	width:100%;
+	height:41px;
+}
+.MainContent h2 {
+	font-size:18px;
+	text-transform:uppercase;
+	color:#1c67ac;
+	padding:10px 0 0 0;
+	margin:0 0 5px;
+	background:url(../../images/vbonusgamer/images/bgd_line_repeat_x.png) repeat-x 0 100%;
+	padding:10px 0
+}
+.topMain h2 {
+	margin-left:30px;
+	float:left;
+	background:none
+}
+#block_news_tin_dadang {
+	padding-top:20px
+}
+.time {
+	color:#5d5d5d;
+	font-size:12px;
+	float:right;
+	padding:10px 10px 0 0
+}
+/*Begin Btn*/
+.lstBtn {
+	margin:10px 0 0 164px;
+	overflow:hidden; float:left;	_margin:10px 0 0 82px;
+}
+.Btn {
+	margin:5px 6px;
+	float:left;
+	width:100px;
+	border:1px solid #000;
+}
+.Btn input {
+	text-align:center;
+	width:100px;
+	color:#fff;
+	font-size:12px;
+	background:url(../../images/vbonusgamer/images/bgd_repeat_x.png) 0 0 repeat-x;
+	font-weight:bold;
+	border:1px solid #737373;
+	float:left;
+	margin:0;
+	padding:2px 0 4px;
+	cursor:pointer;
+}
+.Btn:hover input {
+	background-position:0 -30px
+}
+.Btn.Off input {
+	background-position:0 -60px;
+	color:#9d9d9d
+}
+textarea {
+	resize:none
+}
+/*End Btn*/
+.TopPage {
+	background:url(../../images/vbonusgamer/images/bgd_botMain_repeat_x.png) repeat-x 0 0;
+	border-top:1px solid #b5b5b5;
+	width:798px;
+	text-align:center;
+	height:60px;
+	display:block;
+	overflow:hidden
+}
+.TopPage a:link, .TopPage a:visited {
+	color:#2d2d2d;
+	font-size:11px;
+	font-weight:bold;
+	text-decoration:none;
+	display:block;
+	padding:19px 0 0;
+	text-indent:-9999px;
+	background:url(../../images/vbonusgamer/images/top.png) 0 4px no-repeat;
+	width:115px;
+	margin:0 auto
+}
+.TopPage a:hover {
+	background-position:0 -57px
+}
+/*Footer*/
+
+#Footer {
+	padding:20px 0 10px;
+	overflow:hidden;
+	margin:0 auto;
+	width:415px
+}
+#Footer p {
+	font: 11px/19px Tahoma;
+	color:#5d5d5d;
+	padding-left:33px;
+	padding-right:10px;
+	margin:13px 0
+}
+.Vng {
+	display:block;
+	float: left;
+	height: 55px;
+	background:url(../../images/vbonusgamer/images/logo_vng.png) no-repeat;
+	text-indent: -9999px;
+	width: 38px;
+	margin-right:15px;
+}
