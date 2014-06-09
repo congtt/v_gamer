@@ -19,6 +19,8 @@ import play.*;
 import play.api.templates.Html;
 import play.mvc.*;
 import views.html.*;
+import play.cache.Cache;
+
 
 public class Application extends Controller {
 
@@ -26,6 +28,19 @@ public class Application extends Controller {
 
 	public static Result index() {
 
+		
+//		Logger.error("Exception with riskyCalculation");
+//		Logger.debug("debug  with riskyCalculation");
+//		Logger.info("info with riskyCalculation");
+//		Logger.trace("trade Exception with riskyCalculation");
+//		Logger.warn("warm with riskyCalculation");
+//				
+//		Cache.set("username", "congtt");
+//		
+//		
+//		String cc = (String)Cache.get("username");
+//		
+//		return badRequest("test cache data: "+cc);
 		// Html h = com.vng.csm.helper.FormHelper.addInput("text", "name",
 		// "congtt", "add name", "clsss", "color:red;");
 		//
@@ -86,36 +101,36 @@ public class Application extends Controller {
 		// return ok(str);
 		//
 
-		HashMap<String, String> attrList = new HashMap<String, String>();
-		
-		attrList.put("onchange", "getCharacter();");
-		attrList.put("placeholder", "-placeholder-");
-
-		List<HashMap<String, String>> options = new ArrayList<>();
-		for (int i = 1; i < 10; i++) {
-			HashMap<String, String> option = new HashMap<String, String>();
-
-			option.put("value", String.valueOf(i));
-			option.put("name", " Loại "+String.valueOf(i));
-			option.put("attr", "2");
-			option.put("item", "item");
-			option.put("gamecode", "ZG");
-			options.add(option);
-		}
-
-		HashMap<String, String> option = new HashMap<String, String>();
-		for (int i = 1; i < 10; i++) {
-			option.put(String.valueOf(i),"loai "+ String.valueOf(i));
-		}
-		HashMap<String, String> value = new HashMap<String, String>();
-		value.put("2", "2");
-		value.put("5", "5");
-
-		Html html = com.vng.csm.helper.FormHelper.addTextarea("note",5,30,"note",attrList);
-		
-		html = html.$plus$eq(com.vng.csm.helper.FormHelper.addInput("text", "inputname","",attrList));
-		
-		html =html.$plus$eq(com.vng.csm.helper.FormHelper.addSelectListItems("name", options, "--chon--", attrList, value,6)); 
+//		HashMap<String, String> attrList = new HashMap<String, String>();
+//		
+//		attrList.put("onchange", "getCharacter();");
+//		attrList.put("placeholder", "-placeholder-");
+//
+//		List<HashMap<String, String>> options = new ArrayList<>();
+//		for (int i = 1; i < 10; i++) {
+//			HashMap<String, String> option = new HashMap<String, String>();
+//
+//			option.put("value", String.valueOf(i));
+//			option.put("name", " Loại "+String.valueOf(i));
+//			option.put("attr", "2");
+//			option.put("item", "item");
+//			option.put("gamecode", "ZG");
+//			options.add(option);
+//		}
+//
+//		HashMap<String, String> option = new HashMap<String, String>();
+//		for (int i = 1; i < 10; i++) {
+//			option.put(String.valueOf(i),"loai "+ String.valueOf(i));
+//		}
+//		HashMap<String, String> value = new HashMap<String, String>();
+//		value.put("2", "2");
+//		value.put("5", "5");
+//
+//		Html html = com.vng.csm.helper.FormHelper.addTextarea("note",5,30,"note",attrList);
+//		
+//		html = html.$plus$eq(com.vng.csm.helper.FormHelper.addInput("text", "inputname","",attrList));
+//		
+//		html =html.$plus$eq(com.vng.csm.helper.FormHelper.addSelectListItems("name", options, "--chon--", attrList, value,6)); 
 //		Html html = com.vng.csm.helper.FormHelper.addSelectList("name", options, "-- chon --", m, "1");
 		
 		//return ok(com.vng.csm.helper.FncHelper.dateToVNDate("2014-10-24 10:20:30 ","yyyymmdd ss","dd/mm/yyyy hh:mm:ss"));

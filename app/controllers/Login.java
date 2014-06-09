@@ -18,7 +18,11 @@ import views.html.*;
 public class Login extends Application {
 
     public static Result login() {
-        Html content = views.html.vbonus.login.render("",helper.Config
+    	String message ="";
+    	if(flash().get("error_login_msg")!= null){
+    		message = flash().get("error_login_msg");
+    	}
+        Html content = views.html.vbonus.login.render(message,helper.Config
 		    .getConfig().get("siteConfig"));
         Html menuLeft = Login.getMenuLeft();
         return ok(Application.getContentPage("login", content));
@@ -41,6 +45,7 @@ public class Login extends Application {
             session("username", username);
             return redirect(controllers.routes.Application.welcome());
         } else {
+        	flash("error_login_msg","Tên đăng nhập hoặc mật khẩu không tồn tại.");
             return redirect(controllers.routes.Login.login());
         }
 
