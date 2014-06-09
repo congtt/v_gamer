@@ -34,7 +34,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
 
-import com.vng.csm.helper.FncHelper;
+import com.vng.csm.helper.DateHelper;
 import com.vng.csm.helper.FormHelper;
 
 /**
@@ -65,10 +65,10 @@ public class Vbonus extends Application {
 		// HashMap<String, String> configInfo = models.Vbonus.GetConfigInfo();
 		HashMap<String, String> configInfo = new HashMap<String, String>();
 		configInfo.put("configId", configId);
-		configInfo.put("fromDate", FncHelper.ymdToVNDate(fromDate));
-		configInfo.put("toDate", FncHelper.ymdToVNDate(toDate));
-		configInfo.put("inviteFromDate", FncHelper.ymdToVNDate(inviteFromDate));
-		configInfo.put("inviteToDate", FncHelper.ymdToVNDate(inviteToDate));
+		configInfo.put("fromDate", DateHelper.ymdToVNDate(fromDate));
+		configInfo.put("toDate", DateHelper.ymdToVNDate(toDate));
+		configInfo.put("inviteFromDate", DateHelper.ymdToVNDate(inviteFromDate));
+		configInfo.put("inviteToDate", DateHelper.ymdToVNDate(inviteToDate));
 		configInfo.put("token", token);
 		configInfo.put("gamerCode", gameCode);
 
@@ -99,6 +99,7 @@ public class Vbonus extends Application {
 		return ok(Application.getContentPage("Register vbonus", content));
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static HashMap<String, HashMap<String, String>> getConfigVbonus(
 			int configId, String gameCode) {
 
@@ -152,6 +153,7 @@ public class Vbonus extends Application {
 		return config;
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static HashMap<String, String> getServerList(
 			int configId, String gameCode) {
 
@@ -186,16 +188,19 @@ public class Vbonus extends Application {
 		return serverList;
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result ajaxVbonusTest(String str) {
 		return ok("result call ajax: " + str);
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result ajaxVbonusRegister(String vbonusCode,
 			String captcha_code, String serverId, String character, String token) {
 		return ok("result call ajax: " + vbonusCode + " - " + captcha_code
 				+ " - " + serverId + " - " + character + " - " + token + " - ");
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result javascriptRoutes() {
 		response().setContentType("text/javascript");
 		return ok(Routes.javascriptRouter("jsVbonusRoutes",
@@ -206,6 +211,7 @@ public class Vbonus extends Application {
 
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result ajaxVbonusGetCharacter(String serverId,String token) {
 		return ok("list character: "+serverId +" token: "+token);
 	}
