@@ -259,6 +259,7 @@ public class Vbonus extends Application {
 		paramCallApi.put("api_esb_new", "api_esb_new");
 		paramCallApi.put("api_level", "5");
 		String result = api.ApiHelper.getCharacterName(paramCallApi);
+		Logger.info("call api result: "+result);
 		int apiLevel = 5;
 		for(int i = 1 ; i <= 10 ; i++){
 			
