@@ -70,7 +70,9 @@ public class FormHelper {
 	// return $str;
 	// }
 	//
-	public static Html addSelectList(String name, HashMap<String, String> options, String header, HashMap<String, String> attrList, String value) {
+	
+	
+	public static Html addSelectList2(String name, HashMap<String, String> options, String header, HashMap<String, String> attrList, String value) {
 
 		String attr = addAttribute(attrList);
 		String inp = "<select  name=\"" + name + "\" id=\"" + name + "\"" + attr + " />";
@@ -91,7 +93,7 @@ public class FormHelper {
 		return Html.apply(inp);
 	}
 
-	public static Html addSelectList(String name, HashMap<String, String> options, String header, HashMap<String, String> attrList, HashMap<String, String> value, int size) {
+	public static Html addSelectList2(String name, HashMap<String, String> options, String header, HashMap<String, String> attrList, HashMap<String, String> value, int size) {
 
 		String attr = addAttribute(attrList);
 		String inp = "<select multiple size=\"" + String.valueOf(size) + "\"  name=\"" + name + "\" id=\"" + name + "\"" + attr + " />";
@@ -113,10 +115,77 @@ public class FormHelper {
 	
 	
 
-	public static Html addSelectListItems(String name, List<HashMap<String, String>> options, String header, HashMap<String, String> attrList, HashMap<String, String> value, int size) {
+	public static Html addSelectList(String name, List<HashMap<String, String>> options, String header, HashMap<String, String> attrList, HashMap<String, String> value, int size) {
 
 		String attr = addAttribute(attrList);
 		String inp = "<select  multiple  size=\"" + String.valueOf(size) + "\"  name=\"" + name + "\" id=\"" + name + "\"" + attr + " />";
+		if (header != null) {
+			inp += "<option value=\"\" >" + header + "</option>";
+		}
+		if (options != null && !options.isEmpty()) {
+			HashMap<String, String> option = null;
+			for (int i = 0; i < options.size(); i++) {
+				option = options.get(i);
+				String items = "";
+				String optionName = "";
+				optionName = option.get("name");
+				option.remove("name");
+				String itemValue = "";
+				if (option != null && !option.isEmpty()) {
+					itemValue = option.get("value");
+					for (String key : option.keySet()) {
+						items += key + " = \"" + option.get(key) + "\"";
+					}
+				}
+				if (value.get(itemValue) != null && value.get(itemValue).equals(itemValue)) {
+					inp += "<option " + items + " selected=\"selected\"  >" + optionName + "</option>";
+				} else {
+					inp += "<option " + items + " >" + optionName + "</option>";
+				}
+	
+			}
+
+		}
+		return Html.apply(inp);
+	}
+
+	public static Html addSelectList(String name, List<HashMap<String, String>> options, String header, HashMap<String, String> attrList, String value) {
+		
+		String attr = addAttribute(attrList);
+		String inp = "<select  name=\"" + name + "\" id=\"" + name + "\"" + attr + " />";
+		if (header != null) {
+			inp += "<option value=\"\" >" + header + "</option>";
+		}
+		if (options != null && !options.isEmpty()) {
+			HashMap<String, String> option = null;
+			for (int i = 0; i < options.size(); i++) {
+				option = options.get(i);
+				String items = "";
+				String optionName = "";
+				optionName = option.get("name");
+				option.remove("name");
+				String itemValue = "";
+				if (option != null && !option.isEmpty()) {
+					itemValue = option.get("value");
+					for (String key : option.keySet()) {
+						items += key + " = \"" + option.get(key) + "\"";
+					}
+				}
+				if (value.equals(itemValue)) {
+					inp += "<option " + items + " selected=\"selected\"  >" + optionName + "</option>";
+				} else {
+					inp += "<option " + items + " >" + optionName + "</option>";
+				}
+	
+			}
+		}
+		return Html.apply(inp);
+	}
+	
+	/*public static Html addSelectList(String name, List<HashMap<String, String>> options, String header, HashMap<String, String> attrList, HashMap<String, String> value) {
+
+		String attr = addAttribute(attrList);
+		String inp = "<select   name=\"" + name + "\" id=\"" + name + "\"" + attr + " />";
 		if (header != null) {
 			inp += "<option value=\"\" >" + header + "</option>";
 		}
@@ -145,8 +214,9 @@ public class FormHelper {
 		return Html.apply(inp);
 	}
 
-	public static Html addSelectListItems(String name, List<HashMap<String, String>> options, String header, HashMap<String, String> attrList, String value) {
-
+	
+	public static Html addSelectList(String name, List<HashMap<String, String>> options, String header, HashMap<String, String> attrList, String value) {
+		
 		String attr = addAttribute(attrList);
 		String inp = "<select  name=\"" + name + "\" id=\"" + name + "\"" + attr + " />";
 		if (header != null) {
@@ -176,6 +246,8 @@ public class FormHelper {
 
 		return Html.apply(inp);
 	}
+	
+	*/
 
 	public static Html addTextarea(String name, int rows, int col, String value, HashMap<String, String> attrList) {
 

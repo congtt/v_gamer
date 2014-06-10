@@ -45,7 +45,7 @@ public class Vbonus {
             connection = play.db.DB.getConnection();
             cs = connection.prepareCall("{call WINWIN.GRLV.dbo.usp_grlv_menu_root_v2 (?,?,?)}");
             cs.setInt(1, 2);
-            cs.setString(2, Login.getUserLogin().get("username"));
+            cs.setString(2, Login.getUserInfoLogin().get("username"));
             cs.setInt(3, 1);
             result = cs.executeQuery();
             menu = helper.Helper.ResultSetToHashMap(result);
@@ -67,6 +67,45 @@ public class Vbonus {
         return menu;
     }
 
+    public static int register(int configId,String username,String memberId,String vbonusId,String serverId,String serverName,String characterName, int level, String firstLogin) {
+//         CallableStatement cs = null;
+//        Connection connection = null;
+//        ResultSet result = null;
+//        try {
+//            connection = play.db.DB.getConnection();
+//            cs = connection.prepareCall("{call usp_pmtt_fe_gamer_register_vbonus_v3 (?,?,?,?,?,?,?,?,?,?,?,?)}");
+//            //$sSQL = "exec  ".(int)$config_id.",".(int)$memberid.",'".$member_account."','"
+//           // .$register_date."',".(int)$vbonus_code.",'".$passport_id."',".$first_login.""
+//            	//	+ "//,".$server_id.",".$server_name.",".$character_name.",".$level.",'".$multi_platform_gamecode."'";	//die($sSQL);			
+//            cs.setInt(1, configId);
+//            cs.setInt(1, memberId);            
+//            cs.setString(2, username);
+//            cs.setString(3, characterName);
+//            cs.setInt(4, level);
+//            cs.setInt(5, level);
+//            cs.setString(6, serverId);
+//            cs.setString(7, serverName);
+//            cs.setInt(3, 1);
+//            result = cs.executeQuery();
+//            menu = helper.Helper.ResultSetToHashMap(result);
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            try {
+//                if (cs != null) {
+//                    cs.close();
+//                }
+//                if (connection != null) {
+//                    connection.close();
+//                }
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Vbonus.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+        return 1;
+    }
+    
     public static void TestDB() {
         String sql = "select top 1 * from pmtt_member ";
 

@@ -11,10 +11,16 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.twmacinta.util.MD5;
+
+import play.Play;
 
 /**
  *
@@ -23,6 +29,29 @@ import org.w3c.dom.NodeList;
 public class Fnc {
   
 
+	public static String vBonusId(String memberId){
+		return "13215456";
+	}
+	
+	public static String vBonusIdDecode(String vBonusId){
+		return "423";
+	}
+	
+	public static String md5Sum(String value){
+		String result = "";
+		result = value+Play.application().configuration().getString("application.secret").toString()+value;
+		result = com.vng.csm.helper.FncHelper.md5(result);
+		return result;
+	}
+	
+	public static boolean md5Check(String value,String token){
+		String tokenCheck = md5Sum(value);
+		if(tokenCheck.equals(token)){
+			return true;
+		}
+		return false;
+	}
+	
     public static Map<String,String> ReadXmlFile(String fileName){
             
         Map<String,String> map = null;

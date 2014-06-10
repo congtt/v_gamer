@@ -29,6 +29,8 @@ public class Application extends Controller {
 	public static Result index() {
 
 		
+			
+		
 //		Logger.error("Exception with riskyCalculation");
 //		Logger.debug("debug  with riskyCalculation");
 //		Logger.info("info with riskyCalculation");
@@ -100,7 +102,7 @@ public class Application extends Controller {
 		// str+= session().get("username");
 		// return ok(str);
 		//
-
+//
 //		HashMap<String, String> attrList = new HashMap<String, String>();
 //		
 //		attrList.put("onchange", "getCharacter();");
@@ -130,9 +132,11 @@ public class Application extends Controller {
 //		
 //		html = html.$plus$eq(com.vng.csm.helper.FormHelper.addInput("text", "inputname","",attrList));
 //		
-//		html =html.$plus$eq(com.vng.csm.helper.FormHelper.addSelectListItems("name", options, "--chon--", attrList, value,6)); 
-//		Html html = com.vng.csm.helper.FormHelper.addSelectList("name", options, "-- chon --", m, "1");
-		
+//		html =html.$plus$eq(com.vng.csm.helper.FormHelper.addSelectList2("name", option, "--chon--", attrList, "2")); 
+//		
+//		//html = com.vng.csm.helper.FormHelper.addSelectList("name", options, "-- chon --", attrList, "1");
+//		
+//		return ok(html);
 		//return ok(com.vng.csm.helper.FncHelper.dateToVNDate("2014-10-24 10:20:30 ","yyyymmdd ss","dd/mm/yyyy hh:mm:ss"));
 		
 		
@@ -233,7 +237,7 @@ public class Application extends Controller {
 		Html menuLeft = Application.getMenuLeft();
 		return views.html.vbonus.layout.render(
 				helper.Config.getConfig().get("siteConfig"),
-				Login.getUserLogin(), title, menuLeft, content);
+				Login.getUserInfoLogin(), title, menuLeft, content);
 	}
 
 	//

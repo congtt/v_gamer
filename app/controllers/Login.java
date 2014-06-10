@@ -71,13 +71,19 @@ public class Login extends Application {
         return false;
     }
 
-    public static HashMap<String, String> getUserLogin() {
+    public static HashMap<String, String> getUserInfoLogin() {
         // return "minhngo324";
         if (checkLogin()) {
             HashMap<String, String> userInfo = new HashMap<String, String>();
             userInfo.put("username", session().get("username"));
             userInfo.put("registerDate", "10/11/1990");
             return userInfo;
+        }
+        return null;
+    }
+    public static String getUserLogin() {    
+        if (checkLogin()) {
+            return  session().get("username");           
         }
         return null;
     }
