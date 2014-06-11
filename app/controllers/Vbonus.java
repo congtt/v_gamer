@@ -40,6 +40,7 @@ import com.vng.csm.helper.DateHelper;
 import com.vng.csm.helper.FormHelper;
 
 
+
 /**
  * 
  * @author congtt
@@ -249,7 +250,7 @@ public class Vbonus extends Application {
 		HashMap<String,String>userInfo = Login.getUserInfoLogin();		
 		List<HashMap<String,String>> characterList = new ArrayList<>();
 		HashMap<String,String> paramCallApi = new HashMap<String,String>();
-		paramCallApi.put("configId", "configId");	
+		paramCallApi.put("configId", String.valueOf(configId));	
 		paramCallApi.put("zingId", userInfo.get("zingId"));
 		paramCallApi.put("passportId", userInfo.get("passportId"));
 		paramCallApi.put("serverId", serverId);		
@@ -259,6 +260,15 @@ public class Vbonus extends Application {
 		paramCallApi.put("api_esb_new", "api_esb_new");
 		paramCallApi.put("api_level", "5");
 		String result = api.ApiHelper.getCharacterName(paramCallApi);
+//		Map<String,String> map = new HashMap<String,String>();
+//		try{
+//	
+//			ObjectMapper mapper = new ObjectMapper();
+//			map = mapper.readValue(result,new TypeReference<HashMap<String,String>>(){});
+//		}catch(Exception ex){
+//			Logger.info("call 11error: "+ex.getMessage());
+//		}
+//		Logger.info("call api result map string string: "+result+map.toString());
 		Logger.info("call api result: "+result);
 		int apiLevel = 5;
 		for(int i = 1 ; i <= 10 ; i++){
