@@ -1,6 +1,9 @@
 package controllers;
 
 //import com.google.common.collect.Lists;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 
 import com.vng.up.play.Auth;
@@ -15,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.imageio.ImageIO;
+
 import play.*;
 import play.api.templates.Html;
 import play.mvc.*;
@@ -24,7 +29,12 @@ import play.cache.Cache;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class Application extends Controller {
 
@@ -32,43 +42,91 @@ public class Application extends Controller {
 
 	public static Result index() {
 		
-		int isTest = 1;
+		int isTest = 0;
 
-		if (isTest == 1) {
-
-			String json = "";
-			JSONArray arrjson = new JSONArray();
-			JSONObject j = new JSONObject();
-			JSONObject j1 = new JSONObject();
+		if (isTest == 1) {	
+			String str = "";
+			
+			String br = "{\"0\":10,\"list\":[\"String 11\",\"String 222\",\"String 3333\"]}";
+			
+			
+			//Object obj = new DataObject();
+			Gson gson = new Gson();
+			
+			ListServerAPI obj = gson.fromJson(br, ListServerAPI.class);
+			JSONObject json = null;
+			String s1 = "{\"0\":1,\"1\":[{\"server_id\":\"gamo\",\"serverId\":\"gamo\",\"zoneName\":\"gà mái\",\"zone_name\":\"gà mái\",\"server_name\":\"gà mái\",\"serverName\":\"gà mái\",\"serverIp\":\"10.30.37.27\",\"site_id\":\"01\",\"port\":\"01\",\"active\":1},{\"server_id\":\"gacon\",\"serverId\":\"gacon\",\"zoneName\":\"Gà Con\",\"zone_name\":\"Gà Con\",\"server_name\":\"Gà Con\",\"serverName\":\"Gà Con\",\"serverIp\":\"10.30.37.28\",\"site_id\":\"02\",\"port\":\"02\",\"active\":1}]}";
+			String s2="{\"name\":\"MyNode\", \"width\":200, \"height\":100}";
 			try {
-				j.put("serverId", "12");
-				j.put("serverName", "serverName 12");
-
-				j1.put("serverId", "13");
-				j1.put("serverName", "serverName 13");
-
-				arrjson.put(j);
-				arrjson.put(j1);
-				 json = arrjson.toString();
-			} catch (Exception ex) {
-
-			}
-			List<Map<String, String>> map = new ArrayList<>();
-			ObjectMapper mapper = new ObjectMapper();
-			try {
-
-				// convert JSON string to Map
-				map = mapper.readValue(json,
-						new TypeReference<List<HashMap<String, String>>>() {
-						});
-
-				System.out.println(map);
-
-			} catch (Exception e) {
+				 json = (JSONObject)new JSONParser().parse(s1);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			return ok("data: " + map.toString());
+			
+			str += json.get("0").toString();
+			//str = json.get("1").toString();
+			List<HashMap<String,String>> sl = com.vng.csm.helper.JsonHelper.jsonStringToListHashMap(json.get("1").toString());
+			
+			str += "-----------------\n";
+			for(int i = 0 ; i < sl.size() ; i++){
+				HashMap<String,String> hm = sl.get(i);
+				str +="sername: "+hm.get("server_name")+"\n";
+			}
+			str += sl.toString();
+/*
+ * 
+			 DefaultKaptcha captchaPro=new DefaultKaptcha();
+			// captchaPro.setConfig(); 
+			 captchaPro.setConfig(new Config(new Properties()));
+		    String text=captchaPro.createText();
+		    Logger.debug("Captcha:"+text);//U can put the text in cache.
+		    BufferedImage img=captchaPro.createImage(text);
+		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		    try{
+		        ImageIO.write(img, "jpg", baos);
+		        baos.flush();
+		    }catch(IOException e){
+		        Logger.debug(e.getMessage());
+		    }
+		    return ok(baos.toByteArray()).as("image/jpg");
+		    
+		    */
+			return ok("ok: "+str);
+//			String json = "";
+//			JSONArray arrjson = new JSONArray();
+//			JSONObject j = new JSONObject();
+//			JSONObject j1 = new JSONObject();
+//			try {
+//				j.put("serverId", "12");
+//				j.put("serverName", "serverName 12");
+//
+//				j1.put("serverId", "13");
+//				j1.put("serverName", "serverName 13");
+//
+//				arrjson.put(j);
+//				arrjson.put(j1);
+//				 json = arrjson.toString();
+//			} catch (Exception ex) {
+//
+//			}
+//			List<Map<String, String>> map = new ArrayList<>();
+//			ObjectMapper mapper = new ObjectMapper();
+//			try {
+//
+//				// convert JSON string to Map
+//				map = mapper.readValue(json,
+//						new TypeReference<List<HashMap<String, String>>>() {
+//						});
+//
+//				System.out.println(map);
+//
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//
+//			return ok("data: " + map.toString());
 
 			// Logger.error("Exception with riskyCalculation");
 			// Logger.debug("debug  with riskyCalculation");
@@ -325,3 +383,22 @@ public class Application extends Controller {
 	// return false;
 	// }
 }
+
+ class ListServerAPI {
+	private int result;
+	private List<String> listServer = new ArrayList<String>();/* {
+	  {
+		add("String 1");
+		add("String 2");
+		add("String 3");
+	  }
+	}; */
+	//getter and setter methods
+ 
+	@Override
+	public String toString() {
+	   return "DataObject [result=" + result + ", list="
+		+ listServer + "]";
+	}
+}
+

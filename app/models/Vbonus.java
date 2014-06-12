@@ -6,6 +6,7 @@
 package models;
 
 import controllers.Login;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import scala.collection.generic.BitOperations.Int;
 
 /**
  *
@@ -48,7 +51,7 @@ public class Vbonus {
             cs.setString(2, Login.getUserInfoLogin().get("username"));
             cs.setInt(3, 1);
             result = cs.executeQuery();
-            menu = helper.Helper.ResultSetToHashMap(result);
+            menu = helper.Helper.ResultSetToHashMapList(result);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -67,43 +70,54 @@ public class Vbonus {
         return menu;
     }
 
-    public static int register(int configId,String username,String memberId,String vbonusId,String serverId,String serverName,String characterName, int level, String firstLogin) {
-//         CallableStatement cs = null;
-//        Connection connection = null;
-//        ResultSet result = null;
-//        try {
-//            connection = play.db.DB.getConnection();
-//            cs = connection.prepareCall("{call usp_pmtt_fe_gamer_register_vbonus_v3 (?,?,?,?,?,?,?,?,?,?,?,?)}");
-//            //$sSQL = "exec  ".(int)$config_id.",".(int)$memberid.",'".$member_account."','"
-//           // .$register_date."',".(int)$vbonus_code.",'".$passport_id."',".$first_login.""
-//            	//	+ "//,".$server_id.",".$server_name.",".$character_name.",".$level.",'".$multi_platform_gamecode."'";	//die($sSQL);			
-//            cs.setInt(1, configId);
-//            cs.setInt(1, memberId);            
-//            cs.setString(2, username);
-//            cs.setString(3, characterName);
-//            cs.setInt(4, level);
-//            cs.setInt(5, level);
-//            cs.setString(6, serverId);
-//            cs.setString(7, serverName);
-//            cs.setInt(3, 1);
-//            result = cs.executeQuery();
-//            menu = helper.Helper.ResultSetToHashMap(result);
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        } finally {
-//            try {
-//                if (cs != null) {
-//                    cs.close();
-//                }
-//                if (connection != null) {
-//                    connection.close();
-//                }
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Vbonus.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-        return 1;
+    public static HashMap<String,String> register(int configId,String username,int memberId,int vbonusId,String serverId,String serverName,String characterName, int level, String firstLogin) {
+         CallableStatement cs = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        HashMap<String,String> result = null;
+        try {
+        	
+        	HashMap<String,String> userInfo = Login.getUserInfoLogin();
+        	
+            connection = play.db.DB.getConnection();
+            cs = connection.prepareCall("{call usp_pmtt_fe_gamer_register_vbonus_v3 (?,?,?,?,?,?,?,?,?,?,?,?)}");
+           // $sSQL = "exec usp_pmtt_fe_gamer_register_vbonus_v3 ".(int)$config_id."
+            /*,".(int)$memberid.",'".$member_account."','".$register_date."'
+            ,".(int)$vbonus_code.",'".$passport_id."',".$first_login.",".$server_id.",".$server_name."
+            ,".$character_name.",".$level.",'".$multi_platform_gamecode."'";	//die($sSQL);*/
+			String multiPlatform = "";            
+            cs.setInt(1, configId);
+            cs.setInt(2, memberId);            
+            cs.setString(3, username);
+            cs.setString(4,com.vng.csm.helper.DateHelper.vnDateToDate(userInfo.get("registerDate"),false)); 
+            cs.setInt(5,vbonusId);
+            cs.setString(6, userInfo.get("passportId"));
+            cs.setString(7,com.vng.csm.helper.DateHelper.vnDateToDate(firstLogin,false));
+            cs.setString(8,serverId);
+            cs.setString(9,serverName);
+            cs.setString(10,characterName);
+            cs.setInt(11, level);
+            cs.setString(12, multiPlatform);           
+            rs = cs.executeQuery();
+            System.out.println("result call sp register: "+ rs.toString());
+            result = helper.Helper.ResultSetToHashMap(rs);
+            System.out.println("result call sp register hm: "+ result.toString());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (cs != null) {
+                    cs.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Vbonus.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return result;
     }
     
     public static void TestDB() {

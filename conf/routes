@@ -26,12 +26,14 @@ GET    /gamer/vbonus/registerinfo                    controllers.Vbonus.ajaxVbon
 # Javascript routing
 GET    /assets/javascripts/jsVbonusRoutes      controllers.Vbonus.javascriptRoutes()
 
-
+#Captcha
+GET     /gamer/captcha/:name	   controllers.Captcha.getCaptCha(name: String)
 #Passport test
 GET     /gamer/passport/:host/:port/:privateKey/:vngauth/:sign/:ip/:ts    controllers.Passport.test(host,port,privateKey,vngauth,sign, ip, ts)
 
 #API test
 GET    /gamer/testapi/getCharacter                      controllers.TestAPI.getCharacter()
+GET    /gamer/testapi/getCharacterAPI/:accountName/:gameCode/:serverId/:platform  				controllers.TestAPI.getCharacterAPI(accountName: String, gameCode: String,serverId: String,platform: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

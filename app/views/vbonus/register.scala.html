@@ -1,5 +1,6 @@
 @(message: String)(configInfo: HashMap[String, String])(userInfo:
-HashMap[String,String])(inputList: Map[String, Html]) @import helper._
+HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String) 
+@import helper._
 
 <link rel="stylesheet" href="@routes.Assets.at("javascripts/alertify/themes/alertify.core.css")" />
 <link rel="stylesheet" href="@routes.Assets.at("javascripts/alertify/themes/alertify.default.css")" id="toggleCSS" />
@@ -31,7 +32,52 @@ HashMap[String,String])(inputList: Map[String, Html]) @import helper._
 			}
 		})
 	}
+	
+	function RegisterSuccess(){
+		$('#register_success').html('<div id="message_success">Bạn đã đăng ký tham gia chương trình vbonus.</div>');
+		$('#register_info').html('');
+	}
+	
+	function Message(code){	
+		var msg = '';
+		if(code > 0){
+			alertify.success("Mời tài khoản thành công."); 				
+			RegisterSuccess();
+		}else{			
+			if(code==-1){
+				msg='Chương trình không tồn tại.';
+			}else if(code==-2){
+				msg='Tài khoản đã tham gia chương trình.';
+			}else if(code==-3){
+				msg='Đã đủ số lượng tham gia chương trình.';
+			}else if(code==-4){
+				msg='Ngày tạo tài khoản không hợp lệ.';
+			}
+			else if(code==-5){
+				msg='Không tìm thấy chương trình đang chọn.';
+			}
+			else if(code==-6){
+				msg='Chương trình đã kết thúc.';
+			}else if(code==-10){
+				msg='Ngày mời không hợp lệ.';
+			}else if(code==-12){
+				msg='Tài khoản đã đăng nhập vào game.';
+			}else if(code==-15){
+				msg='Level không hợp lệ.';
+			}else if(code==-16){
+				msg='Mã bảo mật sai.';
+				$('#txtCaptchaCode').focus();
+			}else if(code==-17){
+				msg='Mã số vbonus không tồn tại.';
+				$('#txtVbonusCode').focus();
+			}else{
+				msg='Thông tin không hợp lệ.';
+			}
+			alertify.error(msg);
+		}	
 
+	}
+	
 	function CheckRegister() {
 		var serverId = "";
 		var character = "";
@@ -69,7 +115,7 @@ HashMap[String,String])(inputList: Map[String, Html]) @import helper._
 				vbonusCode, captchaCode, serverId, serverName, characterName,
 				level, firstLogin, token).ajax({
 			success : function(data) {
-				alertify.success(data);
+				Message(data);
 			},
 			error : function() {
 				alertify.error("Thông tin không hợp lệ.");
@@ -259,7 +305,8 @@ HashMap[String,String])(inputList: Map[String, Html]) @import helper._
 				<tr>
 					<td colspan="4">
 						<div style="margin-left: 123px;">
-							<img width="205px" height="40px" src="{CaptchaImg}" />
+							<!--<img width="205px" height="40px" src="http://localhost:9000/gamer/captcha/@reCaptcha" />-->
+							<img width="205px" height="40px" src="@routes.Captcha.getCaptCha(reCaptcha)" />
 						</div>
 					</td>
 				</tr>

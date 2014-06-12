@@ -77,6 +77,7 @@ public class Login extends Application {
             HashMap<String, String> userInfo = new HashMap<String, String>();
             userInfo.put("username", session().get("username"));
             userInfo.put("registerDate", "10/11/1990");
+            userInfo.put("passportId", "2132456423123");
             return userInfo;
         }
         return null;

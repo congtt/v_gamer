@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class Helper {
 
-    public static List<HashMap<String,String>> ResultSetToHashMap(ResultSet rs) {
+    public static List<HashMap<String,String>> ResultSetToHashMapList(ResultSet rs) {
 
         List<HashMap<String,String>> rows = new ArrayList<>();
         try {
@@ -35,9 +35,26 @@ public class Helper {
         }
         return rows;
 
+    }    
+  
+    public static HashMap<String,String> ResultSetToHashMap(ResultSet rs) {
+
+    	HashMap row = new HashMap();
+        try {
+            ResultSetMetaData md = rs.getMetaData();
+            int columns = md.getColumnCount();
+            if (rs.next()) {             
+                for (int i = 1; i <= columns; i++) {
+                    row.put(md.getColumnName(i), rs.getObject(i));
+                }               
+            }
+        } catch (Exception ex) {
+             Helper.debug("Helper class: ", ex.getMessage());
+        }
+        return row;
+
     }
     
-  
     public static void debug(String title, String value){
         System.out.println("=================== debug =====================");
         System.out.println(title+ ": "+value);

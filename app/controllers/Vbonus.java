@@ -16,9 +16,11 @@ import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+//
+//import org.json.JSONArray;
+//import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -31,6 +33,7 @@ import play.mvc.Http.*;
 import play.Play;
 import play.Routes;
 import play.api.templates.Html;
+import play.cache.Cache;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -39,6 +42,7 @@ import views.html.*;
 import com.vng.csm.helper.DateHelper;
 import com.vng.csm.helper.FormHelper;
 
+import org.json.simple.JSONObject;
 
 
 /**
@@ -101,9 +105,9 @@ public class Vbonus extends Application {
 		HashMap<String, Html> listInput = new HashMap<String, Html>();
 		listInput.put("server", inpServerList);
 		listInput.put("character", inpCharacterList);
-		
+		//Result reCaptcha = Captcha.getCaptCha("vbonus_register");
 		Html content = views.html.vbonus.register.render("", configInfo,
-				Login.getUserInfoLogin(), listInput);
+				Login.getUserInfoLogin(), listInput,"vbonus_register");
 
 		return ok(Application.getContentPage("Register vbonus", content));
 	}
@@ -166,6 +170,42 @@ public class Vbonus extends Application {
 	public static List<HashMap<String, String>> getServerList(int configId,
 			String gameCode) {
 
+		List<HashMap<String, String>> serverList = new ArrayList<>();		
+		if(serverList!= null && serverList.size()>0){
+			return serverList;
+		}	
+		// call api get list server		
+		HashMap<String,String> paramCallServer = new HashMap<String, String>();
+		paramCallServer.put("gameCode", gameCode);
+		String strServerList = api.ApiHelper.getServerList(paramCallServer);	
+		JSONObject serverListObj = new JSONObject();
+		try {
+			serverListObj = (JSONObject)new JSONParser().parse(strServerList);
+			if(serverListObj!=null && serverListObj.get("0").toString().equals("1")){	
+				List<HashMap<String, String>> serverListRoot = new ArrayList<>();
+				serverListRoot = com.vng.csm.helper.JsonHelper.jsonStringToListHashMap(serverListObj.get("1").toString());
+				for(int i = 0 ; i < serverListRoot.size() ; i++){					
+					HashMap<String, String> server = new HashMap<String, String>();					
+					String serverName = serverListRoot.get(i).get("serverName");
+					String serverId = serverListRoot.get(i).get("serverId")+"|"+serverListRoot.get(i).get("serverIp");
+					String token = helper.Fnc.md5Sum(configId+serverId+serverName);					
+					server.put("name",serverName );
+					server.put("value", serverId );
+					server.put("token",  token);
+					serverList.add(server);
+				}
+			}else{
+				
+			}
+			
+		} catch (Exception  e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return serverList;
+	}
+	
+	public static List<HashMap<String, String>> getListServerFromXML(int configId,String gameCode){
 		List<HashMap<String, String>> serverList = new ArrayList<>();
 		try {
 			HashMap<String, String> server = new HashMap<String, String>();
@@ -202,6 +242,7 @@ public class Vbonus extends Application {
 					ex.getMessage());
 		}
 		return serverList;
+	
 	}
 
 	@Security.Authenticated(Secured.class)
@@ -213,13 +254,20 @@ public class Vbonus extends Application {
 	public static Result ajaxVbonusRegister(int configId,String vbonusCode,
 			String captchaCode, String serverId, String serverName,String characterName,int level,String firstLogin, String token) {
 		
+		// check captcha value
+		if(!Captcha.checkCaptcha("vbonus_register",captchaCode)){
+			return ok("-100");
+		}
 		if(helper.Fnc.md5Check(String.valueOf(configId)+serverId+serverName+characterName+level+firstLogin, token)){
 			String username = Login.getUserLogin();
 			String memberId = helper.Fnc.vBonusIdDecode(vbonusCode);	
-			models.Vbonus.register(configId,username, memberId, vbonusCode, serverId, serverName, characterName, level, firstLogin);				
-			return ok("1");
+			HashMap<String,String> result = models.Vbonus.register(configId,username, Integer.valueOf(memberId), Integer.valueOf(vbonusCode), serverId, serverName, characterName, level, firstLogin);				
+			if(result!= null){
+				return ok(String.valueOf(result.get("result")));
+			}
+			return ok("-101");
 		}
-		return ok("-100");
+		return ok("-102");
 		//return ok("result call ajax: " + vbonusCode + " - " + captchaCode	+ " - " + serverId + " - " + " - " + serverName + " - "+ characterName + " - " + level + " - "+ " - " + firstLogin + " - "+ " - " + token + " - ");
 	}
 
@@ -242,6 +290,7 @@ public class Vbonus extends Application {
 			String result = com.vng.csm.helper.FncHelper.listHashMapToJsonString(characterList);
 			return ok(result);
 		}
+		
 		return ok("-101");
 	}
 	
