@@ -21,14 +21,20 @@ import org.w3c.dom.NodeList;
 import com.twmacinta.util.MD5;
 
 import play.Play;
-
+import com.vng.csm.helper.FncHelper;
 /**
  *
  * @author congtt
  */
 public class Fnc {
   
-
+	
+	public static String md5Vbonus(String value){
+		return FncHelper.md5(("@grc#!vBonus2012"+FncHelper.md5(value)));		
+	}
+	public static boolean md5VbonusCheck(String value,String token){
+		return FncHelper.md5(("@grc#!vBonus2012"+FncHelper.md5(value))).equals(token);			
+	}
 	public static String vBonusId(String memberId){
 		return "13215456";
 	}

@@ -20,7 +20,7 @@ GET     /gamer/vbonus/invite.:configId.:fromDate.:toDate.:inviteFromDate.:invite
 
 POST     /gamer/vbonus/registerpost/da                   controllers.Vbonus.add()
 GET    /gamer/vbonus/register                      controllers.Vbonus.ajaxVbonusTest(str: String)
-POST    /gamer/vbonus/getCharacter                      controllers.Vbonus.ajaxVbonusGetCharacter(configId: Integer,serverId: String,serverName: String ,token: String)
+POST    /gamer/vbonus/getCharacter                      controllers.Vbonus.ajaxVbonusGetCharacter(configId: Integer,serverId: String,serverName: String,gameCode: String ,token: String)
 GET    /gamer/vbonus/registerinfo                    controllers.Vbonus.ajaxVbonusRegister(configId: Integer,vbonusCode: String,captchaCode: String , serverId: String ,ServerName:String,characterName: String,level: Integer,firstLogin: String,token: String)
 																							
 # Javascript routing

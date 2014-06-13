@@ -16,6 +16,7 @@ import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 //
 //import org.json.JSONArray;
 //import org.json.JSONObject;
@@ -44,7 +45,6 @@ import com.vng.csm.helper.FormHelper;
 
 import org.json.simple.JSONObject;
 
-
 /**
  * 
  * @author congtt
@@ -64,9 +64,7 @@ public class Vbonus extends Application {
 	}
 
 	@Security.Authenticated(Secured.class)
-	public static Result register(String configId, String fromDate,
-			String toDate, String inviteFromDate, String inviteToDate,
-			String token, String gameCode) {
+	public static Result register(String configId, String fromDate, String toDate, String inviteFromDate, String inviteToDate, String token, String gameCode) {
 		// helper.Helper.debug("param: ",
 		// configId+"-"+fromDate+"-"+toDate+"-"+inviteFromDate+"-"+inviteToDate+"-"+token+"-"+gameCode
 		// );
@@ -75,55 +73,48 @@ public class Vbonus extends Application {
 		configInfo.put("configId", configId);
 		configInfo.put("fromDate", DateHelper.ymdToVNDate(fromDate));
 		configInfo.put("toDate", DateHelper.ymdToVNDate(toDate));
-		configInfo
-				.put("inviteFromDate", DateHelper.ymdToVNDate(inviteFromDate));
+		configInfo.put("inviteFromDate", DateHelper.ymdToVNDate(inviteFromDate));
 		configInfo.put("inviteToDate", DateHelper.ymdToVNDate(inviteToDate));
 		configInfo.put("token", token);
 		configInfo.put("gamerCode", gameCode);
 
-		List<HashMap<String, String>> serverList = getServerList(
-				Integer.valueOf(configId), gameCode);
-		HashMap<String, HashMap<String, String>> configVbonus = getConfigVbonus(
-				Integer.valueOf(configId), gameCode);
+		if(!helper.Fnc.md5VbonusCheck(configId+fromDate+toDate+inviteFromDate+inviteToDate+gameCode, token)){
+			Logger.info("code: "+helper.Fnc.md5Vbonus(configId+fromDate+toDate+inviteFromDate+inviteToDate+gameCode));
+			return Login.logout();
+		}
+		//logout		
+		
+		List<HashMap<String, String>> serverList = getServerList(Integer.valueOf(configId), gameCode);
+		HashMap<String, String> info = getConfigVbonus(Integer.valueOf(configId), gameCode);
 
-		if (configVbonus != null && !configVbonus.isEmpty()) {
-			HashMap<String, String> info = configVbonus.get("info");
+		if (info != null && !info.isEmpty()) {			
 			helper.Helper.debug("info ", info.toString());
-
 			if (serverList != null && !serverList.isEmpty()) {
 				helper.Helper.debug("server ", serverList.toString());
 			}
 		}
 		HashMap<String, String> arrtList = new HashMap<>();
 		arrtList.put("onchange", "getCharacter();");
-		Html inpServerList = FormHelper.addSelectList("server", serverList,
-				"Chọn server", arrtList, "");
+		Html inpServerList = FormHelper.addSelectList("server", serverList, "Chọn server", arrtList, "");
 		arrtList.put("onchange", "showInfoCharacter();");
-		 Html inpCharacterList = FormHelper.addSelectList("character", null,
-		 "Chọn Character", arrtList, "");
+		Html inpCharacterList = FormHelper.addSelectList("character", null, "Chọn Character", arrtList, "");
 
 		HashMap<String, Html> listInput = new HashMap<String, Html>();
 		listInput.put("server", inpServerList);
 		listInput.put("character", inpCharacterList);
-		//Result reCaptcha = Captcha.getCaptCha("vbonus_register");
-		Html content = views.html.vbonus.register.render("", configInfo,
-				Login.getUserInfoLogin(), listInput,"vbonus_register");
+		// Result reCaptcha = Captcha.getCaptCha("vbonus_register");
+		Html content = views.html.vbonus.register.render("", configInfo, Login.getUserInfoLogin(), listInput, "vbonus_register");
 
 		return ok(Application.getContentPage("Register vbonus", content));
 	}
 
 	@Security.Authenticated(Secured.class)
-	public static HashMap<String, HashMap<String, String>> getConfigVbonus(
-			int configId, String gameCode) {
-
-		HashMap<String, HashMap<String, String>> config = new HashMap<String, HashMap<String, String>>();
+	public static HashMap<String, String> getConfigVbonus(int configId, String gameCode) {
+		
 		HashMap configInfo = new HashMap<String, String>();
 		try {
-			File fXmlFile = new File(Play.application().configuration()
-					.getString("site.configPath").toString()
-					+ "vbonus\\config\\" + gameCode + ".xml");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
+			File fXmlFile = new File(Play.application().configuration().getString("site.configPath").toString() + "vbonus\\config\\" + gameCode + ".xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
@@ -138,82 +129,68 @@ public class Vbonus extends Application {
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
-
-					configInfo.put("configId",
-							eElement.getElementsByTagName("config_id").item(0)
-									.getTextContent());
-					configInfo.put("api_gamecode", eElement
-							.getElementsByTagName("api_gamecode").item(0)
-							.getTextContent());
-					configInfo.put("apiLevel",
-							eElement.getElementsByTagName("api_level").item(0)
-									.getTextContent());
-					configInfo.put("apiType",
-							eElement.getElementsByTagName("api_type").item(0)
-									.getTextContent());
-					configInfo.put("apiEsbNew",
-							eElement.getElementsByTagName("api_esb_new")
-									.item(0).getTextContent());
+					configInfo.put("configId", eElement.getElementsByTagName("config_id").item(0).getTextContent());
+					configInfo.put("api_gamecode", eElement.getElementsByTagName("api_gamecode").item(0).getTextContent());
+					configInfo.put("apiLevel", eElement.getElementsByTagName("api_level").item(0).getTextContent());
+					configInfo.put("apiType", eElement.getElementsByTagName("api_type").item(0).getTextContent());
+					configInfo.put("apiEsbNew", eElement.getElementsByTagName("api_esb_new").item(0).getTextContent());
 
 				}
-			}
-			config.put("info", configInfo);
+			}		
 
 		} catch (Exception ex) {
-			helper.Helper.debug("error load config vbonus " + configId,
-					ex.getMessage());
+			helper.Helper.debug("error load config vbonus " + configId, ex.getMessage());
 		}
-		return config;
+		return configInfo;
 	}
 
 	@Security.Authenticated(Secured.class)
-	public static List<HashMap<String, String>> getServerList(int configId,
-			String gameCode) {
+	public static List<HashMap<String, String>> getServerList(int configId, String gameCode) {
 
-		List<HashMap<String, String>> serverList = new ArrayList<>();		
-		if(serverList!= null && serverList.size()>0){
+		List<HashMap<String, String>> serverList = new ArrayList<>();
+		//serverList = getListServerFromXML(configId,gameCode);
+		if (serverList != null && serverList.size() > 0) {
 			return serverList;
-		}	
-		// call api get list server		
-		HashMap<String,String> paramCallServer = new HashMap<String, String>();
+		}
+		
+		// call api get list server
+		HashMap<String, String> paramCallServer = new HashMap<String, String>();
 		paramCallServer.put("gameCode", gameCode);
 		String strServerList = api.ApiHelper.getServerList(paramCallServer);	
 		JSONObject serverListObj = new JSONObject();
 		try {
-			serverListObj = (JSONObject)new JSONParser().parse(strServerList);
-			if(serverListObj!=null && serverListObj.get("0").toString().equals("1")){	
+			serverListObj = (JSONObject) new JSONParser().parse(strServerList);
+			if (serverListObj != null && serverListObj.get("0").toString().equals("1")) {
 				List<HashMap<String, String>> serverListRoot = new ArrayList<>();
 				serverListRoot = com.vng.csm.helper.JsonHelper.jsonStringToListHashMap(serverListObj.get("1").toString());
-				for(int i = 0 ; i < serverListRoot.size() ; i++){					
-					HashMap<String, String> server = new HashMap<String, String>();					
+				for (int i = 0; i < serverListRoot.size(); i++) {
+					HashMap<String, String> server = new HashMap<String, String>();
 					String serverName = serverListRoot.get(i).get("serverName");
-					String serverId = serverListRoot.get(i).get("serverId")+"|"+serverListRoot.get(i).get("serverIp");
-					String token = helper.Fnc.md5Sum(configId+serverId+serverName);					
-					server.put("name",serverName );
-					server.put("value", serverId );
-					server.put("token",  token);
+					String serverId = serverListRoot.get(i).get("serverId") + "|" + serverListRoot.get(i).get("serverIp");
+					String token = helper.Fnc.md5Vbonus(configId + serverId + serverName+gameCode);
+					server.put("name", serverName);
+					server.put("value", serverId);
+					server.put("gameCode", gameCode);					
+					server.put("token", token);
 					serverList.add(server);
 				}
-			}else{
-				
+			} else {
+
 			}
-			
-		} catch (Exception  e) {
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 		return serverList;
 	}
-	
-	public static List<HashMap<String, String>> getListServerFromXML(int configId,String gameCode){
+
+	public static List<HashMap<String, String>> getListServerFromXML(int configId, String gameCode) {
 		List<HashMap<String, String>> serverList = new ArrayList<>();
 		try {
 			HashMap<String, String> server = new HashMap<String, String>();
-			File fXmlFile = new File(Play.application().configuration()
-					.getString("site.configPath").toString()
-					+ "vbonus\\server\\" + gameCode + ".xml");
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
+			File fXmlFile = new File(Play.application().configuration().getString("site.configPath").toString() + "vbonus\\server\\" + gameCode + ".xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
@@ -229,20 +206,20 @@ public class Vbonus extends Application {
 
 					String serverId = eElement.getElementsByTagName("server_id").item(0).getTextContent();
 					String serverName = eElement.getElementsByTagName("server_name").item(0).getTextContent();
-					String token = helper.Fnc.md5Sum(configId+serverId+serverName);
-					server.put("value",serverId);
-					server.put("name",serverName);
-					server.put("token",token);				
+					String token = helper.Fnc.md5Vbonus(configId + serverId + serverName+gameCode);
+					server.put("value", serverId);
+					server.put("name", serverName);
+					server.put("gameCode", gameCode);			
+					server.put("token", token);
 				}
 			}
 			serverList.add(server);
 
 		} catch (Exception ex) {
-			helper.Helper.debug("error load config vbonus " + configId,
-					ex.getMessage());
+			helper.Helper.debug("error load config vbonus " + configId, ex.getMessage());
 		}
 		return serverList;
-	
+
 	}
 
 	@Security.Authenticated(Secured.class)
@@ -251,96 +228,137 @@ public class Vbonus extends Application {
 	}
 
 	@Security.Authenticated(Secured.class)
-	public static Result ajaxVbonusRegister(int configId,String vbonusCode,
-			String captchaCode, String serverId, String serverName,String characterName,int level,String firstLogin, String token) {
-		
+	public static Result ajaxVbonusRegister(int configId, String vbonusCode, String captchaCode, String serverId, String serverName, String characterName, int level, String firstLogin, String token) {
+
 		// check captcha value
-		if(!Captcha.checkCaptcha("vbonus_register",captchaCode)){
+		if (!Captcha.checkCaptcha("vbonus_register", captchaCode)) {
 			return ok("-100");
 		}
-		if(helper.Fnc.md5Check(String.valueOf(configId)+serverId+serverName+characterName+level+firstLogin, token)){
+		if (helper.Fnc.md5VbonusCheck(String.valueOf(configId) + serverId + serverName + characterName + level + firstLogin, token)) {
 			String username = Login.getUserLogin();
-			String memberId = helper.Fnc.vBonusIdDecode(vbonusCode);	
-			HashMap<String,String> result = models.Vbonus.register(configId,username, Integer.valueOf(memberId), Integer.valueOf(vbonusCode), serverId, serverName, characterName, level, firstLogin);				
-			if(result!= null){
+			String memberId = helper.Fnc.vBonusIdDecode(vbonusCode);
+			HashMap<String, String> result = models.Vbonus.register(configId, username, Integer.valueOf(memberId), Integer.valueOf(vbonusCode), serverId, serverName, characterName, level, firstLogin);
+			if (result != null) {
 				return ok(String.valueOf(result.get("result")));
 			}
 			return ok("-101");
 		}
 		return ok("-102");
-		//return ok("result call ajax: " + vbonusCode + " - " + captchaCode	+ " - " + serverId + " - " + " - " + serverName + " - "+ characterName + " - " + level + " - "+ " - " + firstLogin + " - "+ " - " + token + " - ");
+		// return ok("result call ajax: " + vbonusCode + " - " + captchaCode +
+		// " - " + serverId + " - " + " - " + serverName + " - "+ characterName
+		// + " - " + level + " - "+ " - " + firstLogin + " - "+ " - " + token +
+		// " - ");
 	}
 
 	@Security.Authenticated(Secured.class)
 	public static Result javascriptRoutes() {
 		response().setContentType("text/javascript");
-		return ok(Routes.javascriptRouter(
-				"jsVbonusRoutes",
-				// Routes
-				controllers.routes.javascript.Vbonus.ajaxVbonusTest(),
-				controllers.routes.javascript.Vbonus.ajaxVbonusGetCharacter(),
-				controllers.routes.javascript.Vbonus.ajaxVbonusRegister()));
+		return ok(Routes.javascriptRouter("jsVbonusRoutes",
+		// Routes
+				controllers.routes.javascript.Vbonus.ajaxVbonusTest(), controllers.routes.javascript.Vbonus.ajaxVbonusGetCharacter(), controllers.routes.javascript.Vbonus.ajaxVbonusRegister()));
 
 	}
-	
+		
 	@Security.Authenticated(Secured.class)
-	public static Result ajaxVbonusGetCharacter(int configId,String serverId,String serverName, String token) {		
-		if(helper.Fnc.md5Check(configId+serverId+serverName, token)){
-			List<HashMap<String,String>> characterList = getListCharacter(configId,serverId,serverName);	
+	public static Result ajaxVbonusGetCharacter(int configId, String serverId, String serverName, String gameCode,String token) {
+		if (helper.Fnc.md5VbonusCheck(configId + serverId + serverName+gameCode, token)) {
+			List<HashMap<String, String>> characterList = getListCharacter(configId, serverId, serverName,gameCode);
 			String result = com.vng.csm.helper.FncHelper.listHashMapToJsonString(characterList);
 			return ok(result);
 		}
-		
+
 		return ok("-101");
 	}
-	
 	@Security.Authenticated(Secured.class)
-	public static List<HashMap<String,String>> getListCharacter(int configId,String serverId,String serverName){
-		HashMap<String,String>userInfo = Login.getUserInfoLogin();		
-		List<HashMap<String,String>> characterList = new ArrayList<>();
-		HashMap<String,String> paramCallApi = new HashMap<String,String>();
-		paramCallApi.put("configId", String.valueOf(configId));	
+	public static List<HashMap<String, String>> getListCharacter(int configId, String serverId, String serverName,String gameCode) {
+		HashMap<String, String> userInfo = Login.getUserInfoLogin();
+		List<HashMap<String, String>> characterList = new ArrayList<>();
+		HashMap<String, String> paramCallApi = new HashMap<String, String>();
+		
+		HashMap<String,String> configInfo = getConfigVbonus(configId, gameCode);
+		
+		paramCallApi.put("configId", String.valueOf(configId));
 		paramCallApi.put("zingId", userInfo.get("zingId"));
 		paramCallApi.put("passportId", userInfo.get("passportId"));
-		paramCallApi.put("serverId", serverId);		
-		paramCallApi.put("serverName", serverName);		
-		paramCallApi.put("api_gamecode", "api_gamecode");
-		paramCallApi.put("api_type", "api_type");
-		paramCallApi.put("api_esb_new", "api_esb_new");
-		paramCallApi.put("api_level", "5");
-		String result = api.ApiHelper.getCharacterName(paramCallApi);
-//		Map<String,String> map = new HashMap<String,String>();
-//		try{
-//	
-//			ObjectMapper mapper = new ObjectMapper();
-//			map = mapper.readValue(result,new TypeReference<HashMap<String,String>>(){});
-//		}catch(Exception ex){
-//			Logger.info("call 11error: "+ex.getMessage());
-//		}
-//		Logger.info("call api result map string string: "+result+map.toString());
-		Logger.info("call api result: "+result);
+		//paramCallApi.put("serverId", serverId);
+		//paramCallApi.put("serverName", serverName);
+		paramCallApi.put("api_gamecode", configInfo.get("pai_gamecode"));
+		paramCallApi.put("api_type", configInfo.get("api_type"));
+		paramCallApi.put("api_esb_new", configInfo.get("api_esb_new"));
+		paramCallApi.put("api_level", configInfo.get("5"));
 		int apiLevel = 5;
-		for(int i = 1 ; i <= 10 ; i++){
+		String result = api.ApiHelper.getCharacterList(paramCallApi);	
+		System.out.println("-------------\n");
+		System.out.println("result call : "+paramCallApi);
+		System.out.println("-------------\n");
+		
+		JSONObject serverListObj = new JSONObject();
+		try {
+			serverListObj = (JSONObject) new JSONParser().parse(result);
+			if (serverListObj != null && serverListObj.get("0").toString().equals("1")) {
+				List<HashMap<String, String>> serverListRoot = new ArrayList<>();
+				serverListRoot = com.vng.csm.helper.JsonHelper.jsonStringToListHashMap(serverListObj.get("1").toString());
+				for (int i = 0; i < serverListRoot.size(); i++) {
+					HashMap<String, String> character = new HashMap<String, String>();
+					String firstLogin = serverListRoot.get(i).get("registerDate");
+					String level = serverListRoot.get(i).get("level");
+					String characterName = serverListRoot.get(i).get("characterName");					
+					String token = helper.Fnc.md5Vbonus(configId + serverId + serverName+characterName+level+firstLogin);
+					int isRegister = 0;
+					if (Integer.valueOf(level) >= apiLevel) {
+						isRegister = 1;
+					}					
+					character.put("id", characterName);
+					character.put("name", characterName);
+					character.put("firstLogin", firstLogin);
+					character.put("level", level);					
+					character.put("isRegister", String.valueOf(isRegister));
+					character.put("token", token);
+					characterList.add(character);					
+				}
+			} else {
 			
-			String characterName = "Nhân vật "+String.valueOf(i);
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*
+		// Map<String,String> map = new HashMap<String,String>();
+		// try{
+		//
+		// ObjectMapper mapper = new ObjectMapper();
+		// map = mapper.readValue(result,new
+		// TypeReference<HashMap<String,String>>(){});
+		// }catch(Exception ex){
+		// Logger.info("call 11error: "+ex.getMessage());
+		// }
+		// Logger.info("call api result map string string: "+result+map.toString());
+		Logger.info("call api result: " + result);
+		int apiLevel = 5;
+		for (int i = 1; i <= 10; i++) {
+
+			String characterName = "Nhân vật " + String.valueOf(i);
 			int level = i;
-			String firstLogin = "firstLogin"+String.valueOf(i);
-			
-			HashMap<String,String> character = new HashMap<String,String>();
-			String token = helper.Fnc.md5Sum(String.valueOf(configId)+serverId+serverName+characterName+level+firstLogin);
+			String firstLogin = "firstLogin" + String.valueOf(i);
+
+			HashMap<String, String> character = new HashMap<String, String>();
+			String token = helper.Fnc.md5Vbonus(String.valueOf(configId) + serverId + serverName + characterName + level + firstLogin);
 			String isRegister = "0";
-			if(level >= apiLevel){
+			if (level >= apiLevel) {
 				isRegister = "1";
 			}
 			character.put("id", characterName);
 			character.put("name", characterName);
 			character.put("level", String.valueOf(level));
-			character.put("firstLogin",firstLogin);
-			character.put("isRegister",isRegister);	
+			character.put("firstLogin", firstLogin);
+			character.put("isRegister", isRegister);
 			character.put("token", token);
 			characterList.add(character);
-		}		
-		
+		}*/
+
 		return characterList;
 	}
 

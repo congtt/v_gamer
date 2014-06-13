@@ -22,16 +22,6 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 	});
 </script>
 <script type="text/javascript">
-	function CallAjax() {
-		jsVbonusRoutes.controllers.Vbonus.ajaxVbonusTest("congtt").ajax({
-			success : function(data) {
-				alertify.success(data);
-			},
-			error : function() {
-				alertify.error("error!");
-			}
-		})
-	}
 	
 	function RegisterSuccess(){
 		$('#register_success').html('<div id="message_success">Bạn đã đăng ký tham gia chương trình vbonus.</div>');
@@ -83,14 +73,14 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 		var character = "";
 		var vbonusCode = $('#txtVbonusCode').val();
 		if (vbonusCode == '') {
-			alertify.error("Vui lÃƒÂ²ng nhÃ¡ÂºÂ­p mÃƒÂ£ sÃ¡Â»â€˜ vbonus.");
+			alertify.error("Vui lòng nhập mã số vbonus.");
 			$('#txtVbonusCode').focus();
 			return;
 		}
 		var captchaCode = $('#txtCaptchaCode').val();
 		if (captchaCode == '') {
 			alertify
-					.error("Vui lÃƒÂ²ng nhÃ¡ÂºÂ­p mÃƒÂ£ sÃ¡Â»â€˜ bÃ¡ÂºÂ£o mÃ¡ÂºÂ­t.");
+					.error("Vui lòng nhập mã bảo mật.");
 			$('#txtCaptchaCode').focus();
 			return;
 		}		
@@ -107,7 +97,7 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 			return;
 		}
 		if (characterName == "") {
-			alertify.error("Vui lÃƒÂ²ng chÃ¡Â»ï¿½n nhÃƒÂ¢n vÃ¡ÂºÂ­t.");
+			alertify.error("Vui lòng chọn nhân vật.");
 			$('#character').focus();
 			return;
 		}
@@ -128,13 +118,14 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 		var configId = $('#configId').val();
 		var serverId = $('#server option:selected').val();
 		var serverName = $('#server option:selected').text();
+		var gameCode = $('#server option:selected').attr("gameCode");
 		var token = $('#server option:selected').attr("token");
 		var character = $('#character');
 		var _x_options = character.attr('options');
 		_x_options.length = 1;
 		if (serverId != "" && serverName != "") {
 			jsVbonusRoutes.controllers.Vbonus.ajaxVbonusGetCharacter(configId,serverId,
-					serverName, token).ajax(
+					serverName,gameCode, token).ajax(
 					{
 						success : function(data) {							
 							var js_obj = eval('(' + data + ')');
@@ -223,41 +214,31 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 	<input	type="hidden" name="page" id="page" value="1" />
 	<input type="hidden" name="configId" id="configId" value="@configInfo.get("configId")" />		
 	<div style="clear: both;"></div>
-	<div id="info">
-		<a href="javascript:CallAjax();">CALL</a>
-		<h2>ThÃ´ng tin chÆ°Æ¡ng trÃ¬nh</h2>
-
-		<!--@if(inputList != null && !inputList.isEmpty()){
-				
-				@for((key, value) <- inputList) {
-					 <h1> @key</h1> to </h2> @value</h2>
-					}	
-			}-->
-
-
+	<div id="info">	
+		<h2>Thông tin chương trình</h2>
 		<table style="margin-left: 50px;">
 			<tr style="">
-				<td class="Strong01" colspan=4>ChÆ°Æ¡ng trÃ¬nh : {_platform}
+				<td class="Strong01" colspan=4>Chương trình : 
 					@configInfo.get("name")</td>
 			</tr>
 			<tr>
-				<td class="Strong01">Thá»�i gian diá»…n ra:</td>
+				<td class="Strong01">Thời gian diễn ra:</td>
 				<td width="100px">@configInfo.get("fromDate")</td>
-				<td class="Strong01">Ä‘áº¿n</td>
+				<td class="Strong01">đến</td>
 				<td>@configInfo.get("toDate")</td>
 			</tr>
 			<tr>
-				<td class="Strong01">Thá»�i gian má»�i tÃ i khoáº£n:</td>
+				<td class="Strong01">Thời gian tạo tài khoản:</td>
 				<td>@configInfo.get("inviteFromDate")</td>
-				<td class="Strong01">Ä‘áº¿n</td>
+				<td class="Strong01">đến</td>
 				<td>@configInfo.get("inviteToDate")</td>
 			</tr>
 			<tr style="display: auto">
-				<td>TÃ i khoáº£n</td>
+				<td>Tài khoản</td>
 				<td colspan=3>@userInfo.get("username")</td>
 			</tr>
 			<tr style="display: auto">
-				<td>NgÃ y táº¡o tÃ i khoáº£n</td>
+				<td>Ngày tạo tài khoản</td>
 				<td colspan="3">@userInfo.get("registerDate")</td>
 			</tr>
 		</table>
@@ -266,20 +247,18 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 	<div id="message">@message</div>
 	<div style="clear: both;"></div>
 	<div id="register">
-		<h2>Ä�Äƒng kÃ½</h2>
-		<div id="register_success">{register_note}</div>
-
+		<h2>Đăng ký</h2>
+		<div id="register_success"></div>
 
 		<div id="register_info">
 			<table style="margin-left: 50px;">
 				<tr style="display: auto" id="trVbonusCode">
-					<td>MÃ£ sá»‘ VBonus <b style="color: red">(*)</b>
+					<td>Mã số VBonus <b style="color: red">(*)</b>
 					</td>
 					<td colspan=3><input type="text"
-						placeholder="-- Nháº­p mÃ£ sá»‘ Vbonus --" id="txtVbonusCode"
+						placeholder="---  Nhập mã số Vbonus ---" id="txtVbonusCode"
 						name="txtVbonusCode"> &nbsp;<a
-						href="http://win.phongmay.zing.vn/fe/info/cpanel/list_pm.html">TÃ¬m
-							mÃ£ sá»‘ Vbonus táº¡i Ä‘Ã¢y.</a></td>
+						href="http://win.phongmay.zing.vn/fe/info/cpanel/list_pm.html">Xem mã số Vbonus tại đây.</a></td>
 				</tr>
 				<!-- BEGIN: server -->
 				<tr>
@@ -288,7 +267,7 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 					<td colspan=3>@inputList.get("server")</td>
 				</tr>
 				<tr>
-					<td>NhÃ¢n váº­t <b style="color: red">(*)</b>
+					<td>Nhân vật <b style="color: red">(*)</b>
 					</td>
 					<td colspan=3>@inputList.get("character")</td>
 				</tr>
@@ -301,7 +280,6 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 					<td colspan="4">&nbsp;</td>
 				</tr>
 				<!-- END: server -->
-
 				<tr>
 					<td colspan="4">
 						<div style="margin-left: 123px;">
@@ -311,9 +289,9 @@ HashMap[String,String])(inputList: Map[String, Html])(reCaptcha: String)
 					</td>
 				</tr>
 				<tr>
-					<td>MÃ£ báº£o máº­t :</td>
+					<td>Mã bảo mật <b style="color: red">(*)</b></td>
 					<td><input type="text" name="txtCaptchaCode"
-						id="txtCaptchaCode" placeholder=" -- Nháº­p mÃ£ báº£o máº­t --" />
+						id="txtCaptchaCode" placeholder=" -- Nhập mã bảo mật --" />
 					</td>
 				</tr>
 			</table>
